@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>新規登録</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
 </head>
-
 <body>
+
     <?php
         # s_signup1.htmlから氏名を受け取る
 	    $name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
@@ -27,6 +28,6 @@
         <input type="hidden" name="pass" value=<?php print $pass; ?>>
         <input type="submit" value="登録">
     </form>
+    
 </body>
-
 </html>
