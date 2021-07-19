@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>〇〇掲示板</title>
+<title>新規登録</title>
 </head>
 <body>
 <?php
