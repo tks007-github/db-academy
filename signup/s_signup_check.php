@@ -26,7 +26,7 @@
 
 	// $user_pass = password_hash($user_pass, PASSWORD_DEFAULT);		// パスワードを暗号化
 	print '<form method="post" action="s_signup_done.php">';
-	print '<input type="hidden" name="height" value="' . $belong . '">';
+	print '<input type="hidden" name="belong" value="' . $belong . '">';
 	print '<input type="hidden" name="name" value="' . $name . '">';
 	print '<input type="hidden" name="pass" value="' . $pass . '">';
 	print '<br>';
