@@ -35,7 +35,7 @@
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		// mst_playerテーブルに対してINSERT文で選手の追加
-		$sql1 = 'INSERT INTO mst_player (name, password, belong) VALUES (?,?,?)';
+		$sql1 = 'INSERT INTO player (name, password, belong) VALUES (?,?,?)';
 		$stmt1 = $dbh->prepare($sql1);
 		$data1[0] = $name;
 		$data1[1] = $pass;
