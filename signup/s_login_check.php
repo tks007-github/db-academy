@@ -4,7 +4,7 @@ try
 	# s_login.htmlからパスワードを受け取る
 	$mst_pass = htmlspecialchars($_POST['mst_pass'], ENT_QUOTES, 'UTF-8');
 
-	# signupデータベースに接続する
+	# player_managementデータベースに接続する
 	$dsn = 'mysql:dbname=player_management;host=localhost;charset=utf8';
 	$user = 'root';
 	$password = 'root';
@@ -17,7 +17,7 @@ try
 	$data[0] = $mst_pass;
 	$stmt -> execute($data);
 
-	# mst_passwordデータベースから切断する
+	# player_managementデータベースから切断する
 	$dbh = null;
 
 	$rec = $stmt -> fetch(PDO::FETCH_ASSOC);
