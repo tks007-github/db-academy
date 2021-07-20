@@ -11,6 +11,7 @@
 <body>
 
 	<?php
+	
 	print '下記の内容で登録を行います。<br>';
 	print '<br>';
 
@@ -20,10 +21,9 @@
 	$height = htmlspecialchars($_POST['height'], ENT_QUOTES, 'UTF-8');
 	$weight = htmlspecialchars($_POST['weight'], ENT_QUOTES, 'UTF-8');
 
+	print '所属：' . $belong . '<br>';
 	print '氏名：' . $name . '<br>';
-	print 'パスワード：' . $pass . '<br>';
-	print '身長：' . $height . '<br>';
-	print '体重：' . $weight . '<br>'; 
+	print 'パスワード：' . $pass . '<br>'; 
 
 	// $user_pass = password_hash($user_pass, PASSWORD_DEFAULT);		// パスワードを暗号化
 	print '<form method="post" action="user_register_done.php">';
