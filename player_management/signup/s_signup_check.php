@@ -16,17 +16,17 @@
 	print '<br>';
 
 	// s_signup.phpから渡された値をサニタイズ
-	$belong = htmlspecialchars($_POST['belong'], ENT_QUOTES, 'UTF-8');
+	$belong_name = htmlspecialchars($_POST['belong_name'], ENT_QUOTES, 'UTF-8');
 	$name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
 	$pass = htmlspecialchars($_POST['pass'], ENT_QUOTES, 'UTF-8');
 
-	print '所属：' . $belong . '<br>';
+	print '所属：' . $belong_name . '<br>';
 	print '氏名：' . $name . '<br>';
 	print 'パスワード：' . $pass . '<br>'; 
 
 	// $user_pass = password_hash($user_pass, PASSWORD_DEFAULT);		// パスワードを暗号化
 	print '<form method="post" action="s_signup_done.php">';
-	print '<input type="hidden" name="belong" value="' . $belong . '">';
+	print '<input type="hidden" name="belong_name" value="' . $belong_name . '">';
 	print '<input type="hidden" name="name" value="' . $name . '">';
 	print '<input type="hidden" name="pass" value="' . $pass . '">';
 	print '<br>';
