@@ -25,10 +25,10 @@
 	print 'パスワード：' . $pass . '<br>'; 
 
 	// $user_pass = password_hash($user_pass, PASSWORD_DEFAULT);		// パスワードを暗号化
-	print '<form method="post" action="user_register_done.php">';
+	print '<form method="post" action="s_signup_done.php">';
+	print '<input type="hidden" name="height" value="' . $belong . '">';
 	print '<input type="hidden" name="name" value="' . $name . '">';
 	print '<input type="hidden" name="pass" value="' . $pass . '">';
-	print '<input type="hidden" name="height" value="' . $height . '">';
 	print '<br>';
 	print '<input type="button" onclick="history.back()" value="戻る">';
 	print '<input type="submit" value="登録">';
