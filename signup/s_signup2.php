@@ -9,9 +9,9 @@
 <body>
 
     <?php
-        # s_signup1.htmlから氏名を受け取る
+        // s_signup1.htmlから氏名を受け取る
 	    $name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
-        # s_signup1.htmlからパスワードを受け取る
+        // s_signup1.htmlからパスワードを受け取る
 	    $pass = htmlspecialchars($_POST['pass'], ENT_QUOTES, 'UTF-8');
     ?>
 
@@ -26,7 +26,7 @@
         <br>
         <input type="hidden" name="name" value=<?php print $name; ?>>
         <input type="hidden" name="pass" value=<?php print $pass; ?>>
-        <input type="submit" value="登録">
+        <input type="submit" value="次へ">
     </form>
     
 </body>
