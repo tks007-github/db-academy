@@ -22,5 +22,11 @@
 </head>
 <body>
     
+    <a href="p_questionnaire.php">問診表</a><br>
+    <a href="p_phisical_info.php">身体情報</a><br>
+    <a href="p_phisical_test.php">フィジカルテスト</a><br>
+    <br><br>
+    <a href="p_logout.php">ログアウト</a>
+
 </body>
 </html>
