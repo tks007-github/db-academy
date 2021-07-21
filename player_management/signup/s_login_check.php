@@ -17,14 +17,14 @@ try
 	$data[0] = $mst_pass;
 	$stmt -> execute($data);
 	$rec = $stmt -> fetch(PDO::FETCH_ASSOC);
-	
+
 	// player_managementデータベースから切断する
 	$dbh = null;
 
 	if ($rec['id'] == 1) {				// データベースからの問い合わせ結果があった場合
 		session_start();						// セッションを開始
 		$_SESSION['login'] = 1;					// セッション変数に値を格納
-		header('Location:s_signup.html');		// s_signup.htmlへリダイレクト
+		header('Location:s_signup.php');		// s_signup.phpへリダイレクト
 		exit();
 	} else {							// データベースからの問い合わせ結果がない場合
 		print 'パスワードに間違いがあります。<br>';
