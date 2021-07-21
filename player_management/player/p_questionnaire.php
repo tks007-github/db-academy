@@ -56,6 +56,9 @@ if (!isset($_SESSION['login'])) {
     }
     ?>
 
+    <a href="p_top.php">戻る</a>
+    <a href="p_questionnaire_edit.php">編集</a>
+    
 </body>
 
 </html>
