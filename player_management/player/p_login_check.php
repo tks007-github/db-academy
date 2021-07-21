@@ -30,7 +30,7 @@ try
 		session_start();						// セッションを開始
 		$_SESSION['login'] = 1;					// セッション変数に値を格納
 		$_SESSION['p_code'] = $p_code;			// セッション変数に会員コードを格納
-		header('Location:p_top.html');			// p_top.htmlへリダイレクト
+		header('Location:p_top.php');			// p_top.phpへリダイレクト
 		exit();
 	}
 }
