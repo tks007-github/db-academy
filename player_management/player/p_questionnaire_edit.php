@@ -26,7 +26,7 @@ if (!isset($_SESSION['login'])) {
 <body>
 
     <?php
-    // p_question.phpから怪我、アレルギー、病気の情報を受け取る
+    // p_questionnaire.phpから怪我、アレルギー、病気の情報を受け取る
 	$injury = htmlspecialchars($_POST['injury'], ENT_QUOTES, 'UTF-8');
 	$allergies = htmlspecialchars($_POST['allergies'], ENT_QUOTES, 'UTF-8');
     $sick = htmlspecialchars($_POST['sick'], ENT_QUOTES, 'UTF-8');
