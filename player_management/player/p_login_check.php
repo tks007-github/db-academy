@@ -24,6 +24,7 @@ try
 	$dbh = null;
 
 	if ($rec == false) { 				 // データベースからの問い合わせ結果がない場合
+		print '<h3>ログイン失敗</h3><br>';
 		print 'パスワードに間違いがあります。<br>';
 		print '<a href="p_login.html"> 戻る</a>';
 	} else {							// データベースからの問い合わせ結果があった場合

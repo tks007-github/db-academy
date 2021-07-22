@@ -18,7 +18,7 @@
 </head>
 <body>
 
-    <h2>新規登録</h2>
+    <h3>新規登録</h3>
     <br>
     <form method="post" action="s_signup_check.php">
         所属を選択してください。<br>

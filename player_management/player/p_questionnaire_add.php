@@ -25,19 +25,20 @@ if (!isset($_SESSION['login'])) {
 
 <body>
 
-    編集<br>
+    <h3>問診表の編集</h3>
     <br>
-    <br>
-    <form method="post" action="p_questionnaire_edit_check.php">
-    怪我<br>
-    <input type="text" name="injury" style="width:200px"><br>
-    アレルギー<br> 
-    <input type="text" name="allergies" style="width:200px"><br>
-    病気<br>
-    <input type="text" name="sick" style="width:200px"><br>
-    <input type="submit" value="ＯＫ">
-    <br>
-    <a href="p_questionnaire.php">戻る</a>
+    <form method="post" action="p_questionnaire_add_done.php">
+        怪我<br>
+        <textarea name="injury" rows="6" cols="50"></textarea><br>
+        アレルギー<br>
+        <textarea name="allergies" rows="6" cols="50"></textarea><br>
+        病気<br>
+        <textarea name="sick" rows="6" cols="50"></textarea><br>
+        <br>
+        <br>
+        <input type="button" onclick="location.href='p_questionnaire.php'" value="戻る">
+        <input type="submit" value="ＯＫ">
+    </form>
 
 </body>
 

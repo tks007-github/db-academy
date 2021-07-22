@@ -21,12 +21,15 @@
     <title>Player</title>
 </head>
 <body>
+
+    <h3>トップページ</h3>
+    <br>
     
     <a href="p_questionnaire.php">問診表</a><br>
     <a href="p_phisical_info.php">身体情報</a><br>
     <a href="p_phisical_test.php">フィジカルテスト</a><br>
     <br><br>
-    <a href="p_logout.php">ログアウト</a>
+    <input type="button" onclick="location.href='p_logout.php'" value="ログアウト">
 
 </body>
 </html>

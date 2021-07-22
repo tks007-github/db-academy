@@ -27,6 +27,7 @@ try
 		header('Location:s_signup.php');		// s_signup.phpへリダイレクト
 		exit();
 	} else {							// データベースからの問い合わせ結果がない場合
+		print '<h3>ログイン失敗</h3><br>';
 		print 'パスワードに間違いがあります。<br>';
 		print '<a href="s_login.html"> 戻る</a>';
 	}

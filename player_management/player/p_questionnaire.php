@@ -25,6 +25,8 @@ if (!isset($_SESSION['login'])) {
 
 <body>
 
+    <h3>問診表の登録情報内容</h3>
+
     <?php
     try {
         // player_managementデータベースに接続する
@@ -50,16 +52,16 @@ if (!isset($_SESSION['login'])) {
             print '<br>';
             print '<a href="p_questionnaire_add.php">編集</a>';
         } else {                              // データベースからの問い合わせ結果があった場合
-            print '<h3>怪我：' . $rec['injury'] . '</h3>';
-            print '<h3>アレルギー：' . $rec['allergies'] . '</h3>';
-            print '<h3>病気：' . $rec['sick'] . '</h3><br><br>';
+            print '怪我：' . $rec['injury'] . '<br>';
+            print 'アレルギー：' . $rec['allergies'] . '<br>';
+            print '病気：' . $rec['sick'] . '<br>';
+            print '<br><br>';
             print '<form method="post" action="p_questionnaire_edit.php">';
 			print '<input type="hidden" name="injury" value="' . $rec['injury'] . '">';
             print '<input type="hidden" name="allergies" value="' . $rec['allergies'] . '">';
             print '<input type="hidden" name="sick" value="' . $rec['sick'] . '">';
-            print '<h3><input type="submit" value="編集">';
-            print '<br>';
-            print '<a href="p_top.php">戻る</a>';
+            print '<input type="button" onclick="location.href=\'p_top.php\'" value="戻る">';
+            print '<input type="submit" value="編集">';
         }
     } catch (Exception $e) {
         exit();

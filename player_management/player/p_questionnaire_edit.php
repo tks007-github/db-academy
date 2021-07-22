@@ -27,24 +27,25 @@ if (!isset($_SESSION['login'])) {
 
     <?php
     // p_questionnaire.phpから怪我、アレルギー、病気の情報を受け取る
-	$injury = htmlspecialchars($_POST['injury'], ENT_QUOTES, 'UTF-8');
-	$allergies = htmlspecialchars($_POST['allergies'], ENT_QUOTES, 'UTF-8');
+    $injury = htmlspecialchars($_POST['injury'], ENT_QUOTES, 'UTF-8');
+    $allergies = htmlspecialchars($_POST['allergies'], ENT_QUOTES, 'UTF-8');
     $sick = htmlspecialchars($_POST['sick'], ENT_QUOTES, 'UTF-8');
     ?>
 
-    編集<br>
+    <h3>問診表の編集</h3>
     <br>
-    <br>
-    <form method="post" action="p_questionnaire_edit_check.php">
-    怪我<br>
-    <input type="text" name="injury" style="width:200px" value="<?php print $injury; ?>"><br>
-    アレルギー<br> 
-    <input type="text" name="allergies" style="width:200px" value="<?php print $allergies; ?>"><br>
-    病気<br>
-    <input type="text" name="sick" style="width:200px" value="<?php print $sick; ?>"><br>
-    <input type="submit" value="ＯＫ">
-    <br>
-    <a href="p_questionnaire.php">戻る</a>
+    <form method="post" action="p_questionnaire_edit_done.php">
+        怪我<br>
+        <textarea name="injury" rows="6" cols="50"><?php print $injury; ?></textarea><br>
+        アレルギー<br>
+        <textarea name="allergies" rows="6" cols="50"><?php print $allergies; ?></textarea><br>
+        病気<br>
+        <textarea name="sick" rows="6" cols="50"><?php print $sick; ?></textarea><br>
+        <br>
+        <br>
+        <input type="button" onclick="location.href='p_questionnaire.php'" value="戻る">
+        <input type="submit" value="ＯＫ">
+    </form>
 </body>
 
 </html>

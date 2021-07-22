@@ -20,6 +20,8 @@
 
 <body>
 
+	<h3>新規登録完了</h3>
+
 	<?php
 	try {
 		// s_signup_check.phpから渡された値をサニタイズ
@@ -87,7 +89,7 @@
 	?>
 
 	<br>
-	<a href="../p_login.html"> 選手管理</a>
+	<a href="../player/p_login.html"> 選手管理</a>
 
 </body>
 
