@@ -60,8 +60,8 @@ if (!isset($_SESSION['login'])) {
             print '登録情報がありません。<br><br>';
         } else {                              // データベースからの問い合わせ結果があった場合
             print '最新の身体情報<br><br>';
-            print '身長：' . $rec['height'] . '<br>';
-            print '体重：' . $rec['weight'] . '<br>';
+            print '身長：' . $rec['height'] . 'cm<br>';
+            print '体重：' . $rec['weight'] . 'kg<br>';
             print '<br><br>';
         }
         print '<input type="button" onclick="location.href=\'p_top.php\'" value="戻る">';
