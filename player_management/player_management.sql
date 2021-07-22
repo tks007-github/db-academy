@@ -146,8 +146,8 @@ CREATE TABLE `player` (
 --
 
 INSERT INTO `player` (`player_code`, `player_name`, `player_password`, `belong_code`) VALUES
-('A0001', '山田太郎', 'aaa', 'A'),
-('B0001', '鈴木一郎', 'bbb', 'B');
+('A1', '山田太郎', 'aaa', 'A'),
+('B1', '鈴木一郎', 'bbb', 'B');
 
 -- --------------------------------------------------------
 
@@ -168,8 +168,8 @@ CREATE TABLE `questionnaire` (
 --
 
 INSERT INTO `questionnaire` (`id`, `player_code`, `injury`, `allergies`, `sick`) VALUES
-(1, 'A0001', '', 'そばアレルギー', '喘息'),
-(2, 'B0001', '右腕骨折', '', '');
+(1, 'A1', 'なし', 'そばアレルギー', '喘息'),
+(2, 'B1', '右腕骨折', 'なし', 'なし');
 
 --
 -- Indexes for dumped tables
