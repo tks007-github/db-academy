@@ -61,6 +61,7 @@ if (!isset($_SESSION['login'])) {
             print '<input type="hidden" name="sick" value="' . $rec['sick'] . '">';
             print '<input type="button" onclick="location.href=\'p_top.php\'" value="戻る">';
             print '<input type="submit" value="編集">';
+            print '</form>';
         }
     } catch (Exception $e) {
         exit();
