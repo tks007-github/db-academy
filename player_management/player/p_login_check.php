@@ -26,7 +26,7 @@ try
 	if ($rec == false) { 				 // データベースからの問い合わせ結果がない場合
 		print '<h3>ログイン失敗</h3><br>';
 		print 'パスワードに間違いがあります。<br>';
-		print '<a href="p_login.html"> 戻る</a>';
+		print '<input type="button" onclick="location.href=\'p_login.html\'" value="戻る">';
 	} else {							// データベースからの問い合わせ結果があった場合
 		session_start();						// セッションを開始
 		$_SESSION['login'] = 1;					// セッション変数に値を格納
