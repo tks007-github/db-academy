@@ -48,9 +48,8 @@ if (!isset($_SESSION['login'])) {
 
         if ($rec == false) {                  // データベースからの問い合わせ結果がない場合
             print '登録情報がありません。<br><br>';
-            print '<a href="p_top.php">戻る</a>';
-            print '<br>';
-            print '<a href="p_questionnaire_add.php">編集</a>';
+            print '<input type="button" onclick="location.href=\'p_top.php\'" value="戻る">';
+            print '<input type="button" onclick="location.href=\'p_questionnaire_add.php\'" value="編集">';
         } else {                              // データベースからの問い合わせ結果があった場合
             print '怪我：' . $rec['injury'] . '<br>';
             print 'アレルギー：' . $rec['allergies'] . '<br>';
