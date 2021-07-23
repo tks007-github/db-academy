@@ -90,7 +90,7 @@ if (!isset($_SESSION['login'])) {
 
             print '怪我<br>'; 
             if ($rec1_1['name'] == 'なし') {
-                print 'なし';
+                print 'なし<br>';
                 print '<input type="hidden" name="injury_num" value=0>';
             } elseif ($rec1_2['name'] == 'なし') {
                 print $rec1_1['name'] . '　' . $status_value[$rec1_1['status_code']-1] . '　' . $rec1_1['year'] . '年' . $rec1_1['month'] . '月<br>';
@@ -142,7 +142,7 @@ if (!isset($_SESSION['login'])) {
 
             print '病気<br>'; 
             if ($rec3_1['name'] == 'なし') {
-                print 'なし';
+                print 'なし<br>';
                 print '<input type="hidden" name="sick_num" value=0>';
             } elseif ($rec3_2['name'] == 'なし') {
                 print $rec3_1['name'] . '　' . $status_value[$rec3_1['status_code']-1] . '　' . $rec3_1['year'] . '年' . $rec3_1['month'] . '月<br>';
