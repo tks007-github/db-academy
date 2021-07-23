@@ -41,7 +41,7 @@ if (!isset($_SESSION['login'])) {
                 SELECT name, status_code, year, month 
                 FROM questionnaire 
                 WHERE player_code = ? AND item_code = 1
-                ORDER BY year DESC
+                ORDER BY num
                 ';
         $stmt1 = $dbh -> prepare($sql1);
         $data1[0] = $p_code;
@@ -54,7 +54,7 @@ if (!isset($_SESSION['login'])) {
                 SELECT name, status_code, year, month 
                 FROM questionnaire 
                 WHERE player_code = ? AND item_code = 2
-                ORDER BY year DESC
+                ORDER BY num
                 ';
         $stmt2 = $dbh -> prepare($sql2);
         $data2[0] = $p_code;
@@ -67,7 +67,7 @@ if (!isset($_SESSION['login'])) {
                 SELECT name, status_code, year, month 
                 FROM questionnaire 
                 WHERE player_code = ? AND item_code = 3
-                ORDER BY year DESC
+                ORDER BY num
                 ';
         $stmt3 = $dbh -> prepare($sql3);
         $data3[0] = $p_code;

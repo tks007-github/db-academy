@@ -118,32 +118,32 @@ if (!isset($_SESSION['login'])) {
         <input type="text" name="injury1_name" value="<?php print $injury1_name; ?>">
         状態
         <select name="injury1_status_code">
-            <option value=""></option>
-            <option value=1>治療済み</option>
-            <option value=2>治療中</option>
+            <option value="" <?php print($injury1_status_code == 0 ? 'selected' : ''); ?>></option>
+            <option value=1 <?php print($injury1_status_code == 1 ? 'selected' : ''); ?>>治療済み</option>
+            <option value=2 <?php print($injury1_status_code == 2 ? 'selected' : ''); ?>>治療中</option>
         </select>
         時期
         <select name="injury1_year">
-            <option value=""></option>
-            <option value=2019>2019</option>
-            <option value=2020>2020</option>
-            <option value=2021>2021</option>
+            <option value="" <?php print($injury1_year == 0 ? 'selected' : ''); ?>></option>
+            <option value=2019 <?php print($injury1_year == 2019 ? 'selected' : ''); ?>>2019</option>
+            <option value=2020 <?php print($injury1_year == 2020 ? 'selected' : ''); ?>>2020</option>
+            <option value=2021 <?php print($injury1_year == 2021 ? 'selected' : ''); ?>>2021</option>
         </select>
         年
         <select name="injury1_month">
-            <option value=""></option>
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
-            <option value=11>11</option>
-            <option value=12>12</option>
+            <option value="" <?php print($injury1_month == 0 ? 'selected' : ''); ?>></option>
+            <option value=1 <?php print($injury1_month == 1 ? 'selected' : ''); ?>>1</option>
+            <option value=2 <?php print($injury1_month == 2 ? 'selected' : ''); ?>>2</option>
+            <option value=3 <?php print($injury1_month == 3 ? 'selected' : ''); ?>>3</option>
+            <option value=4 <?php print($injury1_month == 4 ? 'selected' : ''); ?>>4</option>
+            <option value=5 <?php print($injury1_month == 5 ? 'selected' : ''); ?>>5</option>
+            <option value=6 <?php print($injury1_month == 6 ? 'selected' : ''); ?>>6</option>
+            <option value=7 <?php print($injury1_month == 7 ? 'selected' : ''); ?>>7</option>
+            <option value=8 <?php print($injury1_month == 8 ? 'selected' : ''); ?>>8</option>
+            <option value=9 <?php print($injury1_month == 9 ? 'selected' : ''); ?>>9</option>
+            <option value=10 <?php print($injury1_month == 10 ? 'selected' : ''); ?>>10</option>
+            <option value=11 <?php print($injury1_month == 11 ? 'selected' : ''); ?>>11</option>
+            <option value=12 <?php print($injury1_month == 12 ? 'selected' : ''); ?>>12</option>
         </select>
         月
         <br><br>
@@ -152,32 +152,32 @@ if (!isset($_SESSION['login'])) {
         <input type="text" name="injury2_name" value="<?php print $injury2_name; ?>">
         状態
         <select name="injury2_status_code">
-            <option value=""></option>
-            <option value=1>治療済み</option>
-            <option value=2>治療中</option>
+            <option value="" <?php print($injury2_status_code == 0 ? 'selected' : ''); ?>></option>
+            <option value=1 <?php print($injury2_status_code == 1 ? 'selected' : ''); ?>>治療済み</option>
+            <option value=2 <?php print($injury2_status_code == 2 ? 'selected' : ''); ?>>治療中</option>
         </select>
         時期
         <select name="injury2_year">
-            <option value=""></option>
-            <option value=2019>2019</option>
-            <option value=2020>2020</option>
-            <option value=2021>2021</option>
+            <option value="" <?php print($injury2_year == 0 ? 'selected' : ''); ?>></option>
+            <option value=2019 <?php print($injury2_year == 2019 ? 'selected' : ''); ?>>2019</option>
+            <option value=2020 <?php print($injury2_year == 2020 ? 'selected' : ''); ?>>2020</option>
+            <option value=2021 <?php print($injury2_year == 2021 ? 'selected' : ''); ?>>2021</option>
         </select>
         年
         <select name="injury2_month">
-            <option value=""></option>
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
-            <option value=11>11</option>
-            <option value=12>12</option>
+            <option value="" <?php print($injury2_month == 0 ? 'selected' : ''); ?>></option>
+            <option value=1 <?php print($injury2_month == 1 ? 'selected' : ''); ?>>1</option>
+            <option value=2 <?php print($injury2_month == 2 ? 'selected' : ''); ?>>2</option>
+            <option value=3 <?php print($injury2_month == 3 ? 'selected' : ''); ?>>3</option>
+            <option value=4 <?php print($injury2_month == 4 ? 'selected' : ''); ?>>4</option>
+            <option value=5 <?php print($injury2_month == 5 ? 'selected' : ''); ?>>5</option>
+            <option value=6 <?php print($injury2_month == 6 ? 'selected' : ''); ?>>6</option>
+            <option value=7 <?php print($injury2_month == 7 ? 'selected' : ''); ?>>7</option>
+            <option value=8 <?php print($injury2_month == 8 ? 'selected' : ''); ?>>8</option>
+            <option value=9 <?php print($injury2_month == 9 ? 'selected' : ''); ?>>9</option>
+            <option value=10 <?php print($injury2_month == 10 ? 'selected' : ''); ?>>10</option>
+            <option value=11 <?php print($injury2_month == 11 ? 'selected' : ''); ?>>11</option>
+            <option value=12 <?php print($injury2_month == 12 ? 'selected' : ''); ?>>12</option>
         </select>
         月
         <br><br>
@@ -187,32 +187,32 @@ if (!isset($_SESSION['login'])) {
         <input type="text" name="allergies1_name" value="<?php print $allergies1_name; ?>">
         状態
         <select name="allergies1_status_code">
-            <option value=""></option>
-            <option value=1>治療済み</option>
-            <option value=2>治療中</option>
+            <option value="" <?php print($allergies1_status_code == 0 ? 'selected' : ''); ?>></option>
+            <option value=1 <?php print($allergies1_status_code == 1 ? 'selected' : ''); ?>>治療済み</option>
+            <option value=2 <?php print($allergies1_status_code == 2 ? 'selected' : ''); ?>>治療中</option>
         </select>
         時期
         <select name="allergies1_year">
-            <option value=""></option>
-            <option value=2019>2019</option>
-            <option value=2020>2020</option>
-            <option value=2021>2021</option>
+            <option value="" <?php print($allergies1_year == 0 ? 'selected' : ''); ?>></option>
+            <option value=2019 <?php print($allergies1_year == 2019 ? 'selected' : ''); ?>>2019</option>
+            <option value=2020 <?php print($allergies1_year == 2020 ? 'selected' : ''); ?>>2020</option>
+            <option value=2021 <?php print($allergies1_year== 2021 ? 'selected' : ''); ?>>2021</option>
         </select>
         年
         <select name="allergies1_month">
-            <option value=""></option>
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
-            <option value=11>11</option>
-            <option value=12>12</option>
+            <option value="" <?php print($allergies1_month == 0 ? 'selected' : ''); ?>></option>
+            <option value=1 <?php print($allergies1_month == 1 ? 'selected' : ''); ?>>1</option>
+            <option value=2 <?php print($allergies1_month == 2 ? 'selected' : ''); ?>>2</option>
+            <option value=3 <?php print($allergies1_month == 3 ? 'selected' : ''); ?>>3</option>
+            <option value=4 <?php print($allergies1_month == 4 ? 'selected' : ''); ?>>4</option>
+            <option value=5 <?php print($allergies1_month == 5 ? 'selected' : ''); ?>>5</option>
+            <option value=6 <?php print($allergies1_month == 6 ? 'selected' : ''); ?>>6</option>
+            <option value=7 <?php print($allergies1_month == 7 ? 'selected' : ''); ?>>7</option>
+            <option value=8 <?php print($allergies1_month == 8 ? 'selected' : ''); ?>>8</option>
+            <option value=9 <?php print($allergies1_month == 9 ? 'selected' : ''); ?>>9</option>
+            <option value=10 <?php print($allergies1_month == 10 ? 'selected' : ''); ?>>10</option>
+            <option value=11 <?php print($allergies1_month == 11 ? 'selected' : ''); ?>>11</option>
+            <option value=12 <?php print($allergies1_month == 12 ? 'selected' : ''); ?>>12</option>
         </select>
         月
         <br><br>
@@ -221,32 +221,32 @@ if (!isset($_SESSION['login'])) {
         <input type="text" name="allergies2_name" value="<?php print $allergies2_name; ?>">
         状態
         <select name="allergies2_status_code">
-            <option value=""></option>
-            <option value=1>治療済み</option>
-            <option value=2>治療中</option>
+            <option value="" <?php print($allergies2_status_code == 0 ? 'selected' : ''); ?>></option>
+            <option value=1 <?php print($allergies2_status_code == 1 ? 'selected' : ''); ?>>治療済み</option>
+            <option value=2 <?php print($allergies2_status_code == 2 ? 'selected' : ''); ?>>治療中</option>
         </select>
         時期
         <select name="allergies2_year">
-            <option value=""></option>
-            <option value=2019>2019</option>
-            <option value=2020>2020</option>
-            <option value=2021>2021</option>
+            <option value="" <?php print($allergies2_year == 0 ? 'selected' : ''); ?>></option>
+            <option value=2019 <?php print($allergies2_year == 2019 ? 'selected' : ''); ?>>2019</option>
+            <option value=2020 <?php print($allergies2_year == 2020 ? 'selected' : ''); ?>>2020</option>
+            <option value=2021 <?php print($allergies2_year == 2021 ? 'selected' : ''); ?>>2021</option>
         </select>
         年
         <select name="allergies2_month">
-            <option value=""></option>
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
-            <option value=11>11</option>
-            <option value=12>12</option>
+            <option value="" <?php print($allergies2_month == 0 ? 'selected' : ''); ?>></option>
+            <option value=1 <?php print($allergies2_month == 1 ? 'selected' : ''); ?>>1</option>
+            <option value=2 <?php print($allergies2_month == 2 ? 'selected' : ''); ?>>2</option>
+            <option value=3 <?php print($allergies2_month == 3 ? 'selected' : ''); ?>>3</option>
+            <option value=4 <?php print($allergies2_month == 4 ? 'selected' : ''); ?>>4</option>
+            <option value=5 <?php print($allergies2_month == 5 ? 'selected' : ''); ?>>5</option>
+            <option value=6 <?php print($allergies2_month == 6 ? 'selected' : ''); ?>>6</option>
+            <option value=7 <?php print($allergies2_month == 7 ? 'selected' : ''); ?>>7</option>
+            <option value=8 <?php print($allergies2_month == 8 ? 'selected' : ''); ?>>8</option>
+            <option value=9 <?php print($allergies2_month == 9 ? 'selected' : ''); ?>>9</option>
+            <option value=10 <?php print($allergies2_month == 10 ? 'selected' : ''); ?>>10</option>
+            <option value=11 <?php print($allergies2_month == 11 ? 'selected' : ''); ?>>11</option>
+            <option value=12 <?php print($allergies2_month == 12 ? 'selected' : ''); ?>>12</option>
         </select>
         月
         <br><br>
@@ -256,32 +256,32 @@ if (!isset($_SESSION['login'])) {
         <input type="text" name="sick1_name" value="<?php print $sick1_name; ?>">
         状態
         <select name="sick1_status_code">
-            <option value=""></option>
-            <option value=1>治療済み</option>
-            <option value=2>治療中</option>
+            <option value="" <?php print($sick1_status_code == 0 ? 'selected' : ''); ?>></option>
+            <option value=1 <?php print($sick1_status_code == 1 ? 'selected' : ''); ?>>治療済み</option>
+            <option value=2 <?php print($sick1_status_code == 2 ? 'selected' : ''); ?>>治療中</option>
         </select>
         時期
         <select name="sick1_year">
-            <option value=""></option>
-            <option value=2019>2019</option>
-            <option value=2020>2020</option>
-            <option value=2021>2021</option>
+            <option value="" <?php print($sick1_year == 0 ? 'selected' : ''); ?>></option>
+            <option value=2019 <?php print($sick1_year == 2019 ? 'selected' : ''); ?>>2019</option>
+            <option value=2020 <?php print($sick1_year == 2020 ? 'selected' : ''); ?>>2020</option>
+            <option value=2021 <?php print($sick1_year == 2021 ? 'selected' : ''); ?>>2021</option>
         </select>
         年
         <select name="sick1_month">
-            <option value=""></option>
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
-            <option value=11>11</option>
-            <option value=12>12</option>
+            <option value="" <?php print($sick1_month == 0 ? 'selected' : ''); ?>></option>
+            <option value=1 <?php print($sick1_month == 1 ? 'selected' : ''); ?>>1</option>
+            <option value=2 <?php print($sick1_month == 2 ? 'selected' : ''); ?>>2</option>
+            <option value=3 <?php print($sick1_month == 3 ? 'selected' : ''); ?>>3</option>
+            <option value=4 <?php print($sick1_month == 4 ? 'selected' : ''); ?>>4</option>
+            <option value=5 <?php print($sick1_month == 5 ? 'selected' : ''); ?>>5</option>
+            <option value=6 <?php print($sick1_month == 6 ? 'selected' : ''); ?>>6</option>
+            <option value=7 <?php print($sick1_month == 7 ? 'selected' : ''); ?>>7</option>
+            <option value=8 <?php print($sick1_month == 8 ? 'selected' : ''); ?>>8</option>
+            <option value=9 <?php print($sick1_month == 9 ? 'selected' : ''); ?>>9</option>
+            <option value=10 <?php print($sick1_month == 10 ? 'selected' : ''); ?>>10</option>
+            <option value=11 <?php print($sick1_month == 11 ? 'selected' : ''); ?>>11</option>
+            <option value=12 <?php print($sick1_month == 12 ? 'selected' : ''); ?>>12</option>
         </select>
         月
         <br><br>
@@ -290,32 +290,32 @@ if (!isset($_SESSION['login'])) {
         <input type="text" name="sick2_name" value="<?php print $sick2_name; ?>">
         状態
         <select name="sick2_status_code">
-            <option value=""></option>
-            <option value=1>治療済み</option>
-            <option value=2>治療中</option>
+            <option value="" <?php print($sick2_status_code == 0 ? 'selected' : ''); ?>></option>
+            <option value=1 <?php print($sick2_status_code == 1 ? 'selected' : ''); ?>>治療済み</option>
+            <option value=2 <?php print($sick2_status_code == 2 ? 'selected' : ''); ?>>治療中</option>
         </select>
         時期
         <select name="sick2_year">
-            <option value=""></option>
-            <option value=2019>2019</option>
-            <option value=2020>2020</option>
-            <option value=2021>2021</option>
+            <option value="" <?php print($sick2_year == 0 ? 'selected' : ''); ?>></option>
+            <option value=2019 <?php print($sick2_year == 2019 ? 'selected' : ''); ?>>2019</option>
+            <option value=2020 <?php print($sick2_year == 2020 ? 'selected' : ''); ?>>2020</option>
+            <option value=2021 <?php print($sick2_year == 2021 ? 'selected' : ''); ?>>2021</option>
         </select>
         年
         <select name="sick2_month">
-            <option value=""></option>
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
-            <option value=11>11</option>
-            <option value=12>12</option>
+            <option value="" <?php print($sick2_month == 0 ? 'selected' : ''); ?>></option>
+            <option value=1 <?php print($sick2_month == 1 ? 'selected' : ''); ?>>1</option>
+            <option value=2 <?php print($sick2_month == 2 ? 'selected' : ''); ?>>2</option>
+            <option value=3 <?php print($sick2_month == 3 ? 'selected' : ''); ?>>3</option>
+            <option value=4 <?php print($sick2_month == 4 ? 'selected' : ''); ?>>4</option>
+            <option value=5 <?php print($sick2_month == 5 ? 'selected' : ''); ?>>5</option>
+            <option value=6 <?php print($sick2_month == 6 ? 'selected' : ''); ?>>6</option>
+            <option value=7 <?php print($sick2_month == 7 ? 'selected' : ''); ?>>7</option>
+            <option value=8 <?php print($sick2_month == 8 ? 'selected' : ''); ?>>8</option>
+            <option value=9 <?php print($sick2_month == 9 ? 'selected' : ''); ?>>9</option>
+            <option value=10 <?php print($sick2_month == 10 ? 'selected' : ''); ?>>10</option>
+            <option value=11 <?php print($sick2_month == 11 ? 'selected' : ''); ?>>11</option>
+            <option value=12 <?php print($sick2_month == 12 ? 'selected' : ''); ?>>12</option>
         </select>
         月
         <br><br>
