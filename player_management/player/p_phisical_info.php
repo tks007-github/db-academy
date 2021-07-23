@@ -38,7 +38,7 @@ if (!isset($_SESSION['login'])) {
 
         // phisical_infoテーブルから会員コードを使って情報を検索
         $sql = '
-                SELECT height, weight 
+                SELECT date, height, weight 
                 FROM phisical_info 
                 WHERE player_code = ?
                 AND date = (
@@ -62,7 +62,7 @@ if (!isset($_SESSION['login'])) {
             print '<input type="button" onclick="location.href=\'p_top.php\'" value="戻る">';
             print '<input type="button" onclick="location.href=\'p_phisical_add.php\'" value="登録">';
         } else {                              // データベースからの問い合わせ結果があった場合
-            print '最新の身体情報<br><br>';
+            print '最新の身体情報(' .$rec['date']. ')<br><br>';
             print '身長：' . $rec['height'] . 'cm<br>';
             print '体重：' . $rec['weight'] . 'kg<br>';
             print '<br><br>';

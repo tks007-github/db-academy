@@ -25,43 +25,15 @@ if (!isset($_SESSION['login'])) {
 
 <body>
 
-    <h3>問診表の編集</h3>
+    <h3>身体情報の登録</h3>
     <br>
     <form method="post" action="p_questionnaire_add_done.php">
-        怪我<br>
-        1.
-        名称
-        <input type="text" name="injury1_name" value="">
-        状態
-        <select name="injury1_status_code">
-            <option value=""></option>
-            <option value=1>治療済み</option>
-            <option value=2>治療中</option>
-        </select>
-        時期
-        <select name="injury1_year">
-            <option value=""></option>
-            <option value=2019>2019</option>
-            <option value=2020>2020</option>
-            <option value=2021>2021</option>
-        </select>
-        年
-        <select name="injury1_month">
-            <option value=""></option>
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
-            <option value=11>11</option>
-            <option value=12>12</option>
-        </select>
-        月
+        日付<br>
+        <input type="date" name="date"><br>
+        身長<br>
+        <input type="text" name="height" value="">cm<br>
+        体重<br>
+        <input type="text" name="weight" value="">kg<br>
         <br><br>
 
         <br>
