@@ -26,26 +26,305 @@ if (!isset($_SESSION['login'])) {
 <body>
 
     <?php
+    // 怪我、アレルギー、病気変数の初期化
+    $injury1_name = '';
+    $injury1_status_code = '';
+    $injury1_year = '';
+    $injury1_month = '';
+    $injury2_name = '';
+    $injury2_status_code = '';
+    $injury2_year = '';
+    $injury2_month = '';
+
+    $allergies1_name = '';
+    $allergies1_status_code = '';
+    $allergies1_year = '';
+    $allergies1_month = '';
+    $allergies2_name = '';
+    $allergies2_status_code = '';
+    $allergies2_year = '';
+    $allergies2_month = '';
+
+    $sick1_name = '';
+    $sick1_status_code = '';
+    $sick1_year = '';
+    $sick1_month = '';
+    $sick2_name = '';
+    $sick2_status_code = '';
+    $sick2_year = '';
+    $sick2_month = '';
+
     // p_questionnaire.phpから怪我、アレルギー、病気の情報を受け取る
-    $injury = htmlspecialchars($_POST['injury'], ENT_QUOTES, 'UTF-8');
-    $allergies = htmlspecialchars($_POST['allergies'], ENT_QUOTES, 'UTF-8');
-    $sick = htmlspecialchars($_POST['sick'], ENT_QUOTES, 'UTF-8');
+    $injury_num = htmlspecialchars($_POST['injury_num'], ENT_QUOTES, 'UTF-8');
+    $allergies_num = htmlspecialchars($_POST['allergies_num'], ENT_QUOTES, 'UTF-8');
+    $sick_num = htmlspecialchars($_POST['sick_num'], ENT_QUOTES, 'UTF-8');
+
+    if ($injury_num == 1) {
+        $injury1_name = htmlspecialchars($_POST['injury1_name'], ENT_QUOTES, 'UTF-8');
+        $injury1_status_code = htmlspecialchars($_POST['injury1_status_code'], ENT_QUOTES, 'UTF-8');
+        $injury1_year = htmlspecialchars($_POST['injury1_year'], ENT_QUOTES, 'UTF-8');
+        $injury1_month = htmlspecialchars($_POST['injury1_month'], ENT_QUOTES, 'UTF-8');
+    } elseif ($injury_num == 2) {
+        $injury1_name = htmlspecialchars($_POST['injury1_name'], ENT_QUOTES, 'UTF-8');
+        $injury1_status_code = htmlspecialchars($_POST['injury1_status_code'], ENT_QUOTES, 'UTF-8');
+        $injury1_year = htmlspecialchars($_POST['injury1_year'], ENT_QUOTES, 'UTF-8');
+        $injury1_month = htmlspecialchars($_POST['injury1_month'], ENT_QUOTES, 'UTF-8');
+        $injury2_name = htmlspecialchars($_POST['injury2_name'], ENT_QUOTES, 'UTF-8');
+        $injury2_status_code = htmlspecialchars($_POST['injury2_status_code'], ENT_QUOTES, 'UTF-8');
+        $injury2_year = htmlspecialchars($_POST['injury2_year'], ENT_QUOTES, 'UTF-8');
+        $injury2_month = htmlspecialchars($_POST['injury2_month'], ENT_QUOTES, 'UTF-8');
+    }
+
+    if ($allergies_num == 1) {
+        $allergies1_name = htmlspecialchars($_POST['allergies1_name'], ENT_QUOTES, 'UTF-8');
+        $allergies1_status_code = htmlspecialchars($_POST['allergies1_status_code'], ENT_QUOTES, 'UTF-8');
+        $allergies1_year = htmlspecialchars($_POST['allergies1_year'], ENT_QUOTES, 'UTF-8');
+        $allergies1_month = htmlspecialchars($_POST['allergies1_month'], ENT_QUOTES, 'UTF-8');
+    } elseif ($allergies_num == 2) {
+        $allergies1_name = htmlspecialchars($_POST['allergies1_name'], ENT_QUOTES, 'UTF-8');
+        $allergies1_status_code = htmlspecialchars($_POST['allergies1_status_code'], ENT_QUOTES, 'UTF-8');
+        $allergies1_year = htmlspecialchars($_POST['allergies1_year'], ENT_QUOTES, 'UTF-8');
+        $allergies1_month = htmlspecialchars($_POST['allergies1_month'], ENT_QUOTES, 'UTF-8');
+        $allergies2_name = htmlspecialchars($_POST['allergies2_name'], ENT_QUOTES, 'UTF-8');
+        $allergies2_status_code = htmlspecialchars($_POST['allergies2_status_code'], ENT_QUOTES, 'UTF-8');
+        $allergies2_year = htmlspecialchars($_POST['allergies2_year'], ENT_QUOTES, 'UTF-8');
+        $allergies2_month = htmlspecialchars($_POST['allergies2_month'], ENT_QUOTES, 'UTF-8');
+    }
+
+    if ($sick_num == 1) {
+        $sick1_name = htmlspecialchars($_POST['sick1_name'], ENT_QUOTES, 'UTF-8');
+        $sick1_status_code = htmlspecialchars($_POST['sick1_status_code'], ENT_QUOTES, 'UTF-8');
+        $sick1_year = htmlspecialchars($_POST['sick1_year'], ENT_QUOTES, 'UTF-8');
+        $sick1_month = htmlspecialchars($_POST['sick1_month'], ENT_QUOTES, 'UTF-8');
+    } elseif ($sick_num == 2) {
+        $sick1_name = htmlspecialchars($_POST['sick1_name'], ENT_QUOTES, 'UTF-8');
+        $sick1_status_code = htmlspecialchars($_POST['sick1_status_code'], ENT_QUOTES, 'UTF-8');
+        $sick1_year = htmlspecialchars($_POST['sick1_year'], ENT_QUOTES, 'UTF-8');
+        $sick1_month = htmlspecialchars($_POST['sick1_month'], ENT_QUOTES, 'UTF-8');
+        $sick2_name = htmlspecialchars($_POST['sick2_name'], ENT_QUOTES, 'UTF-8');
+        $sick2_status_code = htmlspecialchars($_POST['sick2_status_code'], ENT_QUOTES, 'UTF-8');
+        $sick2_year = htmlspecialchars($_POST['sick2_year'], ENT_QUOTES, 'UTF-8');
+        $sick2_month = htmlspecialchars($_POST['sick2_month'], ENT_QUOTES, 'UTF-8');
+    }
+
     ?>
 
     <h3>問診表の編集</h3>
     <br>
     <form method="post" action="p_questionnaire_edit_done.php">
         怪我<br>
-        <textarea name="injury" rows="6" cols="50"><?php print $injury; ?></textarea><br>
+        1.
+        名称
+        <input type="text" name="injury1_name" value="<?php print $injury1_name; ?>">
+        状態
+        <select name="injury1_status_code">
+            <option value=""></option>
+            <option value=1>治療済み</option>
+            <option value=2>治療中</option>
+        </select>
+        時期
+        <select name="injury1_year">
+            <option value=""></option>
+            <option value=2019>2019</option>
+            <option value=2020>2020</option>
+            <option value=2021>2021</option>
+        </select>
+        年
+        <select name="injury1_month">
+            <option value=""></option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10</option>
+            <option value=11>11</option>
+            <option value=12>12</option>
+        </select>
+        月
+        <br><br>
+        2.
+        名称
+        <input type="text" name="injury2_name" value="<?php print $injury2_name; ?>">
+        状態
+        <select name="injury2_status_code">
+            <option value=""></option>
+            <option value=1>治療済み</option>
+            <option value=2>治療中</option>
+        </select>
+        時期
+        <select name="injury2_year">
+            <option value=""></option>
+            <option value=2019>2019</option>
+            <option value=2020>2020</option>
+            <option value=2021>2021</option>
+        </select>
+        年
+        <select name="injury2_month">
+            <option value=""></option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10</option>
+            <option value=11>11</option>
+            <option value=12>12</option>
+        </select>
+        月
+        <br><br>
         アレルギー<br>
-        <textarea name="allergies" rows="6" cols="50"><?php print $allergies; ?></textarea><br>
+        1.
+        名称
+        <input type="text" name="allergies1_name" value="<?php print $allergies1_name; ?>">
+        状態
+        <select name="allergies1_status_code">
+            <option value=""></option>
+            <option value=1>治療済み</option>
+            <option value=2>治療中</option>
+        </select>
+        時期
+        <select name="allergies1_year">
+            <option value=""></option>
+            <option value=2019>2019</option>
+            <option value=2020>2020</option>
+            <option value=2021>2021</option>
+        </select>
+        年
+        <select name="allergies1_month">
+            <option value=""></option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10</option>
+            <option value=11>11</option>
+            <option value=12>12</option>
+        </select>
+        月
+        <br><br>
+        2.
+        名称
+        <input type="text" name="allergies2_name" value="<?php print $allergies2_name; ?>">
+        状態
+        <select name="allergies2_status_code">
+            <option value=""></option>
+            <option value=1>治療済み</option>
+            <option value=2>治療中</option>
+        </select>
+        時期
+        <select name="allergies2_year">
+            <option value=""></option>
+            <option value=2019>2019</option>
+            <option value=2020>2020</option>
+            <option value=2021>2021</option>
+        </select>
+        年
+        <select name="allergies2_month">
+            <option value=""></option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10</option>
+            <option value=11>11</option>
+            <option value=12>12</option>
+        </select>
+        月
+        <br><br>
         病気<br>
-        <textarea name="sick" rows="6" cols="50"><?php print $sick; ?></textarea><br>
-        <br>
+        1.
+        名称
+        <input type="text" name="sick1_name" value="<?php print $sick1_name; ?>">
+        状態
+        <select name="sick1_status_code">
+            <option value=""></option>
+            <option value=1>治療済み</option>
+            <option value=2>治療中</option>
+        </select>
+        時期
+        <select name="sick1_year">
+            <option value=""></option>
+            <option value=2019>2019</option>
+            <option value=2020>2020</option>
+            <option value=2021>2021</option>
+        </select>
+        年
+        <select name="sick1_month">
+            <option value=""></option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10</option>
+            <option value=11>11</option>
+            <option value=12>12</option>
+        </select>
+        月
+        <br><br>
+        2.
+        名称
+        <input type="text" name="sick2_name" value="<?php print $sick2_name; ?>">
+        状態
+        <select name="sick2_status_code">
+            <option value=""></option>
+            <option value=1>治療済み</option>
+            <option value=2>治療中</option>
+        </select>
+        時期
+        <select name="sick2_year">
+            <option value=""></option>
+            <option value=2019>2019</option>
+            <option value=2020>2020</option>
+            <option value=2021>2021</option>
+        </select>
+        年
+        <select name="sick2_month">
+            <option value=""></option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10</option>
+            <option value=11>11</option>
+            <option value=12>12</option>
+        </select>
+        月
+        <br><br>
+
         <br>
         <input type="button" onclick="location.href='p_questionnaire.php'" value="戻る">
         <input type="submit" value="ＯＫ">
     </form>
+
 </body>
 
 </html>
