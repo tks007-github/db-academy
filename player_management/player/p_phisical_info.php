@@ -58,16 +58,19 @@ if (!isset($_SESSION['login'])) {
 
         if ($rec == false) {                  // データベースからの問い合わせ結果がない場合
             print '登録情報がありません。<br><br>';
+            print '<br><br>';
+            print '<input type="button" onclick="location.href=\'p_top.php\'" value="戻る">';
+            print '<input type="button" onclick="location.href=\'p_phisical_add.php\'" value="登録">';
         } else {                              // データベースからの問い合わせ結果があった場合
             print '最新の身体情報<br><br>';
             print '身長：' . $rec['height'] . 'cm<br>';
             print '体重：' . $rec['weight'] . 'kg<br>';
             print '<br><br>';
+            print '<input type="button" onclick="location.href=\'p_top.php\'" value="戻る">';
+            print '<input type="button" onclick="location.href=\'p_phisical_info_add.php\'" value="登録">';
+            print '<input type="button" onclick="location.href=\'p_phisical_info_edit.php\'" value="編集">';
+            print '<input type="button" onclick="location.href=\'p_phisical_info_graph.php\'" value="グラフ">';
         }
-        print '<input type="button" onclick="location.href=\'p_top.php\'" value="戻る">';
-        print '<input type="button" onclick="location.href=\'p_phisical_add.php\'" value="登録">';
-        print '<input type="button" onclick="location.href=\'p_phisical_edit.php\'" value="編集">';
-        print '<input type="button" onclick="location.href=\'p_phisical_graph.php\'" value="グラフ">';
     } catch (Exception $e) {
         exit();
     }
