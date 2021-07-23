@@ -27,7 +27,7 @@ if (!isset($_SESSION['login'])) {
 
     <h3>身体情報の登録</h3>
     <br>
-    <form method="post" action="p_questionnaire_add_done.php">
+    <form method="post" action="p_phisical_info_add_done.php">
         日付<br>
         <input type="date" name="date"><br>
         身長<br>
@@ -37,7 +37,7 @@ if (!isset($_SESSION['login'])) {
         <br><br>
 
         <br>
-        <input type="button" onclick="location.href='p_questionnaire.php'" value="戻る">
+        <input type="button" onclick="location.href='p_phisical_info.php'" value="戻る">
         <input type="submit" value="ＯＫ">
     </form>
 
