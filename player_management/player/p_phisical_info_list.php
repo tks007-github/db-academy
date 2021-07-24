@@ -56,7 +56,7 @@ if (!isset($_SESSION['login'])) {
             if ($rec == false) {
                 break;
             }
-            print '<input type="radio" name="p_code" value="' . $rec['id'] . '">';
+            print '<input type="radio" name="id" value="' . $rec['id'] . '">';
             print '日付：' . $rec['date'] . '　';
             print '身長：' . $rec['height'] . '　';
             print '体重：' . $rec['weight'] . '　';

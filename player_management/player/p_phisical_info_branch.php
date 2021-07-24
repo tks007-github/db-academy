@@ -1,11 +1,13 @@
 <?php
 
 if (isset($_POST['edit'])) {
-    header('Location: p_phisical_info_edit.php');
+    $id = $_POST['id'];
+    header('Location: p_phisical_info_edit.php?id=' . $id);
     exit();
 }
 
 if (isset($_POST['delete'])) {
-    header('Location: p_phisical_info_delete.php');
+    $id = $_POST['id'];
+    header('Location: p_phisical_info_delete.php?id=' . $id);
     exit();
 }
