@@ -62,6 +62,8 @@ if (!isset($_SESSION['login'])) {
             print '体重：' . $rec['weight'] . '　';
             print '<br>';
         }
+        print '<br>';
+        print '<input type="button" onclick="location.href=\'p_phisical_info.php\'" value="戻る">';
         print '<input type="submit" name="edit" value="編集">';
         print '<input type="submit" name="delete" value="削除">';
 
