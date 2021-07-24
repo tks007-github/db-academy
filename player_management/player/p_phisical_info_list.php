@@ -25,7 +25,7 @@ if (!isset($_SESSION['login'])) {
 
 <body>
 
-    <h3>身体情報編集</h3>
+    <h3>身体情報一覧</h3>
 
     <?php
     try {
@@ -50,7 +50,7 @@ if (!isset($_SESSION['login'])) {
         // player_managementデータベースから切断する
         $dbh = null;
 
-        print '<form method="post" action="#">';
+        print '<form method="post" action="p_phisical_info_branch.php">';
         while (true) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($rec == false) {
@@ -62,7 +62,8 @@ if (!isset($_SESSION['login'])) {
             print '体重：' . $rec['weight'] . '　';
             print '<br>';
         }
-        print '<input type="submit" value="編集">';
+        print '<input type="submit" name="edit" value="編集">';
+        print '<input type="submit" name="delete" value="削除">';
 
     } catch (Exception $e) {
         exit();
