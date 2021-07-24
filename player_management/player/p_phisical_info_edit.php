@@ -57,7 +57,8 @@ if (!isset($_SESSION['login'])) {
 
     <h3>身体情報の編集</h3>
     <br>
-    <form method="post" action="p_phisical_info_add_done.php">
+    <form method="post" action="p_phisical_info_edit_done.php">
+        <input type="hidden" name="id" value="<?php print $id; ?>">
         日付<br>
         <input type="date" name="date" value="<?php print $rec['date']; ?>"><br>
         身長<br>
