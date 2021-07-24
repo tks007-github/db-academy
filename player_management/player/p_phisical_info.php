@@ -68,7 +68,7 @@ if (!isset($_SESSION['login'])) {
             print '<br><br>';
             print '<input type="button" onclick="location.href=\'p_top.php\'" value="戻る">';
             print '<input type="button" onclick="location.href=\'p_phisical_info_add.php\'" value="登録">';
-            print '<input type="button" onclick="location.href=\'p_phisical_info_edit.php\'" value="編集">';
+            print '<input type="button" onclick="location.href=\'p_phisical_info_list.php\'" value="一覧">';
             print '<input type="button" onclick="location.href=\'p_phisical_info_graph.php\'" value="グラフ">';
         }
     } catch (Exception $e) {
