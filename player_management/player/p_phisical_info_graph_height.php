@@ -35,26 +35,60 @@ if (!isset($_SESSION['login'])) {
     <h3>グラフ</h3>
     <br>
 
+    <?php
+    try {
+        // player_managementデータベースに接続する
+        $dsn = 'mysql:dbname=player_management;host=localhost;charset=utf8';
+        $user = 'root';
+        $password = 'root';
+        $dbh = new PDO($dsn, $user, $password);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // phisical_infoテーブルから会員コードを使って情報を検索
+        $sql = '
+                SELECT date, height 
+                FROM phisical_info 
+                WHERE player_code = ?
+                ORDER BY date
+                ';
+        $stmt = $dbh->prepare($sql);
+        $data[0] = $_SESSION['p_code'];
+        $stmt->execute($data);
+
+        // player_managementデータベースから切断する
+        $dbh = null;
+
+        for ($i = 0; $i < 5; $i++) {
+            $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+            $date[] = $rec['date'];
+            $height[] = $rec['height'];
+        }
+        $json_date = json_encode($date);
+        $json_height = json_encode($height);
+
+    } catch (Exception $e) {
+        exit();
+    }
+    ?>
+
     <canvas id="canvas"></canvas>
     <script>
         let canvas = document.getElementById("canvas");
 
+        // phpの配列をjavascriptで受け取る
+        let js_date = <?php print $json_date; ?>;
+        let js_height = <?php print $json_height; ?>;
+
         let myLineChart = new Chart(canvas, {
             type: 'line',
             data: {
-                labels: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+                labels: [js_date[4], js_date[3], js_date[2], js_date[1], js_date[0]],
                 datasets: [{
-                        label: '系列1',
-                        data: [1, 2, 3, 4, 5, 6, 7],
+                        label: '身長',
+                        data: [js_height[4], js_height[3], js_height[2], js_height[1], js_height[0]],
                         borderColor: "rgba(255,0,0,1)",
                         backgroundColor: "rgba(0,0,0,0)"
                     },
-                    {
-                        label: '系列2',
-                        data: [1, 2, 4, 8, 16, 32, 64],
-                        borderColor: "rgba(0,0,255,1)",
-                        backgroundColor: "rgba(0,0,0,0)"
-                    }
                 ],
             },
             options: {
