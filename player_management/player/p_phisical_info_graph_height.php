@@ -32,7 +32,7 @@ if (!isset($_SESSION['login'])) {
 
 <body>
 
-    <h3>グラフ</h3>
+    <h3>身長のグラフ</h3>
     <br>
 
     <?php
