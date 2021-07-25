@@ -82,10 +82,10 @@ if (!isset($_SESSION['login'])) {
         let myLineChart = new Chart(canvas, {
             type: 'line',
             data: {
-                labels: [js_date[4], js_date[3], js_date[2], js_date[1], js_date[0]],
+                labels: [js_date[0], js_date[1], js_date[2], js_date[3], js_date[4]],
                 datasets: [{
                         label: '身長',
-                        data: [js_height[4], js_height[3], js_height[2], js_height[1], js_height[0]],
+                        data: [js_height[0], js_height[1], js_height[2], js_height[3], js_height[4]],
                         borderColor: "rgba(255,0,0,1)",
                         backgroundColor: "rgba(0,0,0,0)"
                     },
