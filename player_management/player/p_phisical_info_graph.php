@@ -25,8 +25,8 @@
     <h3>グラフ</h3>
     <br>
     
-    <a href="p_graph_height.php">身長</a><br>
-    <a href="p_graph_weight.php">体重</a><br>
+    <a href="p_phisical_info_graph_height.php">身長</a><br>
+    <a href="p_phisical_info_graph_weight.php">体重</a><br>
     <br><br>
     <input type="button" onclick="location.href='p_phisical_info.php'" value="戻る">
 
