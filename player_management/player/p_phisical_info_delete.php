@@ -64,7 +64,7 @@ if (!isset($_SESSION['login'])) {
         身長：<?php print $rec['height']; ?><br>
         体重：<?php print $rec['weight']; ?><br>
         <br>
-        <input type="button" onclick="location.href=p_phisical_info_edit.php" value="戻る">
+        <input type="button" onclick="location.href='p_phisical_info_list.php'" value="戻る">
         <input type="submit" value="ＯＫ">
     </form>
 
