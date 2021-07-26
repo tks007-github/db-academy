@@ -44,6 +44,25 @@ INSERT INTO `belong` (`belong_code`, `belong_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `manager`
+--
+
+CREATE TABLE `manager` (
+  `manager_code` char(5) NOT NULL,
+  `manager_name` varchar(60) NOT NULL,
+  `manager_password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `manager`
+--
+
+INSERT INTO `manager` (`manager_code`, `manager_name`, `manager_password`) VALUES
+('M1', '管理者', 'aaa');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `mst_password`
 --
 
@@ -87,7 +106,7 @@ INSERT INTO `new_id` (`belong_code`, `new_id`) VALUES
 CREATE TABLE `phisical_info` (
   `id` int(11) NOT NULL,
   `player_code` char(5) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` date NOT NULL,
   `height` double NOT NULL,
   `weight` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -97,12 +116,9 @@ CREATE TABLE `phisical_info` (
 --
 
 INSERT INTO `phisical_info` (`id`, `player_code`, `date`, `height`, `weight`) VALUES
-(1, 'A0001', '2021-07-18 15:00:00', 171.5, 60.5),
-(2, 'B0001', '2021-07-18 15:00:00', 163, 48.7),
-(3, 'A0001', '2021-07-19 15:00:00', 171.5, 61),
-(4, 'B0001', '2021-07-19 15:00:00', 163, 48.6),
-(5, 'A0001', '2021-07-20 15:00:00', 172, 61),
-(6, 'B0001', '2021-07-20 15:00:00', 163, 48.5);
+(1, 'A1', '2021-07-07', 171.5, 60.5),
+(3, 'A1', '2021-07-14', 171.5, 60),
+(5, 'A1', '2021-07-21', 171.5, 61);
 
 -- --------------------------------------------------------
 
@@ -114,19 +130,39 @@ CREATE TABLE `phisical_test` (
   `id` int(11) NOT NULL,
   `player_code` char(5) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `50m` double NOT NULL,
-  `sidestep` int(11) NOT NULL
+  `test1` double NOT NULL,
+  `test2` double NOT NULL,
+  `test3` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- テーブルのデータのダンプ `phisical_test`
 --
 
-INSERT INTO `phisical_test` (`id`, `player_code`, `date`, `50m`, `sidestep`) VALUES
-(1, 'A0001', '2021-06-01 15:00:00', 6.8, 50),
-(2, 'B0001', '2021-06-01 15:00:00', 7.5, 40),
-(3, 'B0001', '2021-07-06 15:00:00', 7.5, 42),
-(4, 'A0001', '2021-07-06 15:00:00', 6.9, 53);
+INSERT INTO `phisical_test` (`id`, `player_code`, `date`, `test1`, `test2`, `test3`) VALUES
+(1, 'A0001', '2021-06-01 15:00:00', 6.8, 50, 0),
+(2, 'B0001', '2021-06-01 15:00:00', 7.5, 40, 0),
+(3, 'B0001', '2021-07-06 15:00:00', 7.5, 42, 0),
+(4, 'A0001', '2021-07-06 15:00:00', 6.9, 53, 0);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `phisical_test_item`
+--
+
+CREATE TABLE `phisical_test_item` (
+  `test_code` varchar(20) NOT NULL,
+  `test_value` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `phisical_test_item`
+--
+
+INSERT INTO `phisical_test_item` (`test_code`, `test_value`) VALUES
+('test1', '50m走'),
+('test2', 'サイドステップ');
 
 -- --------------------------------------------------------
 
@@ -158,18 +194,25 @@ INSERT INTO `player` (`player_code`, `player_name`, `player_password`, `belong_c
 CREATE TABLE `questionnaire` (
   `id` int(11) NOT NULL,
   `player_code` char(5) NOT NULL,
-  `injury` text NOT NULL,
-  `allergies` text NOT NULL,
-  `sick` text NOT NULL
+  `item_code` int(11) NOT NULL,
+  `num` int(11) NOT NULL,
+  `name` varchar(60) NOT NULL,
+  `status_code` int(11) NOT NULL,
+  `year` int(11) NOT NULL,
+  `month` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- テーブルのデータのダンプ `questionnaire`
 --
 
-INSERT INTO `questionnaire` (`id`, `player_code`, `injury`, `allergies`, `sick`) VALUES
-(1, 'A1', 'なし', 'そばアレルギー', '喘息'),
-(2, 'B1', '右腕骨折', 'なし', 'なし');
+INSERT INTO `questionnaire` (`id`, `player_code`, `item_code`, `num`, `name`, `status_code`, `year`, `month`) VALUES
+(1, 'A1', 1, 1, '右腕骨折', 1, 2019, 4),
+(2, 'A1', 1, 2, '左肩脱臼', 2, 2021, 6),
+(3, 'A1', 2, 1, 'なし', 0, 0, 0),
+(4, 'A1', 2, 2, 'なし', 0, 0, 0),
+(5, 'A1', 3, 1, '喘息', 2, 2020, 11),
+(6, 'A1', 3, 2, 'なし', 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -180,6 +223,12 @@ INSERT INTO `questionnaire` (`id`, `player_code`, `injury`, `allergies`, `sick`)
 --
 ALTER TABLE `belong`
   ADD PRIMARY KEY (`belong_code`);
+
+--
+-- Indexes for table `manager`
+--
+ALTER TABLE `manager`
+  ADD PRIMARY KEY (`manager_code`);
 
 --
 -- Indexes for table `mst_password`
@@ -206,6 +255,12 @@ ALTER TABLE `phisical_test`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `phisical_test_item`
+--
+ALTER TABLE `phisical_test_item`
+  ADD PRIMARY KEY (`test_code`);
+
+--
 -- Indexes for table `player`
 --
 ALTER TABLE `player`
@@ -225,7 +280,7 @@ ALTER TABLE `questionnaire`
 -- AUTO_INCREMENT for table `phisical_info`
 --
 ALTER TABLE `phisical_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `phisical_test`
@@ -237,7 +292,7 @@ ALTER TABLE `phisical_test`
 -- AUTO_INCREMENT for table `questionnaire`
 --
 ALTER TABLE `questionnaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
