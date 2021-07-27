@@ -6,7 +6,6 @@
         print '<a href="m_login.html">ログイン画面へ</a>';
         exit();
     } else {
-        $p_code = $_SESSION['p_code'];
         print $_SESSION['m_code'];
         print 'さんログイン中<br>';
         print '<br>';
@@ -32,6 +31,7 @@
         会員コード<br>
         <input type="text" name="p_code"><br>
         <br>
+        <input type="button" onclick="location.href='m_top.php'" value="戻る">
         <input type="submit" value="検索">
     </form>
 
