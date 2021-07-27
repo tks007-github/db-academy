@@ -29,7 +29,7 @@ try
 		print '<input type="button" onclick="location.href=\'m_login.html\'" value="戻る">';
 	} else {							// データベースからの問い合わせ結果があった場合
 		session_start();						// セッションを開始
-		$_SESSION['login'] = 1;					// セッション変数に値を格納
+		$_SESSION['m_login'] = 1;					// セッション変数に値を格納
 		$_SESSION['m_code'] = $m_code;			// セッション変数に管理者コードを格納
 		header('Location:m_top.php');			// m_top.phpへリダイレクト
 		exit();
