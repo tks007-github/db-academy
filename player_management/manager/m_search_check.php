@@ -24,12 +24,10 @@ try
 	if ($rec == false) { 				 // データベースからの問い合わせ結果がない場合
 		print '<h3>検索失敗</h3><br>';
 		print '検索された会員コードは登録されていません<br>';
-		print '<input type="button" onclick="location.href=\'p_search.php\'" value="戻る">';
+		print '<input type="button" onclick="location.href=\'m_search.php\'" value="戻る">';
 	} else {							// データベースからの問い合わせ結果があった場合
-		session_start();						// セッションを開始
-		$_SESSION['p_login'] = 1;					// セッション変数に値を格納
 		$_SESSION['p_code'] = $p_code;			// セッション変数に会員コードを格納
-		header('Location:../player/p_top.php');			// p_top.phpへリダイレクト
+		header('Location:m_p_top.php');			// p_top.phpへリダイレクト
 		exit();
 	}
 }
