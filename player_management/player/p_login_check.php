@@ -29,7 +29,7 @@ try
 		print '<input type="button" onclick="location.href=\'p_login.html\'" value="戻る">';
 	} else {							// データベースからの問い合わせ結果があった場合
 		session_start();						// セッションを開始
-		$_SESSION['login'] = 1;					// セッション変数に値を格納
+		$_SESSION['p_login'] = 1;					// セッション変数に値を格納
 		$_SESSION['p_code'] = $p_code;			// セッション変数に会員コードを格納
 		header('Location:p_top.php');			// p_top.phpへリダイレクト
 		exit();
