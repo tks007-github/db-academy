@@ -53,15 +53,18 @@
         print '<input type="date" name="date">';
         print '<br><br>';
         print '項目<br>';
+        $i = 1;
         while (true) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             if (!isset($rec['test_value'])) {
                 break;
             }
-            print '<input type="checkbox" name="id" value="' . $rec['test_code'] . '">';
+            print '<input type="checkbox" name="test_code' . $i . '" value="' . $rec['test_code'] . '">';
             print $rec['test_code'] . ' ';
             print '項目名：' . $rec['test_value'] . '　';
             print '<br>';
+            print '<input type="hidden" name="test_value' . $i . '" value="' . $rec['test_value'] . '">';
+            $i++;
         }
         print '<br>';
         print '<input type="button" onclick="location.href=\'m_top.php\'" value="戻る">';
