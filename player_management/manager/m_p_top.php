@@ -8,8 +8,7 @@
     } else {
         print $_SESSION['m_code'];
         print 'さんログイン中<br>';
-        print '<br>';
-        print '会員コード：' . $_SESSION['p_code'];
+        print '（検索条件：' . $_SESSION['p_code'] . '）';
         print '<br>';
     }
 ?>
@@ -27,11 +26,11 @@
     <h3>トップページ</h3>
     <br>
     
-    <a href="p_questionnaire.php">問診表</a><br>
-    <a href="p_phisical_info.php">身体情報</a><br>
-    <a href="p_phisical_test.php">フィジカルテスト</a><br>
+    <a href="m_p_questionnaire.php">問診表</a><br>
+    <a href="m_p_phisical_info.php">身体情報</a><br>
+    <a href="m_p_phisical_test.php">フィジカルテスト</a><br>
     <br><br>
-    <input type="button" onclick="location.href='p_logout.php'" value="ログアウト">
+    <input type="button" onclick="location.href='m_search.php'" value="戻る">
 
 </body>
 </html>
