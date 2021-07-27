@@ -23,7 +23,7 @@ try
 
 	if ($rec['id'] == 1) {				// データベースからの問い合わせ結果があった場合
 		session_start();						// セッションを開始
-		$_SESSION['login'] = 1;					// セッション変数に値を格納
+		$_SESSION['s_login'] = 1;					// セッション変数に値を格納
 		header('Location:s_signup.php');		// s_signup.phpへリダイレクト
 		exit();
 	} else {							// データベースからの問い合わせ結果がない場合
