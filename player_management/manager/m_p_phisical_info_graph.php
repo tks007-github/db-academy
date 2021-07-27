@@ -9,6 +9,7 @@
         $p_code = $_SESSION['p_code'];
         print $_SESSION['m_code'];
         print 'さんログイン中<br>';
+        print '（検索条件：' . $_SESSION['p_code'] . '）';
         print '<br>';
     }
 ?>
@@ -23,17 +24,13 @@
 </head>
 <body>
 
-    <h3>選手検索</h3>
+    <h3>グラフ</h3>
     <br>
     
-    選手の会員コードを入力してください<br>
-    <br>
-    <form method="post" action="m_search_check.php">
-        会員コード<br>
-        <input type="text" name="p_code"><br>
-        <br>
-        <input type="submit" value="検索">
-    </form>
+    <a href="m_p_phisical_info_graph_height.php">身長</a><br>
+    <a href="m_p_phisical_info_graph_weight.php">体重</a><br>
+    <br><br>
+    <input type="button" onclick="location.href='m_p_phisical_info.php'" value="戻る">
 
 </body>
 </html>

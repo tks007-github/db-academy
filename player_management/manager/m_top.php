@@ -6,6 +6,7 @@
         print '<a href="m_login.html">ログイン画面へ</a>';
         exit();
     } else {
+        $p_code = $_SESSION['p_code'];
         print $_SESSION['m_code'];
         print 'さんログイン中<br>';
         print '<br>';

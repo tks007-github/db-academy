@@ -69,7 +69,7 @@
         <br><br>
 
         <br>
-        <input type="button" onclick="location.href='m_phisical_info_list.php'" value="戻る">
+        <input type="button" onclick="location.href='m_p_phisical_info_list.php'" value="戻る">
         <input type="submit" value="ＯＫ">
     </form>
 

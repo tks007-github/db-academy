@@ -24,11 +24,12 @@
     <title>Manager</title>
 </head>
 
-<?php
-    try {
-        // m_p_phisical_info_branch.phpから渡された値をサニタイズ
-        $id = htmlspecialchars($_GET['id'], ENT_QUOTES, 'UTF-8');
+<body>
 
+    <h3>身体情報一覧</h3>
+
+    <?php
+    try {
         // player_managementデータベースに接続する
         $dsn = 'mysql:dbname=player_management;host=localhost;charset=utf8';
         $user = 'root';
@@ -36,43 +37,41 @@
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // phisical_infoテーブルからIDを使って情報を検索
+        // phisical_infoテーブルから会員コードを使って情報を検索
         $sql = '
-                SELECT date, height, weight 
+                SELECT id, date, height, weight 
                 FROM phisical_info 
-                WHERE id = ?
+                WHERE player_code = ?
+                ORDER BY date
                 ';
         $stmt = $dbh->prepare($sql);
-        $data[0] = $id;
+        $data[0] = $p_code;
         $stmt->execute($data);
-        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // player_managementデータベースから切断する
         $dbh = null;
 
+        print '<form method="post" action="m_p_phisical_info_branch.php">';
+        while (true) {
+            $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($rec == false) {
+                break;
+            }
+            print '<input type="radio" name="id" value="' . $rec['id'] . '">';
+            print '日付：' . $rec['date'] . '　';
+            print '身長：' . $rec['height'] . '　';
+            print '体重：' . $rec['weight'] . '　';
+            print '<br>';
+        }
+        print '<br>';
+        print '<input type="button" onclick="location.href=\'m_p_phisical_info.php\'" value="戻る">';
+        print '<input type="submit" name="edit" value="編集">';
+        print '<input type="submit" name="delete" value="削除">';
+
     } catch (Exception $e) {
         exit();
     }
-?>
-<body>
-
-    <h3>身体情報の編集</h3>
-    <br>
-    <form method="post" action="m_p_phisical_info_edit_done.php">
-        <input type="hidden" name="id" value="<?php print $id; ?>">
-        日付<br>
-        <input type="date" name="date" value="<?php print $rec['date']; ?>"><br>
-        身長<br>
-        <input type="text" name="height" value="<?php print $rec['height']; ?>">cm<br>
-        体重<br>
-        <input type="text" name="weight" value="<?php print $rec['weight']; ?>">kg<br>
-        <br><br>
-
-        <br>
-        <input type="button" onclick="location.href='m_phisical_info_list.php'" value="戻る">
-        <input type="submit" value="ＯＫ">
-    </form>
-
+    ?>
 
 </body>
 
