@@ -28,7 +28,7 @@ if (!isset($_SESSION['m_login'])) {
 
     <?php
 
-    // m_phisical_test_create_check.phpから渡された値をサニタイズ
+    // m_phisical_test_create.phpから渡された値をサニタイズ
     $date = htmlspecialchars($_POST['date'], ENT_QUOTES, 'UTF-8');
 
     print '<form method="post" action="m_phisical_test_create_done.php">';
@@ -50,10 +50,11 @@ if (!isset($_SESSION['m_login'])) {
             print $test_value;
             print '<br>';
             print '<input type="hidden" name="test_code' . $i . '" value="' . $test_code . '">';
-            print '<input type="hidden" name="test_value' . $i . '" value="' . $test_code . '">';
+            print '<input type="hidden" name="test_value' . $i . '" value="' . $test_value . '">';
         }
     }
 
+    print '<br>';
     print '<input type="button" onclick="location.href=\'m_phisical_test_create.php\'" value="戻る">';
     print '<input type="submit" value="ＯＫ">';
     print '</form>';
