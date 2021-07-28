@@ -48,7 +48,7 @@ if (!isset($_SESSION['p_login'])) {
         // player_managementデータベースから切断する
         $dbh = null;
 
-        print '<form method="post" action="p_phisical_test_content.php">';
+        print '<form method="post" action="p_phisical_test_check.php">';
         while (true) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($rec == false) {
