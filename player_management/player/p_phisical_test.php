@@ -38,7 +38,7 @@ if (!isset($_SESSION['p_login'])) {
 
         // phisical_test_recordテーブルから情報を検索
         $sql = '
-                SELECT id, date
+                SELECT *
                 FROM phisical_test_record
                 ORDER BY date desc 
                 ';
@@ -48,7 +48,7 @@ if (!isset($_SESSION['p_login'])) {
         // player_managementデータベースから切断する
         $dbh = null;
 
-        print '<form method="post" action="p_phisical_test_branch.php">';
+        print '<form method="post" action="p_phisical_test_content.php">';
         while (true) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($rec == false) {
@@ -60,9 +60,9 @@ if (!isset($_SESSION['p_login'])) {
         }
         print '<br>';
         print '<input type="button" onclick="location.href=\'p_top.php\'" value="戻る">';
-        print '<input type="submit" name="edit" value="編集">';
-        print '<input type="submit" name="delete" value="削除">';
-        
+        print '<input type="submit" value="ＯＫ">';
+        print '</form>';
+
     } catch (Exception $e) {
         exit();
     }
