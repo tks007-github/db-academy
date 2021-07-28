@@ -39,7 +39,7 @@ if (!isset($_SESSION['m_login'])) {
     print '<input type="hidden" name="date" value="' . $date . '">';
 
     print '項目<br>';
-    // test_codeのmax値までforループをまわす
+    // test_codeのmax値(1～3)までforループをまわす
     for ($i = 1; $i < 4; $i++) {
         if (isset($_POST['test_code' . $i])) {
             $test_code = htmlspecialchars($_POST['test_code' . $i], ENT_QUOTES, 'UTF-8');
