@@ -87,6 +87,7 @@ if (!isset($_SESSION['p_login'])) {
         if ($rec1 == false) {        // データベースからの問い合わせ結果がない場合
             print '登録情報がありません。<br><br>';
             print '<form method="post" action="p_phisical_test_add.php">';
+            print '<input type="hidden" name="id" value=' . $id . '>';
             print '<input type="button" onclick="location.href=\'p_phisical_test.php\'" value="戻る">';
             print '<input type="submit" name="edit" value="登録">';
         } else {                    // データベースからの問い合わせ結果があった場合
@@ -105,6 +106,7 @@ if (!isset($_SESSION['p_login'])) {
             }
             print '<br>';
             print '<form method="post" action="p_phisical_test_branch.php">';
+            print '<input type="hidden" name="id" value=' . $id . '>';
             print '<input type="button" onclick="location.href=\'p_phisical_test.php\'" value="戻る">';
             print '<input type="submit" name="edit" value="編集">';
             print '<input type="submit" name="delete" value="削除">';
