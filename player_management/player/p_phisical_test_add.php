@@ -75,6 +75,8 @@ if (!isset($_SESSION['p_login'])) {
 
         // test_codeのmax値(1～3)までforループをまわす
         print '<form method="post" action="p_phisical_test_add_done.php">';
+        print '<input type="hidden" name="id" value="' . $id . '">';
+        print '<input type="hidden" name="date" value="' . $date . '">';
         for ($i = 0; $i < 3; $i++) {
             $rec2 = $stmt2->fetch(PDO::FETCH_ASSOC);
             if ($test_value[$i]) {
@@ -85,7 +87,7 @@ if (!isset($_SESSION['p_login'])) {
             print '<br>';
         }
         print '<input type="button" onclick="location.href=\'p_phisical_test_content.php\'" value="戻る">';
-        print '<input type="submit" name="edit" value="ＯＫ">';
+        print '<input type="submit" value="ＯＫ">';
     } catch (Exception $e) {
         exit();
     }
