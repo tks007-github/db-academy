@@ -6,7 +6,8 @@ if (isset($_POST['edit'])) {
         exit();
     }
     $id = $_POST['id'];
-    header('Location: p_phisical_test_edit.php?id=' . $id);
+    $test_id = $_POST['test_id'];
+    header('Location: p_phisical_test_edit.php?id=' . $id . '&test_id=' .$test_id);
     exit();
 }
 

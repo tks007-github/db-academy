@@ -58,7 +58,7 @@ if (!isset($_SESSION['p_login'])) {
 
         // phisical_testテーブルから会員コードと日付を使って情報を検索
         $sql1 = '
-                SELECT date, test1, test2, test3 
+                SELECT id, date, test1, test2, test3 
                 FROM phisical_test 
                 WHERE player_code = ? 
                 AND date = ?
@@ -107,6 +107,7 @@ if (!isset($_SESSION['p_login'])) {
             print '<br>';
             print '<form method="post" action="p_phisical_test_branch.php">';
             print '<input type="hidden" name="id" value=' . $id . '>';
+            print '<input type="hidden" name="test_id" value=' . $rec1['id'] . '>';
             print '<input type="button" onclick="location.href=\'p_phisical_test.php\'" value="戻る">';
             print '<input type="submit" name="edit" value="編集">';
             print '<input type="submit" name="delete" value="削除">';
