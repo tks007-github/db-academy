@@ -17,6 +17,7 @@ if (isset($_POST['delete'])) {
         exit();
     }
     $id = $_POST['id'];
-    header('Location: p_phisical_test_delete.php?id=' . $id);
+    $test_id = $_POST['test_id'];
+    header('Location: p_phisical_test_delete.php?id=' . $id . '&test_id=' .$test_id);
     exit();
 }
