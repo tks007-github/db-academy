@@ -102,7 +102,7 @@ if (!isset($_SESSION['p_login'])) {
             }
             print '<br>';
         }
-        print '<input type="button" onclick="location.href=\'p_phisical_test_content.php\'" value="戻る">';
+        print '<input type="button" onclick="location.href=\'p_phisical_test.php\'" value="戻る">';
         print '<input type="submit" value="ＯＫ">';
     } catch (Exception $e) {
         exit();
