@@ -30,7 +30,9 @@ if (!isset($_SESSION['p_login'])) {
     <?php
     try {
         // p_phisical_test_add.phpから渡された値をサニタイズ
+        $test_id = htmlspecialchars($_POST['test_id'], ENT_QUOTES, 'UTF-8');
         $date = htmlspecialchars($_POST['date'], ENT_QUOTES, 'UTF-8');
+        
         if (isset($_POST['test1'])) {
             $test1 = htmlspecialchars($_POST['test1'], ENT_QUOTES, 'UTF-8');
             $test1_value = 1;
@@ -69,13 +71,16 @@ if (!isset($_SESSION['p_login'])) {
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // phisical_infoテーブルに新たなデータを登録
-        $sql = 'INSERT INTO phisical_test (player_code, date, test1, test2, test3) VALUES (?, ?, ?, ?, ?)';
+        $sql = '
+                UPDATE phisical_test 
+                SET test1 = ?, test2 = ?, test3 = ?
+                WHERE id = ? 
+                ';
         $stmt = $dbh->prepare($sql);
-        $data[0] = $p_code;
-        $data[1] = $date;
-        $data[2] = $test1;
-        $data[3] = $test2;
-        $data[4] = $test3;
+        $data[0] = $test1;
+        $data[1] = $test2;
+        $data[2] = $test3;
+        $data[3] = $test_id;
         $stmt->execute($data);
 
         // phisical_test_itemテーブルから項目名を検索
