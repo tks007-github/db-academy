@@ -74,7 +74,8 @@
         print '項目<br>';
 
         // test_codeのmax値(1～3)までforループをまわす
-        print '<form method="post" action="p_phisical_test_add_done.php">';
+        print '<form method="post" action="m_phisical_test_delete.php">';
+        print '<input type="hidden" name="id" value="' . $id . '">';
         print '<input type="hidden" name="date" value="' . $date . '">';
         for ($i = 0; $i < 3; $i++) {
             $rec2 = $stmt2->fetch(PDO::FETCH_ASSOC);
