@@ -27,6 +27,7 @@
     
     <a href="m_search.php">選手検索</a><br>
     <a href="m_phisical_test_create.php">フィジカルテスト新規作成</a><br>
+    <a href="m_phisical_test_list.php">フィジカルテスト一覧</a><br>
     <a href="m_phisical_test_add.php">フィジカルテスト項目追加</a><br>
     <br><br>
     <input type="button" onclick="location.href='m_logout.php'" value="ログアウト">
