@@ -50,7 +50,7 @@
         // player_managementデータベースから切断する
         $dbh = null;
 
-        print '<form method="post" action="p_phisical_test_check.php">';
+        print '<form method="post" action="m_p_phisical_test_check.php">';
         while (true) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($rec == false) {
@@ -61,7 +61,7 @@
             print '<br>';
         }
         print '<br>';
-        print '<input type="button" onclick="location.href=\'p_top.php\'" value="戻る">';
+        print '<input type="button" onclick="location.href=\'m_p_top.php\'" value="戻る">';
         print '<input type="submit" value="ＯＫ">';
         print '</form>';
 
