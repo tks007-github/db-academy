@@ -129,7 +129,7 @@ INSERT INTO `phisical_info` (`id`, `player_code`, `date`, `height`, `weight`) VA
 CREATE TABLE `phisical_test` (
   `id` int(11) NOT NULL,
   `player_code` char(5) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` date NOT NULL,
   `test1` double NOT NULL,
   `test2` double NOT NULL,
   `test3` double NOT NULL
@@ -140,10 +140,10 @@ CREATE TABLE `phisical_test` (
 --
 
 INSERT INTO `phisical_test` (`id`, `player_code`, `date`, `test1`, `test2`, `test3`) VALUES
-(1, 'A0001', '2021-06-01 15:00:00', 6.8, 50, 0),
-(2, 'B0001', '2021-06-01 15:00:00', 7.5, 40, 0),
-(3, 'B0001', '2021-07-06 15:00:00', 7.5, 42, 0),
-(4, 'A0001', '2021-07-06 15:00:00', 6.9, 53, 0);
+(1, 'A1', '2021-06-02', 6.8, 50, 0),
+(2, 'B1', '2021-06-02', 7.5, 40, 0),
+(3, 'B1', '2021-07-07', 0, 42, 0),
+(4, 'A1', '2021-07-07', 0, 53, 0);
 
 -- --------------------------------------------------------
 
@@ -163,6 +163,29 @@ CREATE TABLE `phisical_test_item` (
 INSERT INTO `phisical_test_item` (`test_code`, `test_value`) VALUES
 ('test1', '50m走'),
 ('test2', 'サイドステップ');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `phisical_test_record`
+--
+
+CREATE TABLE `phisical_test_record` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `test1` tinyint(1) NOT NULL,
+  `test2` tinyint(1) NOT NULL,
+  `test3` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `phisical_test_record`
+--
+
+INSERT INTO `phisical_test_record` (`id`, `date`, `test1`, `test2`, `test3`) VALUES
+(1, '2021-06-02', 1, 1, 0),
+(2, '2021-07-07', 0, 1, 0),
+(7, '2021-07-29', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -207,7 +230,7 @@ CREATE TABLE `questionnaire` (
 --
 
 INSERT INTO `questionnaire` (`id`, `player_code`, `item_code`, `num`, `name`, `status_code`, `year`, `month`) VALUES
-(1, 'A1', 1, 1, '右腕骨折', 1, 2019, 4),
+(1, 'A1', 1, 1, '右腕骨折', 1, 2019, 1),
 (2, 'A1', 1, 2, '左肩脱臼', 2, 2021, 6),
 (3, 'A1', 2, 1, 'なし', 0, 0, 0),
 (4, 'A1', 2, 2, 'なし', 0, 0, 0),
@@ -261,6 +284,12 @@ ALTER TABLE `phisical_test_item`
   ADD PRIMARY KEY (`test_code`);
 
 --
+-- Indexes for table `phisical_test_record`
+--
+ALTER TABLE `phisical_test_record`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `player`
 --
 ALTER TABLE `player`
@@ -280,7 +309,7 @@ ALTER TABLE `questionnaire`
 -- AUTO_INCREMENT for table `phisical_info`
 --
 ALTER TABLE `phisical_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `phisical_test`
@@ -289,10 +318,16 @@ ALTER TABLE `phisical_test`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `phisical_test_record`
+--
+ALTER TABLE `phisical_test_record`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `questionnaire`
 --
 ALTER TABLE `questionnaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
