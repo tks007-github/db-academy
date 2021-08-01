@@ -23,8 +23,8 @@ if (!isset($_SESSION['p_login'])) {
     <title>Player</title>
     <style>
         canvas {
-            max-width: 400px;
-            max-height: 300px;
+            max-width: 800px;
+            max-height: 600px;
             border: solid 1px #888;
         }
     </style>
