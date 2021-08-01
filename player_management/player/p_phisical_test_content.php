@@ -110,6 +110,7 @@ if (!isset($_SESSION['p_login'])) {
             print '<input type="hidden" name="test_id" value=' . $rec1['id'] . '>';
             print '<input type="button" onclick="location.href=\'p_phisical_test.php\'" value="戻る">';
             print '<input type="submit" name="edit" value="編集">';
+            print '<input type="submit" name="graph" value="グラフ">';
             print '<input type="submit" name="delete" value="削除">';
         }
     } catch (Exception $e) {

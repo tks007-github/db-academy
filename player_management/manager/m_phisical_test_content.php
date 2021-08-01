@@ -65,6 +65,17 @@
         $stmt2 = $dbh->prepare($sql2);
         $stmt2->execute();
 
+        // phisical_testから入力済み選手を検索
+        $sql3 = '
+                SELECT player_code 
+                FROM phisical_test 
+                WHERE date = ?
+                ORDER BY player_code
+                ';
+        $stmt3 = $dbh->prepare($sql3);
+        $data3[] = $date;
+        $stmt3->execute($data3);
+
         // player_managementデータベースから切断する
         $dbh = null;
 
@@ -84,6 +95,19 @@
                 print '<br>';
             }
         }
+        print '<br>';
+
+        print '入力済み選手一覧<br>';
+        while (true) {
+            $rec3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+            if ($rec3['player_code']) {
+                print $rec3['player_code'];
+                print '<br>';
+            } else {
+                break;
+            }
+        }
+
         print '<br>';
         print '<input type="button" onclick="location.href=\'m_phisical_test_list.php\'" value="戻る">';
         print '<input type="submit" value="削除">';
