@@ -67,7 +67,7 @@
         <input type="hidden" name="test_code" value="<?php print $test_code; ?>">
         <input type="text" name="test_value" value="">
         <br><br>
-        <input type="button" onclick="location.href='m_p_top.php'" value="戻る">
+        <input type="button" onclick="location.href='m_top.php'" value="戻る">
         <input type="submit" value="登録">
     </form>
 
