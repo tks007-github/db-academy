@@ -1,18 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>c_phisical_test_result</title>
-</head>
-<body>
-
-    B0001さんログイン中
-    <br><br>
-
-    <!DOCTYPE html>
-<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
@@ -23,7 +10,22 @@
 
 <body>
 
+    B0001さんログイン中
+    <br><br>
+
     <h3>フィジカルテスト成績表</h3>
+
+    <script type="text/javascript">
+        function printWeb() {
+            print();
+        }
+    </script>
+
+    <div>
+        <input type="button" value="印刷" onClick="printWeb()">　　
+    </div>
+
+    <br><br><br>
 
     <!-- 表 -->
     <table border="1">
@@ -208,8 +210,8 @@
 
     <br><br><br>
     <説明><br>
-    フィジカルテストの成績出力画面です。<br>
-    この画面を印刷できればと考えています。
-    
+        フィジカルテストの成績出力画面です。<br>
+
 </body>
+
 </html>
