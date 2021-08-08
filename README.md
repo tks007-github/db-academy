@@ -1,3 +1,3 @@
 # db-academy
 
-p_top_login.htmlまで編集
+c_phisical_testディレクトリを編集
