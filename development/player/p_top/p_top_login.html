@@ -10,26 +10,17 @@
 
     <h3>ログイン</h3>
     <br>
-    
     会員コードとパスワードを入力してください<br>
     <br>
-    会員コード<br>
-    <input type="text">
-    <br><br>
-    パスワード<br>
-    <input type="text">
-    <br><br>
-    <a href="p_top_login_check.html">ログイン(ボタン)</a>
+    <form method="post" action="p_top_login_check.php">
+        会員コード<br>
+        <input type="text" name="player_code"><br>
+        <br>
+        パスワード<br>
+        <input type="password" name="player_password"><br>
+        <br>
+        <input type="submit" value="ログイン">
+    </form>
 
-
-    <br><br><br>
-    <説明><br>
-    選手ページのログイン画面です。
-
-    <br><br>
-
-    POSTでp_top_login_checkへ入力データを送る。<br>
-    会員コード：player_code、パスワード：plyer_password
-    
 </body>
 </html>
