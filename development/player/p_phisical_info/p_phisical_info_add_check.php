@@ -23,8 +23,8 @@ try {
     $dbh = new PDO($dsn, $user, $password);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // phisical_infoテーブルから会員コードを使って最新の情報を検索
-    $sql = '
+    // phisical_infoテーブルからplayer_codeを使ってdate以前で最新の情報を検索
+    $sql1 = '
             SELECT height, weight, body_fat, muscle_mass
             FROM phisical_info 
             WHERE player_code = ?
@@ -32,47 +32,67 @@ try {
             SELECT MAX(date)
             FROM phisical_info
             WHERE player_code = ?
+            AND date < ?
             )
             ';
-    $stmt = $dbh->prepare($sql);
-    $data[] = $player_code;
-    $data[] = $player_code;
-    $stmt->execute($data);
-    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt1 = $dbh->prepare($sql1);
+    $data1[] = $player_code;
+    $data1[] = $player_code;
+    $data1[] = $date;
+    $stmt1->execute($data1);
+    $rec1 = $stmt1->fetch(PDO::FETCH_ASSOC);
 
     // 入力内容の問題の有無をflgによって判定(問題なし:true、問題あり:false)
     $flg = true;
 
     if ($date == '') {
         $flg = false;
+    } else {
+        // phisical_infoテーブルからplayer_codeとdateを使って情報を検索
+        $sql2 = '
+                SELECT * 
+                FROM phisical_info 
+                WHERE player_code = ? 
+                AND date = ?
+                ';
+        $stmt2 = $dbh->prepare($sql2);
+        $data2[] = $player_code;
+        $data2[] = $date;
+        $stmt2->execute($data2);
+        $rec2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+        // 同じplayer_codeとdateのデータがすでにある場合
+        if ($rec2 != '') {
+            $flg = false;
+        }
     }
 
     if ($height == '') {
         $flg = false;
     } else if ($height == 'on') {
         // 最新のheightの値を代入
-        $height = $rec['height'];
+        $height = $rec1['height'];
     }
 
     if ($weight == '') {
         $flg = false;
     } else if ($weight == 'on') {
         // 最新のweightの値を代入
-        $weight = $rec['weight'];
+        $weight = $rec1['weight'];
     }
 
     if ($body_fat == '') {
         $flg = false;
     } else if ($body_fat == 'on') {
         // 最新のbody_fatの値を代入
-        $body_fat = $rec['body_fat'];
+        $body_fat = $rec1['body_fat'];
     }
 
     if ($muscle_mass == '') {
         $flg = false;
     } else if ($muscle_mass == 'on') {
         // 最新のmuscle_massの値を代入
-        $muscle_mass = $rec['muscle_mass'];
+        $muscle_mass = $rec1['muscle_mass'];
     }
 
     // db_academyデータベースから切断する

@@ -46,7 +46,7 @@ if (!isset($_SESSION['p_login'])) {
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // phisical_infoテーブルから会員コードを使って情報を検索
+        // phisical_infoテーブルからplayer_codeを使って情報を検索
         $sql = '
                 SELECT date, height, weight, body_fat, muscle_mass 
                 FROM phisical_info 
