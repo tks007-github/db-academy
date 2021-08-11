@@ -1,3 +1,3 @@
 # db-academy
 
-p_questionnaireから
+p_phisical_infoから
