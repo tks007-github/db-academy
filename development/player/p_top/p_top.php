@@ -25,7 +25,7 @@
     <h3>トップページ</h3>
     <br>
     
-    <a href="p_questionnaire.php">問診表</a><br>
+    <a href="../p_questionnaire/p_questionnaire_top.php">問診表</a><br>
     <a href="p_phisical_info.php">身体情報</a><br>
     <a href="p_phisical_test.php">フィジカルテスト</a><br>
     <br><br>

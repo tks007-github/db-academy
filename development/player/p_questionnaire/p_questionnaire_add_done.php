@@ -1,0 +1,179 @@
+<?php
+session_start();
+session_regenerate_id(true);
+if (!isset($_SESSION['p_login'])) {
+    print 'ログインされていません。<br>';
+    print '<a href="p_login.html">ログイン画面へ</a>';
+    exit();
+} else {
+    print $_SESSION['player_name'];
+    print 'さんログイン中<br>';
+    print '<br>';
+}
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p_questionaire_add_done.php</title>
+</head>
+
+<body>
+
+    <h3>問診表の登録完了</h3>
+
+    <?php
+    try {
+        // 自作の関数を呼び出す
+        require_once('../../function/function.php');
+        // POSTの中身をすべてサニタイズする
+        $post = sanitize($_POST);
+
+        // p_questionnaire_add.phpから怪我(injury)、アレルギー(allergy)、病気(sick)の情報を受け取る
+        // 怪我の情報
+        for ($i = 1; $i <= 10; $i++) {
+            $injury_name = 'injury' . (string)$i . '_name';
+            $injury_status = 'injury' . (string)$i . '_status';
+            $injury_year = 'injury' . (string)$i . '_year';
+            $injury_month = 'injury' . (string)$i . '_month';
+
+            $injury_name_array[$i] = $post[$injury_name];
+            $injury_status_array[$i] = $post[$injury_status];
+            $injury_year_array[$i] = $post[$injury_year];
+            $injury_month_array[$i] = $post[$injury_month];
+        }
+
+        // アレルギーの情報
+        for ($i = 1; $i <= 5; $i++) {
+            $allergy_name = 'allergy' . (string)$i . '_name';
+            $allergy_status = 'allergy' . (string)$i . '_status';
+            $allergy_year = 'allergy' . (string)$i . '_year';
+            $allergy_month = 'allergy' . (string)$i . '_month';
+
+            $allergy_name_array[$i] = $post[$allergy_name];
+            $allergy_status_array[$i] = $post[$allergy_status];
+            $allergy_year_array[$i] = $post[$allergy_year];
+            $allergy_month_array[$i] = $post[$allergy_month];
+        }
+
+        // 病気の情報
+        for ($i = 1; $i <= 5; $i++) {
+            $sick_name = 'sick' . (string)$i . '_name';
+            $sick_status = 'sick' . (string)$i . '_status';
+            $sick_year = 'sick' . (string)$i . '_year';
+            $sick_month = 'sick' . (string)$i . '_month';
+
+            $sick_name_array[$i] = $post[$sick_name];
+            $sick_status_array[$i] = $post[$sick_status];
+            $sick_year_array[$i] = $post[$sick_year];
+            $sick_month_array[$i] = $post[$sick_month];
+        }
+
+        // メモの情報
+        $note = $post['note'];
+
+
+        // db_academyデータベースに接続する
+        $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
+        $user = 'root';
+        $password = 'root';
+        $dbh = new PDO($dsn, $user, $password);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // questionnaireテーブルの情報を更新
+        $sql1 = 'INSERT INTO ';
+        $sql2 = 'questionnaire(player_code, ';
+        $sql3 = 'VALUES(?, ';
+        $data[] = $_SESSION['player_code'];
+
+        // 怪我の情報をsql文に追加
+        for ($i = 1; $i <= 10; $i++) {
+            $injury_name = 'injury' . (string)$i . '_name';
+            $injury_status = 'injury' . (string)$i . '_status';
+            $injury_year = 'injury' . (string)$i . '_year';
+            $injury_month = 'injury' . (string)$i . '_month';
+
+            $sql2 .= $injury_name . ', ';
+            $sql3 .= '?, ';
+            $data[] = $injury_name_array[$i];
+            $sql2 .= $injury_status . ', ';
+            $sql3 .= '?, ';
+            $data[] = $injury_status_array[$i];
+            $sql2 .= $injury_year . ', ';
+            $sql3 .= '?, ';
+            $data[] = $injury_year_array[$i];
+            $sql2 .= $injury_month . ', ';
+            $sql3 .= '?, ';
+            $data[] = $injury_month_array[$i];
+        }
+
+        // アレルギーの情報をsql文に追加
+        for ($i = 1; $i <= 5; $i++) {
+            $allergy_name = 'allergy' . (string)$i . '_name';
+            $allergy_status = 'allergy' . (string)$i . '_status';
+            $allergy_year = 'allergy' . (string)$i . '_year';
+            $allergy_month = 'allergy' . (string)$i . '_month';
+
+            $sql2 .= $allergy_name . ', ';
+            $sql3 .= '?, ';
+            $data[] = $allergy_name_array[$i];
+            $sql2 .= $allergy_status . ', ';
+            $sql3 .= '?, ';
+            $data[] = $allergy_status_array[$i];
+            $sql2 .= $allergy_year . ', ';
+            $sql3 .= '?, ';
+            $data[] = $allergy_year_array[$i];
+            $sql2 .= $allergy_month . ', ';
+            $sql3 .= '?, ';
+            $data[] = $allergy_month_array[$i];
+        }
+
+        // 病気の情報をsql文に追加
+        for ($i = 1; $i <= 5; $i++) {
+            $sick_name = 'sick' . (string)$i . '_name';
+            $sick_status = 'sick' . (string)$i . '_status';
+            $sick_year = 'sick' . (string)$i . '_year';
+            $sick_month = 'sick' . (string)$i . '_month';
+
+            $sql2 .= $sick_name . ', ';
+            $sql3 .= '?, ';
+            $data[] = $sick_name_array[$i];
+            $sql2 .= $sick_status . ', ';
+            $sql3 .= '?, ';
+            $data[] = $sick_status_array[$i];
+            $sql2 .= $sick_year . ', ';
+            $sql3 .= '?, ';
+            $data[] = $sick_year_array[$i];
+            $sql2 .= $sick_month . ', ';
+            $sql3 .= '?, ';
+            $data[] = $sick_month_array[$i];
+        }
+
+        // メモの情報をsql文に追加
+        $sql2 .= 'note)';
+        $sql3 .= '?)';
+        $data[] = $note;
+
+        $sql = $sql1 . $sql2 . $sql3;
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute($data);
+
+        // player_managementデータベースから切断する
+        $dbh = null;
+
+        print '登録が完了しました<br><br>';
+        print '<input type="button" onclick="location.href=\'p_questionnaire_top.php\'" value="戻る">';
+    } catch (Exception $e) {
+        var_dump($e);
+        exit();
+    }
+    ?>
+
+</body>
+
+</html>
