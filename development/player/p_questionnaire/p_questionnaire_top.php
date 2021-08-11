@@ -31,7 +31,7 @@
         // player_codeをセッションで受け取る
         $player_code = $_SESSION['player_code'];
 
-        // player_managementデータベースに接続する
+        // db_academyデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
         $user = 'root';
         $password = 'root';

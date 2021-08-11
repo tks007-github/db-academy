@@ -4,7 +4,7 @@ session_regenerate_id(true);
 $player_code = $_SESSION['player_code'];
 
 try {
-    // 自作のsanitize関数を呼び出す
+    // 自作の関数を呼び出す
     require_once('../../function/function.php');
     // POSTの中身をすべてサニタイズする
     $post = sanitize($_POST);
