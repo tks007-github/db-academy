@@ -9,6 +9,7 @@ function sanitize($before) {                 // 連想配列$_POSTを$beforeと�
     return $after;                // $afterを戻り値として出力
 }
 
+
 // 関数名:edit_select_status　引数:$status_index、$status_value　戻り値:$select_status_line
 function select_status($status_index, $status_value) {
     $select_status_line = '<select name=' . $status_index . '>';
@@ -31,11 +32,16 @@ function select_status($status_index, $status_value) {
     return $select_status_line;
 }
 
+
 // 関数名:select_year　引数:$year_index、$year_value　戻り値:$select_year_line
 function select_year($year_index, $year_value) {
+    // 現在の年(西暦)を取得
+    date_default_timezone_set('Asia/Tokyo');
+    $current_year = date('Y');
+
     $select_year_line = '<select name=' . $year_index . '>';
     $select_year_line .= '<option value=""></option>';
-    for ($i = 2000; $i <= 2021; $i++) {
+    for ($i = 2000; $i <= $current_year; $i++) {
         if ($year_value == $i) {
             $select_year_line .= '<option value=' . $i . ' selected>' . $i . '</option>';
         } else {    
@@ -45,6 +51,7 @@ function select_year($year_index, $year_value) {
     $select_year_line .= '</select>';
     return $select_year_line;
 }
+
 
 // 関数名:select_month　引数:$month_index、$month_value　戻り値:$select_month_line
 function select_month($month_index, $month_value) {
