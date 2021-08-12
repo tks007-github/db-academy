@@ -27,6 +27,14 @@ if (!isset($_SESSION['p_login'])) {
     <h3>身体情報一覧</h3>
 
     <?php
+    // $_SESSIONを初期化
+    $_SESSION['phisical_info_code'] = '';
+    $_SESSION['date'] = '';                  
+    $_SESSION['height'] = '';               
+    $_SESSION['weight'] = '';                      
+    $_SESSION['body_fat'] = '';                  
+    $_SESSION['muscle_mass'] = ''; 
+
     // player_codeをSESSIONで受け取る
     $player_code = $_SESSION['player_code'];
 

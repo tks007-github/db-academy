@@ -6,7 +6,7 @@ if (isset($_POST['edit'])) {
         exit();
     }
     $phisical_info_code = $_POST['phisical_info_code'];
-    header('Location: p_phisical_info_edit.php?id=' . $phisical_info_code);
+    header('Location: p_phisical_info_edit.php?phisical_info_code=' . $phisical_info_code);
     exit();
 }
 
@@ -16,6 +16,6 @@ if (isset($_POST['delete'])) {
         exit();
     }
     $phisical_info_code = $_POST['phisical_info_code'];
-    header('Location: p_phisical_info_delete.php?id=' . $phisical_info_code);
+    header('Location: p_phisical_info_delete.php?phisical_info_code=' . $phisical_info_code);
     exit();
 }
