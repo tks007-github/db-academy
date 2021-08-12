@@ -28,7 +28,7 @@
     <br><br>
 
     <br>
-    <a href="p_phisical_info_top.html">戻る(ボタン)</a><br>
+    <a href="p_phisical_info_top.php">戻る(ボタン)</a><br>
 
 
     <br><br><br>
