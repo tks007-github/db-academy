@@ -33,7 +33,11 @@ if (!isset($_SESSION['p_login'])) {
     $_SESSION['height'] = '';               
     $_SESSION['weight'] = '';                      
     $_SESSION['body_fat'] = '';                  
-    $_SESSION['muscle_mass'] = '';           
+    $_SESSION['muscle_mass'] = '';
+    $_SESSION['graph_height'] = 1;
+    $_SESSION['graph_weight'] = 0;
+    $_SESSION['graph_body_fat'] = 0;
+    $_SESSION['graph_muscle_mass'] = 0;           
 
     try {
         // player_codeをセッションで受け取る

@@ -33,7 +33,7 @@ if (!isset($_SESSION['p_login'])) {
     $_SESSION['height'] = '';               
     $_SESSION['weight'] = '';                      
     $_SESSION['body_fat'] = '';                  
-    $_SESSION['muscle_mass'] = ''; 
+    $_SESSION['muscle_mass'] = '';
 
     // player_codeをSESSIONで受け取る
     $player_code = $_SESSION['player_code'];

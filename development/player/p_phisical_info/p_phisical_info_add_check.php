@@ -41,6 +41,7 @@ try {
     $data1[] = $date;
     $stmt1->execute($data1);
     $rec1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+    
 
     // 入力内容の問題の有無をflgによって判定(問題なし:true、問題あり:false)
     $flg = true;
@@ -67,28 +68,29 @@ try {
         }
     }
 
-    if ($height == '') {
+
+    if ($height == '' || ($height == 'on' && $rec1 == '')) {
         $flg = false;
     } else if ($height == 'on') {
         // 最新のheightの値を代入
         $height = $rec1['height'];
     }
 
-    if ($weight == '') {
+    if ($weight == '' || ($weight == 'on' && $rec1 == '')) {
         $flg = false;
     } else if ($weight == 'on') {
         // 最新のweightの値を代入
         $weight = $rec1['weight'];
     }
 
-    if ($body_fat == '') {
+    if ($body_fat == '' || ($body_fat == 'on' && $rec1 == '')) {
         $flg = false;
     } else if ($body_fat == 'on') {
         // 最新のbody_fatの値を代入
         $body_fat = $rec1['body_fat'];
     }
 
-    if ($muscle_mass == '') {
+    if ($muscle_mass == '' || ($muscle_mass == 'on' && $rec1 == '')) {
         $flg = false;
     } else if ($muscle_mass == 'on') {
         // 最新のmuscle_massの値を代入
