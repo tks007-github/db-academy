@@ -63,7 +63,7 @@ if (!isset($_SESSION['p_login'])) {
         $stmt->execute($data);
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // player_managementデータベースから切断する
+        // db_academyデータベースから切断する
         $dbh = null;
 
         print '<form method="post" action="p_phisical_info_add.php">';
