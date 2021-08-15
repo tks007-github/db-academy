@@ -67,3 +67,5 @@ function select_month($month_index, $month_value) {
     $select_month_line .= '</select>';
     return $select_month_line;
 }
+
+// 関数名:

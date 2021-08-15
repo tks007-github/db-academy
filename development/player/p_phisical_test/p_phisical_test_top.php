@@ -46,7 +46,7 @@ if (!isset($_SESSION['p_login'])) {
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // phisical_test_recordテーブルからplayer_codeを使って情報を検索
+        // phisical_test_recordテーブルからplayer_codeを使って最新の情報を検索
         $sql1 = '
                 SELECT date, 10m走, 20m走, 30m走, 50m走, 1500m走, 
                 プロアジリティ, 立ち幅跳び, メディシンボール投げ, 
@@ -87,7 +87,7 @@ if (!isset($_SESSION['p_login'])) {
         // db_academyデータベースから切断する
         $dbh = null;
 
-        print '<form method="post" action="p_phisical_info_add.php">';
+        print '<form method="post" action="p_phisical_test_add.php">';
 
         if ($rec1 == '') {                     // データベースからの問い合わせ結果がない場合
             print '登録情報がありません。<br><br>';
@@ -102,10 +102,40 @@ if (!isset($_SESSION['p_login'])) {
             if ($rec2['20m走']) {
                 print '20m走：' . $rec1['20m走'] . '秒<br>';
             }
+            if ($rec2['30m走']) {
+                print '30m走：' . $rec1['30m走'] . '秒<br>';
+            }
+            if ($rec2['50m走']) {
+                print '50m走：' . $rec1['50m走'] . '秒<br>';
+            }
+            if ($rec2['1500m走']) {
+                print '1500m走：' . $rec1['1500m走'] . '分<br>';
+            }
+            if ($rec2['プロアジリティ']) {
+                print 'プロアジリティ：' . $rec1['プロアジリティ'] . '秒<br>';
+            }
+            if ($rec2['立ち幅跳び']) {
+                print '立ち幅跳び：' . $rec1['立ち幅跳び'] . 'cm<br>';
+            }
+            if ($rec2['メディシンボール投げ']) {
+                print 'メディシンボール投げ：' . $rec1['メディシンボール投げ'] . 'm<br>';
+            }
+            if ($rec2['垂直飛び']) {
+                print '垂直飛び：' . $rec1['垂直飛び'] . 'cm<br>';
+            }
+            if ($rec2['背筋力']) {
+                print '背筋力：' . $rec1['背筋力'] . 'kg<br>';
+            }
+            if ($rec2['握力']) {
+                print '握力：' . $rec1['握力'] . 'kg<br>';
+            }
+            if ($rec2['サイドステップ']) {
+                print 'サイドステップ：' . $rec1['サイドステップ'] . '回<br>';
+            }
             print '<br><br>';
             print '<input type="button" onclick="location.href=\'../p_top/p_top.php\'" value="戻る">';
             print '<input type="submit" value="登録">';
-            print '<input type="button" onclick="location.href=\'p_phisical_info_list.php\'" value="一覧">';
+            print '<input type="button" onclick="location.href=\'p_phisical_test_list.php\'" value="一覧">';
         }
     } catch (Exception $e) {
         var_dump($e);
