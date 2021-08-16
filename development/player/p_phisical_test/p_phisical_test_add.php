@@ -47,7 +47,7 @@ if (!isset($_SESSION['p_login'])) {
 
 
     print '最新のフィジカルテスト結果(' . $date . ')<br><br>';
-    print '<form method="post" action="p_phisical_test_add_check">';
+    print '<form method="post" action="p_phisical_test_add_check.php">';
     if ($test1_boolean) {
         print '10m走 <input type="text" name="10m走_value" value=""> 秒<br>';
     }
