@@ -56,7 +56,7 @@ if (!isset($_SESSION['p_login'])) {
 
         // phisical_test_recordテーブルからplayer_codeとdateを使って情報を検索
         $sql = '
-                SELECT 10m走, 20m走, 30m走, 50m走, 1500m走, 
+                SELECT 10m走, 20m走, 30m走, 50m走, 1500m走_min, 1500m走_sec,  
                 プロアジリティ, 立ち幅跳び, メディシンボール投げ, 
                 垂直飛び, 背筋力, 握力, サイドステップ 
                 FROM phisical_test_record 
@@ -77,7 +77,7 @@ if (!isset($_SESSION['p_login'])) {
             print '登録情報がありません。<br><br>';
             print '<br><br>';
             print '<input type="button" onclick="location.href=\'p_phisical_test_top.php\'" value="戻る">';
-            print '<input type="button" onclick="location.href=\'p_phisical_test_add\'" value="登録">';
+            print '<input type="button" onclick="location.href=\'p_phisical_test_add.php\'" value="登録">';
         } else {                              // データベースからの問い合わせ結果があった場合
             print '最新のフィジカルテスト結果(' . $date . ')<br><br>';
             if ($test1_boolean) {
@@ -93,7 +93,7 @@ if (!isset($_SESSION['p_login'])) {
                 print '50m走：' . $rec['50m走'] . '秒<br>';
             }
             if ($test5_boolean) {
-                print '1500m走：' . $rec['1500m走'] . '分<br>';
+                print '1500m走：' . $rec['1500m走_min'] . '分' . $rec['1500m走_sec'] . '秒<br>';
             }
             if ($test6_boolean) {
                 print 'プロアジリティ：' . $rec['プロアジリティ'] . '秒<br>';
