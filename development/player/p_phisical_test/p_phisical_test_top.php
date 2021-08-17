@@ -55,9 +55,7 @@ if (!isset($_SESSION['p_login'])) {
 
         // phisical_testテーブルからbelong_codeを使って情報を検索
         $sql = '
-                SELECT date, 10m走, 20m走, 30m走, 50m走, 1500m走, 
-                プロアジリティ, 立ち幅跳び, メディシンボール投げ, 
-                垂直飛び, 背筋力, 握力, サイドステップ
+                SELECT phisical_test_code, date
                 FROM phisical_test 
                 WHERE belong_code = ?
                 ORDER BY date DESC
@@ -75,19 +73,7 @@ if (!isset($_SESSION['p_login'])) {
             if ($rec == '') {
                 break;
             }
-            print '<input type="radio" name="date" value="' . $rec['date'] . '">';
-            print '<input type="hidden" name="10m走_boolean" value="' . $rec['10m走'] . '">';
-            print '<input type="hidden" name="20m走_boolean" value="' . $rec['20m走'] . '">';
-            print '<input type="hidden" name="30m走_boolean" value="' . $rec['30m走'] . '">';
-            print '<input type="hidden" name="50m走_boolean" value="' . $rec['50m走'] . '">';
-            print '<input type="hidden" name="1500m走_boolean" value="' . $rec['1500m走'] . '">';
-            print '<input type="hidden" name="プロアジリティ_boolean" value="' . $rec['プロアジリティ'] . '">';
-            print '<input type="hidden" name="立ち幅跳び_boolean" value="' . $rec['立ち幅跳び'] . '">';
-            print '<input type="hidden" name="メディシンボール投げ_boolean" value="' . $rec['メディシンボール投げ'] . '">';
-            print '<input type="hidden" name="垂直飛び_boolean" value="' . $rec['垂直飛び'] . '">';
-            print '<input type="hidden" name="背筋力_boolean" value="' . $rec['背筋力'] . '">';
-            print '<input type="hidden" name="握力_boolean" value="' . $rec['握力'] . '">';
-            print '<input type="hidden" name="サイドステップ_boolean" value="' . $rec['サイドステップ'] . '">';
+            print '<input type="radio" name="phisical_test_code" value="' . $rec['phisical_test_code'] . '">';
             print '日付：' . $rec['date'] . '　';
             print '<br>';
         }
