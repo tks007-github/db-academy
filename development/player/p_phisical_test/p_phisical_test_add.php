@@ -28,6 +28,20 @@ if (!isset($_SESSION['p_login'])) {
 
     <?php
 
+    // SESSION変数の初期化
+    $_SESSION['test1_value'] = '';
+    $_SESSION['test2_value'] = '';
+    $_SESSION['test3_value'] = '';
+    $_SESSION['test4_value'] = '';
+    $_SESSION['test5_value'] = '';
+    $_SESSION['test6_value'] = '';
+    $_SESSION['test7_value'] = '';
+    $_SESSION['test8_value'] = '';
+    $_SESSION['test9_value'] = '';
+    $_SESSION['test10_value'] = '';
+    $_SESSION['test11_value'] = '';
+    $_SESSION['test12_value'] = '';
+
     // player_codeをSESSIONで受け取る
     $player_code = $_SESSION['player_code'];
     // p_phisical_test_topからの情報をSESSIONで受け取る

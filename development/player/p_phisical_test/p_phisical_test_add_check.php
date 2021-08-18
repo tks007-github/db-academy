@@ -3,8 +3,7 @@ session_start();
 session_regenerate_id(true);
 
 try {
-    // player_codeをSESSIONで受け取る
-    $player_code = $_SESSION['player_code'];
+    
     // p_phisical_test_topからの情報をSESSIONで受け取る
     $date = $_SESSION['date'];
     $test1_boolean = $_SESSION['10m走_boolean'];
@@ -74,13 +73,15 @@ try {
 
     // 1500m走
     if ($test5_boolean) {
-        if ($post['1500m走_value'] == '') {
+        if ($post['1500m走_min_value'] == '' || $post['1500m走_sec_value'] == '') {
             $flg = false;
         } else {
-            $test5_value = $post['1500m走_value'];
+            $test5_1_value = $post['1500m走_min_value'];
+            $test5_2_value = $post['1500m走_sec_value'];
         }
     } else {
-        $test5_value = 0;
+        $test5_1_value = 0;
+        $test5_2_value = 0;
     }
 
     // プロアジリティ
@@ -166,7 +167,8 @@ try {
         $_SESSION['test2_value'] = $test2_value;            // セッション変数に20m走の記録を保持
         $_SESSION['test3_value'] = $test3_value;            // セッション変数に30m走の記録を保持
         $_SESSION['test4_value'] = $test4_value;            // セッション変数に50m走の記録を保持
-        $_SESSION['test5_value'] = $test5_value;            // セッション変数に1500m走の記録を保持
+        $_SESSION['test5_1_value'] = $test5_1_value;        // セッション変数に1500m走_minの記録を保持
+        $_SESSION['test5_2_value'] = $test5_2_value;        // セッション変数に1500m走_secの記録を保持
         $_SESSION['test6_value'] = $test6_value;            // セッション変数にプロアジリティの記録を保持
         $_SESSION['test7_value'] = $test7_value;            // セッション変数に立ち幅跳びの記録を保持
         $_SESSION['test8_value'] = $test8_value;            // セッション変数にメディシンボール投げの記録を保持
