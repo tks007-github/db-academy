@@ -33,7 +33,8 @@ if (!isset($_SESSION['p_login'])) {
     $_SESSION['test2_value'] = '';
     $_SESSION['test3_value'] = '';
     $_SESSION['test4_value'] = '';
-    $_SESSION['test5_value'] = '';
+    $_SESSION['test5_1_value'] = '';
+    $_SESSION['test5_2_value'] = '';
     $_SESSION['test6_value'] = '';
     $_SESSION['test7_value'] = '';
     $_SESSION['test8_value'] = '';

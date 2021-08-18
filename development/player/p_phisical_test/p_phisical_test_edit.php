@@ -33,7 +33,8 @@ if (!isset($_SESSION['p_login'])) {
     $_SESSION['test2_value'] = '';
     $_SESSION['test3_value'] = '';
     $_SESSION['test4_value'] = '';
-    $_SESSION['test5_value'] = '';
+    $_SESSION['test5_1_value'] = '';
+    $_SESSION['test5_2_value'] = '';
     $_SESSION['test6_value'] = '';
     $_SESSION['test7_value'] = '';
     $_SESSION['test8_value'] = '';
@@ -70,7 +71,7 @@ if (!isset($_SESSION['p_login'])) {
 
         // phisical_test_recordテーブルからplayer_codeとdateを使って情報を検索
         $sql = '
-                SELECT 10m走, 20m走, 30m走, 50m走, 1500m走_min, 1500m走_sec,  
+                SELECT phisical_test_record_code, 10m走, 20m走, 30m走, 50m走, 1500m走_min, 1500m走_sec,  
                 プロアジリティ, 立ち幅跳び, メディシンボール投げ, 
                 垂直飛び, 背筋力, 握力, サイドステップ 
                 FROM phisical_test_record 
@@ -87,7 +88,8 @@ if (!isset($_SESSION['p_login'])) {
         $dbh = null;
 
         print 'フィジカルテスト結果(' . $date . ')<br><br>';
-        print '<form method="post" action="p_phisical_test_add_check.php">';
+        print '<form method="post" action="p_phisical_test_edit_check.php">';
+        print '<input type="hidden" name="phisical_test_record_code" value="' . $rec['phisical_test_record_code'] . '">';
         if ($test1_boolean) {
             print '10m走 <input type="text" name="10m走_value" value="' . $rec['10m走'] . '"> 秒<br>';
         }
@@ -113,7 +115,7 @@ if (!isset($_SESSION['p_login'])) {
             print 'メディシンボール投げ <input type="text" name="メディシンボール投げ_value" value="' . $rec['メディシンボール投げ'] . '"> m<br>';
         }
         if ($test9_boolean) {
-            print '垂直飛び <input type="text" name="垂直飛び_value" vlaue="' . $rec['垂直飛び'] . '"> cm<br>';
+            print '垂直飛び <input type="text" name="垂直飛び_value" value="' . $rec['垂直飛び'] . '"> cm<br>';
         }
         if ($test10_boolean) {
             print '背筋力 <input type="text" name="背筋力_value" value="' . $rec['背筋力'] . '"> kg<br>';
