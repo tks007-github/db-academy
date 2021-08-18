@@ -79,7 +79,7 @@ if (!isset($_SESSION['p_login'])) {
             print '<input type="button" onclick="location.href=\'p_phisical_test_top.php\'" value="戻る">';
             print '<input type="button" onclick="location.href=\'p_phisical_test_add.php\'" value="登録">';
         } else {                              // データベースからの問い合わせ結果があった場合
-            print '最新のフィジカルテスト結果(' . $date . ')<br><br>';
+            print 'フィジカルテスト結果(' . $date . ')<br><br>';
             if ($test1_boolean) {
                 print '10m走：' . $rec['10m走'] . '秒<br>';
             }
