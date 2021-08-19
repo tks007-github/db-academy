@@ -119,6 +119,7 @@ if (!isset($_SESSION['p_login'])) {
             print '<br><br>';
             print '<input type="button" onclick="location.href=\'p_phisical_test_top.php\'" value="戻る">';
             print '<input type="button" onclick="location.href=\'p_phisical_test_edit.php\'" value="編集">';
+            print '<input type="button" onclick="location.href=\'p_phisical_test_delete.php\'" value="削除">';
             print '<input type="button" onclick="location.href=\'p_phisical_test_result.php\'" value="成績表">';
         }
     } catch (Exception $e) {
