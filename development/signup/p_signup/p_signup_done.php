@@ -86,7 +86,7 @@ if (!isset($_SESSION['p_signup_login'])) {
     ?>
 
     <br>
-    <a href="../../player/p_top/p_top_login.html"> 選手管理</a>
+    <a href="../../player/p_top/p_top_login.html">トップ画面</a>
 
 </body>
 
