@@ -10,26 +10,17 @@
 
     <h3>ログイン</h3>
     <br>
-    
     管理者コードとパスワードを入力してください<br>
     <br>
-    管理者コード<br>
-    <input type="text">
-    <br><br>
-    パスワード<br>
-    <input type="text">
-    <br><br>
-    <a href="c_top.html">ログイン(ボタン)</a>
+    <form method="post" action="c_top_login_check.php">
+        管理者コード<br>
+        <input type="text" name="coach_code"><br>
+        <br>
+        パスワード<br>
+        <input type="password" name="coach_password"><br>
+        <br>
+        <input type="submit" value="ログイン">
+    </form>
 
-
-    <br><br><br>
-    <説明><br>
-    管理者のログイン画面です。
-
-    <br><br>
-
-    POSTでc_top_login_checkへ入力データを送る。<br>
-    会員コード：coach_code、パスワード：coach_password
-    
 </body>
 </html>
