@@ -6,9 +6,16 @@
         print '<a href="p_top_login.html">ログイン画面へ</a>';
         exit();
     } else {
-        print $_SESSION['player_name'];
-        print 'さんログイン中<br>';
-        print '<br>';
+        if (!isset($_SESSION['c_login'])) {
+            print $_SESSION['player_name'];
+            print 'さんログイン中<br>';
+            print '<br>';
+        } else {
+            print $_SESSION['coach_name'];
+            print 'さんログイン中<br>';
+            print '選手検索：' . $_SESSION['player_name'];
+        }
+        
     }
 ?>
 
