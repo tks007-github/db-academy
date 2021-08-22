@@ -1,7 +1,7 @@
 # db-academy
 
 【取組中】
-c_topから
+c_phisical_testから
 
 【未完成】
 p_phisical_info_graph.php
