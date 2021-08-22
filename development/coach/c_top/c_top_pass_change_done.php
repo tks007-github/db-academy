@@ -1,12 +1,12 @@
 <?php
     session_start();
     session_regenerate_id(true);
-    if (!isset($_SESSION['p_login'])) {
+    if (!isset($_SESSION['c_login'])) {
         print 'ログインされていません。<br>';
-        print '<a href="p_top_login.html">ログイン画面へ</a>';
+        print '<a href="c_top_login.html">ログイン画面へ</a>';
         exit();
     } else {
-        print $_SESSION['player_name'];
+        print $_SESSION['coach_name'];
         print 'さんログイン中<br>';
         print '<br>';
     }
@@ -19,7 +19,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p_top_pass_change_done</title>
+    <title>c_top_pass_change_done</title>
 </head>
 
 <body>
@@ -28,11 +28,11 @@
 
     <?php
     try {
-        // player_codeをセッションで受け取る
-        $player_code = $_SESSION['player_code'];
+        // coach_codeをセッションで受け取る
+        $coach_code = $_SESSION['coach_code'];
 
-        // p_top_pass_change.phpから渡された値をセッションで受け取る
-        $new_player_password = $_SESSION['new_player_password'];
+        // c_top_pass_change.phpから渡された値をセッションで受け取る
+        $new_coach_password = $_SESSION['new_coach_password'];
 
         // db_academyデータベースに接続
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8mb4';
@@ -41,18 +41,18 @@
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // playerテーブルのplayer_passwordを更新する
-        $sql = 'UPDATE player SET player_password = ? WHERE player_code = ?';
+        // coachテーブルのcoach_passwordを更新する
+        $sql = 'UPDATE coach SET coach_password = ? WHERE coach_code = ?';
         $stmt = $dbh->prepare($sql);
-        $data[] = $new_player_password;
-        $data[] = $player_code;
+        $data[] = $new_coach_password;
+        $data[] = $coach_code;
         $stmt->execute($data);
 
-        // player_managementデータベースから切断
+        // db_academyデータベースから切断
         $dbh = null;
 
         print 'パスワードを変更しました<br>';
-        print '新しいパスワード：' . $new_player_password . '<br>';
+        print '新しいパスワード：' . $new_coach_password . '<br>';
         
     } catch (Exception $e) {
         var_dump($e);
@@ -62,7 +62,7 @@
     ?>
 
     <br>
-    <input type="button" onclick="location.href='p_top.php'" value="トップ">
+    <input type="button" onclick="location.href='c_top.php'" value="トップ">
 
 </body>
 

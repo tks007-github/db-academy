@@ -1,7 +1,7 @@
 <?php
 session_start();
 session_regenerate_id(true);
-$player_code = $_SESSION['player_code'];
+$coach_code = $_SESSION['coach_code'];
 
 try {
     // 自作の関数を呼び出す
@@ -9,10 +9,10 @@ try {
     // POSTの中身をすべてサニタイズする
     $post = sanitize($_POST);
 
-    // p_top_pass_change.htmlからplayer_passwordとnew_player_passwordとnew_player_password2を受け取る
-    $player_password = $post['player_password'];
-    $new_player_password = $post['new_player_password'];
-    $new_player_password2 = $post['new_player_password2'];
+    // c_top_pass_change.htmlからcoach_passwordとnew_coach_passwordとnew_coach_password2を受け取る
+    $coach_password = $post['coach_password'];
+    $new_coach_password = $post['new_coach_password'];
+    $new_coach_password2 = $post['new_coach_password2'];
 
     // db_academyデータベースに接続する
     $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
@@ -21,15 +21,15 @@ try {
     $dbh = new PDO($dsn, $user, $password);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // playerテーブルからplayer_codeとplayer_passwordを使って情報を検索
+    // coachテーブルからcoach_codeとcoach_passwordを使って情報を検索
     $sql = '
             SELECT * 
-            FROM player 
-            WHERE player_code = ? AND player_password = ?
+            FROM coach 
+            WHERE coach_code = ? AND coach_password = ?
             ';
     $stmt = $dbh->prepare($sql);
-    $data[] = $player_code;
-    $data[] = $player_password;
+    $data[] = $coach_code;
+    $data[] = $coach_password;
     $stmt->execute($data);
     $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -39,37 +39,37 @@ try {
     // 入力内容の問題の有無をflgによって判定(問題なし:true、問題あり:false)
     $flg = true;
 
-    // player_passwordが空の場合
-    if ($player_password == '') {
+    // coach_passwordが空の場合
+    if ($coach_password == '') {
         print '現在のパスワードが入力されていません<br>';
         $flg = false;
     }
 
-    // player_passwordが間違っていた場合
-    if ($player_password != '' && $rec == '') {
+    // coach_passwordが間違っていた場合
+    if ($coach_password != '' && $rec == '') {
         print '現在のパスワードが間違っています<br>';
         $flg = false;
     }
 
-    // new_player_passwordが空の場合
-    if ($new_player_password == '') {
+    // new_coach_passwordが空の場合
+    if ($new_coach_password == '') {
         print '新しいパスワードが入力されていません<br>';
         $flg = false;
     }
 
-    // new_player_passwordとnew_player_password2が一致しない場合
-    if ($new_player_password != $new_player_password2) {
+    // new_coach_passwordとnew_coach_password2が一致しない場合
+    if ($new_coach_password != $new_coach_password2) {
         print '新しいパスワードが一致しません<br>';
         $flg = false;
     }
 
     if ($flg) {             // 入力に問題がなかった場合
-        $_SESSION['new_player_password'] = $new_player_password;    // セッション変数にnew_player_passwordを保持
-        header('Location:p_top_pass_change_done.php');              // p_top_pass_change_done.phpへリダイレクト
+        $_SESSION['new_coach_password'] = $new_coach_password;      // セッション変数にnew_coach_passwordを保持
+        header('Location:c_top_pass_change_done.php');              // c_top_pass_change_done.phpへリダイレクト
         exit();
     } else {                // 入力に問題があった場合
         print '<br>';
-        print '<input type="button" onclick="location.href=\'p_top_pass_change.php\'" value="戻る">';
+        print '<input type="button" onclick="location.href=\'c_top_pass_change.php\'" value="戻る">';
     }
 
 } catch (Exception $e) {
