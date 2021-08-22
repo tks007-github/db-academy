@@ -28,6 +28,13 @@
     <a href="../c_search/c_search_top.php">選手検索</a><br>
     <a href="../c_phisical_test/c_phisical_test_top.php">フィジカルテスト</a><br>
     <br><br>
+    
+    <?php
+        if ($_SESSION['coach_code'] == 'C0001') {
+            print '<a href="c_top_master_pass_change.php">マスターパスワードの変更はこちらから</a><br>';
+        }
+    ?>
+
     <a href="c_top_pass_change.php">パスワードの変更はこちらから</a>
     <br><br>
     <input type="button" onclick="location.href='c_top_logout.php'" value="ログアウト">
