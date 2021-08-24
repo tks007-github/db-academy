@@ -1,15 +1,15 @@
 <?php
-session_start();
-session_regenerate_id(true);
-if (!isset($_SESSION['c_login'])) {
-    print 'ログインされていません。<br>';
-    print '<a href="c_top_login.html">ログイン画面へ</a>';
-    exit();
-} else {
-    print $_SESSION['coach_name'];
-    print 'さんログイン中<br>';
-    print '<br>';
-}
+    session_start();
+    session_regenerate_id(true);
+    if (!isset($_SESSION['c_login'])) {
+        print 'ログインされていません。<br>';
+        print '<a href="c_top_login.html">ログイン画面へ</a>';
+        exit();
+    } else {
+        print $_SESSION['coach_name'];
+        print 'さんログイン中<br>';
+        print '<br>';
+    }
 ?>
 
 
@@ -32,12 +32,8 @@ if (!isset($_SESSION['c_login'])) {
     <?php
 
     try {
-        // 自作の関数を呼び出す
-        require_once('../../function/function.php');
-        // POSTの中身をすべてサニタイズする
-        $post = sanitize($_POST);
-
-        $phisical_test_code = $post['phisical_test_code'];
+        // c_phisical_test_list_check.phpからphisical_test_codeをSESSIONで受け取る
+        $phisical_test_code = $_SESSION['phisical_test_code'];
 
         // db_academyデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
@@ -72,6 +68,10 @@ if (!isset($_SESSION['c_login'])) {
         $test10_boolean = $rec['背筋力'];
         $test11_boolean = $rec['握力'];
         $test12_boolean = $rec['サイドステップ'];
+
+        // SESSION変数で保持
+        $_SESSION['date'] = $date;
+        $_SESSION['belong_code'] = $belong_code;
 
         // db_academyデータベースから切断する
         $dbh = null;
@@ -127,7 +127,7 @@ if (!isset($_SESSION['c_login'])) {
         
         print '<br>';
         print '<input type="button" onclick="location.href=\'c_phisical_test_list.php\'" value="戻る">';
-        print '<input type="button" onclick="location.href=\'c_phisical_test_delete_done.php\'" value="削除">';
+        print '<input type="button" onclick="location.href=\'c_phisical_test_delete_check.php\'" value="削除">';
     } catch (Exception $e) {
         var_dump($e);
         exit();

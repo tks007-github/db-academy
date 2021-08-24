@@ -64,7 +64,7 @@
         // db_academyデータベースから切断する
         $dbh = null;
 
-        print '<form method="post" action="c_phisical_test_delete.php">';
+        print '<form method="post" action="c_phisical_test_list_check.php">';
         while (true) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($rec == '') {
