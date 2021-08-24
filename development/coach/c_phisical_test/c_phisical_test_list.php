@@ -77,7 +77,8 @@
         }
         print '<br><br>';
         print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
-        print '<input type="submit" value="削除">';
+        print '<input type="submit" name="delete" value="削除">';
+        print '<input type="submit" name="result" value="成績表">';
 
     } catch (Exception $e) {
         var_dump($e);
