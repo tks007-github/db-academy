@@ -61,7 +61,7 @@
 
         if ($rec == '') {                     // データベースからの問い合わせ結果がない場合
             print '登録情報がありません。<br><br>';
-            print '<input type="button" onclick="location.href=\'../p_top.php\'" value="戻る">';
+            print '<input type="button" onclick="location.href=\'../p_top/p_top.php\'" value="戻る">';
             print '<input type="button" onclick="location.href=\'p_questionnaire_add.php\'" value="登録">';
         } else {                              // データベースからの問い合わせ結果があった場合
             
