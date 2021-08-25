@@ -1,10 +1,7 @@
 # db-academy
 
 【取組中】
-ページネーション機能を加える
-p_phisical_info_list.php
-p_phisical_test_top.php
-c_phisical_test_list.php
+テスト
 
 【未完成】
 p_phisical_info_graph.php
