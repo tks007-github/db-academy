@@ -27,6 +27,7 @@ if (!isset($_SESSION['c_signup_login'])) {
         // c_signup_top_check.phpから渡された値をセッションで受け取る
         $coach_name = $_SESSION['coach_name'];
         $coach_password = $_SESSION['coach_password'];
+        $coach_password = md5($coach_password);
 
         // db_academyデータベースに接続
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8mb4';
@@ -65,7 +66,7 @@ if (!isset($_SESSION['c_signup_login'])) {
         print '以下の情報を登録しました。<br>';
         print '管理者コード：' . $coach_code . '<br>';
         print '氏名：' . $coach_name . '<br>';
-        print 'パスワード：' . $coach_password . '<br>';
+        print 'パスワード：' . $_SESSION['coach_password'] . '<br>';
         
     } catch (Exception $e) {
         var_dump($e);

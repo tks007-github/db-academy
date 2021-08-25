@@ -8,6 +8,7 @@ try
 
 	// p_signup_login.htmlからmst_passwordを受け取る
 	$mst_password = $post['mst_password'];
+	$mst_password = md5($mst_password);
 
 	// db_academyデータベースに接続する
 	$dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';

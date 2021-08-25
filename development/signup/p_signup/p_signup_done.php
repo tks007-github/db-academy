@@ -28,6 +28,7 @@ if (!isset($_SESSION['p_signup_login'])) {
         $belong_code = $_SESSION['belong_code'];
         $player_name = $_SESSION['player_name'];
         $player_password = $_SESSION['player_password'];
+        $player_password = md5($player_password);
 
         // belong_codeからbelong_nameを得るための連想配列を用意
         $belong_name['A'] = '新川高校';
@@ -76,7 +77,7 @@ if (!isset($_SESSION['p_signup_login'])) {
         print '会員コード：' . $player_code . '<br>';
         print '所属：' . $belong_name[$belong_code] . '<br>';
         print '氏名：' . $player_name . '<br>';
-        print 'パスワード：' . $player_password . '<br>';
+        print 'パスワード：' . $_SESSION['player_password'] . '<br>';
         
     } catch (Exception $e) {
         var_dump($e);
