@@ -62,7 +62,7 @@
         // player_managementデータベースから切断する
         $dbh = null;
 
-        print '<form method="post" action="p_questionnaire_edit_done.php">';
+        print '<form method="post" action="p_questionnaire_edit_check.php">';
 
         // 怪我の情報
         print '怪我<br>';
