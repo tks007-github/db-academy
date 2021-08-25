@@ -1,7 +1,7 @@
 # db-academy
 
 【取組中】
-c_phisical_test_delete_done.phpから
+テスト
 
 【未完成】
 p_phisical_info_graph.php
