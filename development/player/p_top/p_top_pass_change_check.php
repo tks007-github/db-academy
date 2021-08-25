@@ -11,6 +11,7 @@ try {
 
     // p_top_pass_change.htmlからplayer_passwordとnew_player_passwordとnew_player_password2を受け取る
     $player_password = $post['player_password'];
+    $player_password = md5($player_password);
     $new_player_password = $post['new_player_password'];
     $new_player_password2 = $post['new_player_password2'];
 

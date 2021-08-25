@@ -11,6 +11,7 @@ try {
 
     // c_top_pass_change.htmlからcoach_passwordとnew_coach_passwordとnew_coach_password2を受け取る
     $coach_password = $post['coach_password'];
+    $coach_password = md5($coach_password);
     $new_coach_password = $post['new_coach_password'];
     $new_coach_password2 = $post['new_coach_password2'];
 

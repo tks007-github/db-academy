@@ -29,7 +29,7 @@
         現在のマスターパスワードを入力してください<br>
         <input type="password" name="mst_password"><br>
         <br>
-        マスターパスワードを入力してください<br>
+        新しいマスターパスワードを入力してください<br>
         <input type="password" name="new_mst_password"><br>
         <br>
         新しいパスワードをもう一度入力してください<br>

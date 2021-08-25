@@ -32,6 +32,7 @@
 
         // c_top_master_pass_change.phpから渡された値をセッションで受け取る
         $new_mst_password = $_SESSION['new_mst_password'];
+        $new_mst_password = md5($new_mst_password);
 
         // db_academyデータベースに接続
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8mb4';
@@ -51,7 +52,7 @@
         $dbh = null;
 
         print 'マスターパスワードを変更しました<br>';
-        print '新しいマスターパスワード：' . $new_mst_password . '<br>';
+        print '新しいマスターパスワード：' . $_SESSION['new_mst_password'] . '<br>';
         
     } catch (Exception $e) {
         var_dump($e);

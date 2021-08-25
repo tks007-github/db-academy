@@ -11,6 +11,7 @@ try {
 
     // c_top_master_pass_change.phpからmst_passwordとnew_mst_passwordとnew_mst_password2を受け取る
     $mst_password = $post['mst_password'];
+    $mst_password = md5($mst_password);
     $new_mst_password = $post['new_mst_password'];
     $new_mst_password2 = $post['new_mst_password2'];
 

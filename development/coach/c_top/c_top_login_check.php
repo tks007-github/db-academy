@@ -9,6 +9,7 @@ try
 	// c_top_login.htmlからcoach_codeとcoach_passwordを受け取る
 	$coach_code = $post['coach_code'];
     $coach_password = $post['coach_password'];
+	$coach_password = md5($coach_password);
 
 	// db_academyデータベースに接続する
 	$dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';

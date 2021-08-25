@@ -40,6 +40,7 @@
 
         // p_top_pass_change.phpから渡された値をセッションで受け取る
         $new_player_password = $_SESSION['new_player_password'];
+        $new_player_password = md5($new_player_password);
 
         // db_academyデータベースに接続
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8mb4';
@@ -59,7 +60,7 @@
         $dbh = null;
 
         print 'パスワードを変更しました<br>';
-        print '新しいパスワード：' . $new_player_password . '<br>';
+        print '新しいパスワード：' . $_SESSION['new_player_password'] . '<br>';
         
     } catch (Exception $e) {
         var_dump($e);
