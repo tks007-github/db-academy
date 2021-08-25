@@ -35,12 +35,8 @@
 
     <?php
     try {
-        // 自作の関数を呼び出す
-        require_once('../../function/function.php');
-        // POSTの中身をすべてサニタイズする
-        $post = sanitize($_POST);
 
-        // p_questionnaire_add.phpから怪我(injury)、アレルギー(allergy)、病気(sick)の情報を受け取る
+        // p_questionnaire_add_check.phpから怪我(injury)、アレルギー(allergy)、病気(sick)の情報を受け取る
         // 怪我の情報
         for ($i = 1; $i <= 10; $i++) {
             $injury_name = 'injury' . (string)$i . '_name';
@@ -48,10 +44,10 @@
             $injury_year = 'injury' . (string)$i . '_year';
             $injury_month = 'injury' . (string)$i . '_month';
 
-            $injury_name_array[$i] = $post[$injury_name];
-            $injury_status_array[$i] = $post[$injury_status];
-            $injury_year_array[$i] = $post[$injury_year];
-            $injury_month_array[$i] = $post[$injury_month];
+            $injury_name_array[$i] = $_SESSION[$injury_name];
+            $injury_status_array[$i] = $_SESSION[$injury_status];
+            $injury_year_array[$i] = $_SESSION[$injury_year];
+            $injury_month_array[$i] = $_SESSION[$injury_month];
         }
 
         // アレルギーの情報
@@ -61,10 +57,10 @@
             $allergy_year = 'allergy' . (string)$i . '_year';
             $allergy_month = 'allergy' . (string)$i . '_month';
 
-            $allergy_name_array[$i] = $post[$allergy_name];
-            $allergy_status_array[$i] = $post[$allergy_status];
-            $allergy_year_array[$i] = $post[$allergy_year];
-            $allergy_month_array[$i] = $post[$allergy_month];
+            $allergy_name_array[$i] = $_SESSION[$allergy_name];
+            $allergy_status_array[$i] = $_SESSION[$allergy_status];
+            $allergy_year_array[$i] = $_SESSION[$allergy_year];
+            $allergy_month_array[$i] = $_SESSION[$allergy_month];
         }
 
         // 病気の情報
@@ -74,14 +70,14 @@
             $sick_year = 'sick' . (string)$i . '_year';
             $sick_month = 'sick' . (string)$i . '_month';
 
-            $sick_name_array[$i] = $post[$sick_name];
-            $sick_status_array[$i] = $post[$sick_status];
-            $sick_year_array[$i] = $post[$sick_year];
-            $sick_month_array[$i] = $post[$sick_month];
+            $sick_name_array[$i] = $_SESSION[$sick_name];
+            $sick_status_array[$i] = $_SESSION[$sick_status];
+            $sick_year_array[$i] = $_SESSION[$sick_year];
+            $sick_month_array[$i] = $_SESSION[$sick_month];
         }
 
         // メモの情報
-        $note = $post['note'];
+        $note = $_SESSION['note'];
 
 
         // db_academyデータベースに接続する

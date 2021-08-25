@@ -38,7 +38,7 @@
     // 自作の関数を呼び出す
     require_once('../../function/function.php');
 
-    print '<form method="post" action="p_questionnaire_add_done.php">';
+    print '<form method="post" action="p_questionnaire_add_check.php">';
 
     // 怪我の情報
     print '怪我<br>';
