@@ -3,7 +3,7 @@
     session_regenerate_id(true);
     if (!isset($_SESSION['p_login'])) {
         print 'ログインされていません。<br>';
-        print '<a href="p_top_login.html">ログイン画面へ</a>';
+        print '<a href="../p_top/p_top_login.html">ログイン画面へ</a>';
         exit();
     } else {
         if (!isset($_SESSION['c_login'])) {

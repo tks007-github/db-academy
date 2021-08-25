@@ -3,7 +3,7 @@
     session_regenerate_id(true);
     if (!isset($_SESSION['c_login'])) {
         print 'ログインされていません。<br>';
-        print '<a href="c_top_login.html">ログイン画面へ</a>';
+        print '<a href="../c_top/c_top_login.html">ログイン画面へ</a>';
         exit();
     } else {
         print $_SESSION['coach_name'];
