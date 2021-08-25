@@ -8,6 +8,9 @@ p_phisical_info_graph.php
 p_phisical_test_result.php
 
 【説明】
+パスワード
+→マスターパスワード:xxx、久保田さんパスワード:aaa
+
 選手
 →signup/p_signup/p_signup_login.htmlからマスターパスワードを使ってサインアップ
 
