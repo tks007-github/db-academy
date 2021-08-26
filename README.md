@@ -11,7 +11,7 @@ p_phisical_test_result.php
 developmentディレクトリ
 
 パスワード
-→マスターパスワード:xxx、管理者パスワード:aaa
+→マスターパスワード:xxx、管理者パスワード:ccc
 
 選手
 →signup/p_signup/p_signup_login.htmlからマスターパスワードを使ってサインアップ
