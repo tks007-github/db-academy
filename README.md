@@ -17,4 +17,5 @@ developmentディレクトリ
 →signup/p_signup/p_signup_login.htmlからマスターパスワードを使ってサインアップ
 
 コーチ(久保田さんのアカウントは作成済み)
-→signup/c_signup/c_signup_login.htmlからマスターパスワードを使ってサインアップ
+→coach/c_top/c_top.phpからログイン
+→signup/c_signup/c_signup_login.htmlからマスターパスワードを使ってサインアップ(他のコーチを登録する場合)
