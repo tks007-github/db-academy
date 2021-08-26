@@ -96,7 +96,7 @@
             print '<input type="button" onclick="location.href=\'../p_top/p_top.php\'" value="戻る">';
             print '<input type="submit" value="登録">';
             print '<input type="button" onclick="location.href=\'p_phisical_info_list.php\'" value="一覧">';
-            print '<input type="button" onclick="location.href=\'p_phisical_info_graph.php\'" value="グラフ">';
+            print '<input type="button" onclick="location.href=\'p_phisical_info_graph_height.php\'" value="グラフ">';
         }
     } catch (Exception $e) {
         var_dump($e);
