@@ -8,6 +8,8 @@ p_phisical_info_graph.php
 p_phisical_test_result.php
 
 【説明】
+developmentディレクトリ
+
 パスワード
 →マスターパスワード:xxx、久保田さんパスワード:aaa
 
