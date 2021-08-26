@@ -58,7 +58,7 @@ CREATE TABLE `coach` (
 --
 
 INSERT INTO `coach` (`coach_code`, `coach_name`, `coach_password`) VALUES
-('C0001', '久保田昌樹', '9df62e693988eb4e1e1444ece0578579');
+('C0001', '管理者', '9df62e693988eb4e1e1444ece0578579');
 
 -- --------------------------------------------------------
 

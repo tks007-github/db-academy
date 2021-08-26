@@ -11,11 +11,11 @@ p_phisical_test_result.php
 developmentディレクトリ
 
 パスワード
-→マスターパスワード:xxx、久保田さんパスワード:aaa
+→マスターパスワード:xxx、管理者パスワード:aaa
 
 選手
 →signup/p_signup/p_signup_login.htmlからマスターパスワードを使ってサインアップ
 
-コーチ(久保田さんのアカウントは作成済み)
+コーチ(管理者のアカウントは作成済み)
 →coach/c_top/c_top.phpからログイン
 →signup/c_signup/c_signup_login.htmlからマスターパスワードを使ってサインアップ(他のコーチを登録する場合)
