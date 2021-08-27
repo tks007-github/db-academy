@@ -155,7 +155,7 @@
         $dbh = null;
 
         print '編集が完了しました<br><br>';
-        print '<input type="button" onclick="location.href=\'p_questionnaire_top.php\'" value="戻る">';
+        print '<input type="button" onclick="location.href=\'../p_top/p_top.php\'" value="戻る">';
     } catch (Exception $e) {
         var_dump($e);
         exit();
