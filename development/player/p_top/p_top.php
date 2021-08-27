@@ -32,8 +32,8 @@
     <h3>トップページ</h3>
     <br>
     
-    <a href="../p_questionnaire/p_questionnaire_branch.php">問診表</a><br>
-    <a href="../p_phisical_info/p_phisical_info_top.php">身体情報</a><br>
+    <a href="../p_questionnaire/p_questionnaire_top_branch.php">問診表</a><br>
+    <a href="../p_phisical_info/p_phisical_info_top_branch.php">身体情報</a><br>
     <a href="../p_phisical_test/p_phisical_test_top.php">フィジカルテスト</a><br>
     <br><br>
     <a href="p_top_pass_change.php">パスワードの変更はこちらから</a>

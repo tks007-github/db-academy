@@ -107,7 +107,7 @@
         print 'サイドステップ <input type="text" name="サイドステップ_value" value=""> 回<br>';
     }
     print '<br><br>';
-    print '<input type="button" onclick="location.href=\'p_phisical_test_content.php\'" value="戻る">';
+    print '<input type="button" onclick="location.href=\'p_phisical_test_top.php\'" value="戻る">';
     print '<input type="submit" value="登録">';
 
 

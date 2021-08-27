@@ -54,7 +54,7 @@ if (!isset($_POST['phisical_test_code'])) {
         $_SESSION['握力_boolean'] = $rec['握力'];
         $_SESSION['サイドステップ_boolean'] = $rec['サイドステップ'];
 
-        header('Location: p_phisical_test_content.php');
+        header('Location: p_phisical_test_top_branch.php');
         exit();
     } catch (Exception $e) {
         var_dump($e);
