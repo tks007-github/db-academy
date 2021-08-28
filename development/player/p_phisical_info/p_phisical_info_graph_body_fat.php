@@ -180,9 +180,9 @@ if (!isset($_SESSION['p_login'])) {
 
     <br><br>
     <input type="button" onclick="location.href='p_phisical_info_top.php'" value="戻る">
-    <input type="button" onclick="location.href='p_phisical_info_graph_height.php'" value="体重">
-    <input type="button" onclick="location.href='p_phisical_info_graph_weight.php'" value="体脂肪率">
-    <input type="button" onclick="location.href='p_phisical_info_graph_muscle_mass.php'" value="筋力">
+    <input type="button" onclick="location.href='p_phisical_info_graph_height.php'" value="身長">
+    <input type="button" onclick="location.href='p_phisical_info_graph_weight.php'" value="体重">
+    <input type="button" onclick="location.href='p_phisical_info_graph_muscle_mass.php'" value="筋量">
 
 </body>
 

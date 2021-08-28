@@ -26,7 +26,7 @@ if (!isset($_SESSION['p_login'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
-    <title>p_phisical_info_graph_weight</title>
+    <title>p_phisical_info_graph_muscle_mass</title>
 
     <style>
         canvas {
@@ -40,7 +40,7 @@ if (!isset($_SESSION['p_login'])) {
 
 <body>
 
-    <h3>身体情報グラフ(体重)</h3>
+    <h3>身体情報グラフ(筋量)</h3>
 
     <?php
     // player_codeをSESSIONで受け取る
@@ -64,13 +64,13 @@ if (!isset($_SESSION['p_login'])) {
 
         // phisical_infoテーブルからplayer_codeを使って過去1年間の月平均のデータを検索
         $year_month_arr = [];
-        $avg_weight_arr = [];
+        $avg_body_fat_arr = [];
 
         // 今年分
         for ($i = 0; $i < $current_month; $i++) {
             $sql = '
                 SELECT DATE_FORMAT(date, \'%Y%m\') AS grouping_date, 
-                AVG(weight) AS grouping_weight
+                AVG(muscle_mass) AS grouping_muscle_mass
                 FROM phisical_info
                 WHERE player_code = ?
                 GROUP BY grouping_date
@@ -84,10 +84,10 @@ if (!isset($_SESSION['p_login'])) {
 
             if ($rec == '') {
                 $year_month_arr[] = $current_year . '/' . ($current_month - $i);
-                $avg_weight_arr[] = 0;
+                $avg_muscle_mass_arr[] = 0;
             } else {
                 $year_month_arr[] = $current_year . '/' . ($current_month - $i);
-                $avg_weight_arr[] = $rec['grouping_weight'];
+                $avg_muscle_mass_arr[] = $rec['grouping_muscle_mass'];
             }
         }
 
@@ -96,7 +96,7 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < (12 - $current_month); $i++) {
             $sql = '
                 SELECT DATE_FORMAT(date, \'%Y%m\') AS grouping_date, 
-                AVG(weight) AS grouping_weight
+                AVG(muscle_mass) AS grouping_muscle_mass
                 FROM phisical_info
                 WHERE player_code = ?
                 GROUP BY grouping_date
@@ -110,10 +110,10 @@ if (!isset($_SESSION['p_login'])) {
 
             if ($rec == '') {
                 $year_month_arr[] = ($current_year - 1) . '/' . (12 - $i);
-                $avg_weight_arr[] = 0;
+                $avg_muscle_mass_arr[] = 0;
             } else {
                 $year_month_arr[] = ($current_year - 1) . '/' . (12 - $i);
-                $avg_weight_arr[] = $rec['grouping_weight'];
+                $avg_muscle_mass_arr[] = $rec['grouping_muscle_mass'];
             }
         }
 
@@ -121,7 +121,7 @@ if (!isset($_SESSION['p_login'])) {
         $dbh = null;
 
         $json_date = json_encode($year_month_arr);
-        $json_weight = json_encode($avg_weight_arr);
+        $json_muscle_mass = json_encode($avg_muscle_mass_arr);
 
     } catch (Exception $e) {
         var_dump($e);
@@ -135,7 +135,7 @@ if (!isset($_SESSION['p_login'])) {
 
         // phpの配列をjavascriptで受け取る
         let js_date = <?php print $json_date; ?>;
-        let js_weight = <?php print $json_weight; ?>;
+        let js_muscle_mass = <?php print $json_muscle_mass; ?>;
 
         let myLineChart = new Chart(canvas, {
             type: 'line',
@@ -145,12 +145,12 @@ if (!isset($_SESSION['p_login'])) {
                             js_date[5], js_date[4], js_date[3], 
                             js_date[2], js_date[1], js_date[0]],
                 datasets: [{
-                        label: '体重',
-                        data: [js_weight[11], js_weight[10], js_weight[9], 
-                                js_weight[8], js_weight[7], js_weight[6], 
-                                js_weight[5], js_weight[4], js_weight[3], 
-                                js_weight[2], js_weight[1], js_weight[0]],
-                        borderColor: "rgba(0,255,0,1)",
+                        label: '筋量',
+                        data: [js_muscle_mass[11], js_muscle_mass[10], js_muscle_mass[9], 
+                                js_muscle_mass[8], js_muscle_mass[7], js_muscle_mass[6], 
+                                js_muscle_mass[5], js_muscle_mass[4], js_muscle_mass[3], 
+                                js_muscle_mass[2], js_muscle_mass[1], js_muscle_mass[0]],
+                        borderColor: "rgba(255,0,255,1)",
                         backgroundColor: "rgba(0,0,0,0)"
                     },
                 ],
@@ -181,8 +181,8 @@ if (!isset($_SESSION['p_login'])) {
     <br><br>
     <input type="button" onclick="location.href='p_phisical_info_top.php'" value="戻る">
     <input type="button" onclick="location.href='p_phisical_info_graph_height.php'" value="身長">
+    <input type="button" onclick="location.href='p_phisical_info_graph_weight.php'" value="体重">
     <input type="button" onclick="location.href='p_phisical_info_graph_body_fat.php'" value="体脂肪率">
-    <input type="button" onclick="location.href='p_phisical_info_graph_muscle_mass.php'" value="筋量">
 
 </body>
 
