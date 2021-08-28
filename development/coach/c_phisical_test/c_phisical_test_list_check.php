@@ -15,7 +15,10 @@ if (!isset($_POST['phisical_test_code'])) {
     if (isset($_POST['delete'])) {
         header('Location: c_phisical_test_delete.php');
         exit();
-    } else if (isset($_POST['result'])) {
+    } else if (isset($_POST['edit'])) {
+        header('Location: c_phisical_test_player_list.php');
+        exit();
+    }  else if (isset($_POST['result'])) {
         header('Location: c_phisical_test_result.php');
         exit();
     }

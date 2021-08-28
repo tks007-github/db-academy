@@ -19,32 +19,20 @@ if (!isset($_SESSION['c_login'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>c_phisical_test_list</title>
+    <title>c_phisical_test_edit</title>
 </head>
 
 <body>
 
-    <h3>フィジカルテスト一覧</h3>
+    <h3>フィジカルテスト編集</h3>
 
     <?php
-    // $_SESSIONを初期化
-    $_SESSION['phisical_test_code'] = '';
-    $_SESSION['belong_code'] = '';
-    $_SESSION['date'] = '';
-    $_SESSION['10m走_boolean'] = '';
-    $_SESSION['20m走_boolean'] = '';
-    $_SESSION['30m走_boolean'] = '';
-    $_SESSION['50m走_boolean'] = '';
-    $_SESSION['1500m走_boolean'] = '';
-    $_SESSION['プロアジリティ_boolean'] = '';
-    $_SESSION['立ち幅跳び_boolean'] = '';
-    $_SESSION['メディシンボール投げ_boolean'] = '';
-    $_SESSION['垂直飛び_boolean'] = '';
-    $_SESSION['背筋力_boolean'] = '';
-    $_SESSION['握力_boolean'] = '';
-    $_SESSION['サイドステップ_boolean'] = '';
 
     try {
+
+        // c_phisical_test_list_check.phpからphisical_test_codeをSESSIONで受け取る
+        $phisical_test_code = $_SESSION['phisical_test_code'];
+
         // db_academyデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
         $user = 'root';
@@ -52,27 +40,77 @@ if (!isset($_SESSION['c_login'])) {
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // phisical_testテーブルから情報を検索
+        // phisical_testテーブルからphisical_test_codeを使って情報を検索
         $sql = '
-                SELECT *
+                SELECT * 
                 FROM phisical_test 
-                ORDER BY date DESC, belong_code
+                WHERE phisical_test_code = ?
                 ';
         $stmt = $dbh->prepare($sql);
-        $stmt->execute();
-        $rec = $stmt->fetchAll();
+        $data[] = $phisical_test_code;
+        $stmt->execute($data);
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // データをそれぞれ変数で保持
+        $date = $rec['date'];
+        $belong_code = $rec['belong_code'];
+        $test1_boolean = $rec['10m走'];
+        $test2_boolean = $rec['20m走'];
+        $test3_boolean = $rec['30m走'];
+        $test4_boolean = $rec['50m走'];
+        $test5_boolean = $rec['1500m走'];
+        $test6_boolean = $rec['プロアジリティ'];
+        $test7_boolean = $rec['立ち幅跳び'];
+        $test8_boolean = $rec['メディシンボール投げ'];
+        $test9_boolean = $rec['垂直飛び'];
+        $test10_boolean = $rec['背筋力'];
+        $test11_boolean = $rec['握力'];
+        $test12_boolean = $rec['サイドステップ'];
+
+        $_SESSION['date'] = $date;
+        $_SESSION['belong_code'] = $belong_code;
+        $_SESSION['10m走_boolean'] = $test1_boolean;
+        $_SESSION['20m走_boolean'] = $test2_boolean;
+        $_SESSION['30m走_boolean'] = $test3_boolean;
+        $_SESSION['50m走_boolean'] = $test4_boolean;
+        $_SESSION['1500m走_boolean'] = $test5_boolean;
+        $_SESSION['プロアジリティ_boolean'] = $test6_boolean;
+        $_SESSION['立ち幅跳び_boolean'] = $test7_boolean;
+        $_SESSION['メディシンボール投げ_boolean'] = $test8_boolean;
+        $_SESSION['垂直飛び_boolean'] = $test9_boolean;
+        $_SESSION['背筋力_boolean'] = $test10_boolean;
+        $_SESSION['握力_boolean'] = $test11_boolean;
+        $_SESSION['サイドステップ_boolean'] = $test12_boolean;
+
+        // playerテーブルからbelong_codeを使ってplayer_codeとplayer_nameを検索
+        $sql2 = '
+                SELECT player_code, player_name 
+                FROM player 
+                WHERE player_code NOT IN (
+                    SELECT player_code
+                    FROM phisical_test_record
+                    WHERE date = ? AND belong_code = ?
+                )
+                AND belong_code = ?
+                ';
+        $stmt2 = $dbh->prepare($sql2);
+        $data2[] = $date;
+        $data2[] = $belong_code;
+        $data2[] = $belong_code;
+        $stmt2->execute($data2);
+        $rec2 = $stmt2->fetchAll();
 
         // db_academyデータベースから切断する
         $dbh = null;
 
-        if (empty($rec)) {
-            print 'フィジカルテストの登録がありません';
+        if (empty($rec2)) {
+            print '未入力の選手はいません';
             print '<br><br>';
-            print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
+            print '<input type="button" onclick="location.href=\'c_phisical_test_list.php\'" value="戻る">';
         } else {
 
             $record_max = 3;                        // 1ページあたりの最大レコード数
-            $record_num = count($rec);              // レコードの総数
+            $record_num = count($rec2);              // レコードの総数
             $page_max = ceil($record_num / $record_max);    // 総ページ数の計算
 
             if (!isset($_GET['page_id']))    // $_GET['page_id']が定義されてない場合
@@ -85,14 +123,14 @@ if (!isset($_SESSION['c_login'])) {
 
             $record_start = ($page_now - 1) * $record_max;            // ページに表示する最初のレコード番号（1個目を0番目とする）
 
-            print '<form method="post" action="c_phisical_test_list_check.php">';
+            print '<form method="post" action="c_search_check.php">';
 
             // ページに表示する分のデータだけ切り取る
-            $disp_data = array_slice($rec, $record_start, $record_max, true);
+            $disp_data = array_slice($rec2, $record_start, $record_max, true);
             foreach ($disp_data as $key => $value) {
-                print '<input type="radio" name="phisical_test_code" value="' . $value['phisical_test_code'] . '">';
-                print '日付：' . $value['date'] . '　';
-                print '所属：' . $value['belong_code'] . '　';
+                print '<input type="radio" name="player_code" value="' . $value['player_code'] . '">';
+                print '会員コード：' . $value['player_code'] . '　';
+                print '氏名：' . $value['player_name'] . '　';
                 print '<br>';
             }
 
@@ -111,7 +149,7 @@ if (!isset($_SESSION['c_login'])) {
             // if文によってリンクを貼るかどうかを決定
             if ($page_now > 1)                        // 現在のページ番号が1より大きい場合
             {
-                print '<a href=p_phisical_test_top.php?page_id=' . ($page_now - 1) . '>前へ</a>' . '　';
+                print '<a href=c_phisical_test_player_list.php?page_id=' . ($page_now - 1) . '>前へ</a>' . '　';
             } else                                    // 現在のページ番号が1の場合（1未満になることはないため）
             {
                 print '前へ' . '　';
@@ -132,22 +170,21 @@ if (!isset($_SESSION['c_login'])) {
             // if文によってリンクを貼るかどうかを決定
             if ($page_now < $page_max)                    // 現在のページ番号が最後のページ番号未満の場合
             {
-                print '<a href=p_phisical_test_top.php?page_id=' . ($page_now + 1) . '>次へ</a>' . '　';
+                print '<a href=c_phisical_test_player_list.php?page_id=' . ($page_now + 1) . '>次へ</a>' . '　';
             } else                                        // 現在のページ番号と最後のページ番号が等しい場合（現在のページ番号は最後のページ番より大きくならないため）
             {
                 print '次へ';
             }
 
             print '<br><br>';
-            print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
-            print '<input type="submit" name="delete" value="削除">';
-            print '<input type="submit" name="edit" value="未入力選手">';
-            print '<input type="submit" name="result" value="成績表">';
+            print '<input type="button" onclick="location.href=\'c_phisical_test_list.php\'" value="戻る">';
+            print '<input type="submit" value="入力">';
         }
     } catch (Exception $e) {
         var_dump($e);
         exit();
     }
+
     ?>
 
 </body>
