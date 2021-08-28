@@ -10,6 +10,11 @@
         print 'さんログイン中<br>';
         print '<br>';
     }
+
+    // セッション変数の初期化(検索条件)
+    $_SESSION['search_name'] = '';
+    $_SESSION['search_belong_code'] = '';
+
 ?>
 
 
@@ -27,10 +32,20 @@
     <br>
     選手の氏名を入力してください<br>
     <br>
-    <form method="post" action="c_search_top_check.php">
+    <form method="post" action="c_search_list.php">
         氏名<br>
-        <input type="text" name="player_name"><br>
+        <input type="text" name="search_name"><br>
         <br>
+        所属<br>
+        <select name="search_belong_code">
+            <option value=""></option>
+            <option value="A">新川高校</option>
+            <option value="B">D.B.アカデミー</option>
+        </select>
+        <br>
+
+        <br><br>
+
         <input type="button" onclick="location.href='../c_top/c_top.php'" value="戻る">
         <input type="submit" value="検索">
     </form>
