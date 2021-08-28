@@ -29,6 +29,8 @@ if (!isset($_SESSION['c_login'])) {
     <?php
 
     try {
+        // SESSION変数の初期化
+        $_SESSION['player_code'] = '';
 
         // c_phisical_test_list_check.phpからphisical_test_codeをSESSIONで受け取る
         $phisical_test_code = $_SESSION['phisical_test_code'];
