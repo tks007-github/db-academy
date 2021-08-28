@@ -31,11 +31,16 @@ if (!isset($_SESSION['c_login'])) {
     try {
         // 自作の関数を呼び出す
         require_once('../../function/function.php');
-        // POSTの中身をすべてサニタイズする
-        $post = sanitize($_POST);
 
-        $player_code = $post['player_code'];
-        $_SESSION['player_code'] = $player_code;
+        if (isset($_POST['player_code'])) {
+            // POSTの中身をすべてサニタイズする
+            $post = sanitize($_POST);
+
+            $player_code = $post['player_code'];
+            $_SESSION['player_code'] = $player_code;
+        } else {
+            $player_code = $_SESSION['player_code'];
+        }
 
         // db_academyデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
@@ -96,7 +101,7 @@ if (!isset($_SESSION['c_login'])) {
         print 'フィジカルテスト結果(' . $date . ')<br><br>';
         print '会員コード:' . $player_code . '  ';
         print '氏名:' . $player_name . '<br><br>';
-        print '<form method="post" action="p_phisical_test_add_check.php">';
+        print '<form method="post" action="c_phisical_test_player_add_check.php">';
         if ($test1_boolean) {
             print '10m走 <input type="text" name="10m走_value" value=""> 秒<br>';
         }
