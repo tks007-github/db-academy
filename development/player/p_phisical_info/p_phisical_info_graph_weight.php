@@ -26,7 +26,7 @@ if (!isset($_SESSION['p_login'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
-    <title>p_phisical_info_graph_height</title>
+    <title>p_phisical_info_graph_weight</title>
 
     <style>
         canvas {
@@ -40,7 +40,7 @@ if (!isset($_SESSION['p_login'])) {
 
 <body>
 
-    <h3>身体情報グラフ(身長)</h3>
+    <h3>身体情報グラフ(体重)</h3>
 
     <?php
     // player_codeをSESSIONで受け取る
@@ -70,7 +70,7 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < $current_month; $i++) {
             $sql = '
                 SELECT DATE_FORMAT(date, \'%Y%m\') AS grouping_date, 
-                AVG(height) AS grouping_height
+                AVG(weight) AS grouping_weight
                 FROM phisical_info
                 WHERE player_code = ?
                 GROUP BY grouping_date
@@ -84,10 +84,10 @@ if (!isset($_SESSION['p_login'])) {
 
             if ($rec == '') {
                 $year_month_arr[] = $current_year . '/' . ($current_month - $i);
-                $avg_height_arr[] = 0;
+                $avg_weight_arr[] = 0;
             } else {
                 $year_month_arr[] = $current_year . '/' . ($current_month - $i);
-                $avg_height_arr[] = $rec['grouping_height'];
+                $avg_weight_arr[] = $rec['grouping_weight'];
             }
         }
 
@@ -96,7 +96,7 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < (12 - $current_month); $i++) {
             $sql = '
                 SELECT DATE_FORMAT(date, \'%Y%m\') AS grouping_date, 
-                AVG(height) AS grouping_height
+                AVG(weight) AS grouping_weight
                 FROM phisical_info
                 WHERE player_code = ?
                 GROUP BY grouping_date
@@ -110,10 +110,10 @@ if (!isset($_SESSION['p_login'])) {
 
             if ($rec == '') {
                 $year_month_arr[] = ($current_year - 1) . '/' . (12 - $i);
-                $avg_height_arr[] = 0;
+                $avg_weight_arr[] = 0;
             } else {
                 $year_month_arr[] = ($current_year - 1) . '/' . (12 - $i);
-                $avg_height_arr[] = $rec['grouping_height'];
+                $avg_weight_arr[] = $rec['grouping_weight'];
             }
         }
 
@@ -121,7 +121,7 @@ if (!isset($_SESSION['p_login'])) {
         $dbh = null;
 
         $json_date = json_encode($year_month_arr);
-        $json_height = json_encode($avg_height_arr);
+        $json_weight = json_encode($avg_weight_arr);
 
     } catch (Exception $e) {
         var_dump($e);
@@ -135,7 +135,7 @@ if (!isset($_SESSION['p_login'])) {
 
         // phpの配列をjavascriptで受け取る
         let js_date = <?php print $json_date; ?>;
-        let js_height = <?php print $json_height; ?>;
+        let js_weight = <?php print $json_weight; ?>;
 
         let myLineChart = new Chart(canvas, {
             type: 'line',
@@ -145,12 +145,12 @@ if (!isset($_SESSION['p_login'])) {
                             js_date[5], js_date[4], js_date[3], 
                             js_date[2], js_date[1], js_date[0]],
                 datasets: [{
-                        label: '身長',
-                        data: [js_height[11], js_height[10], js_height[9], 
-                                js_height[8], js_height[7], js_height[6], 
-                                js_height[5], js_height[4], js_height[3], 
-                                js_height[2], js_height[1], js_height[0]],
-                        borderColor: "rgba(255,0,0,1)",
+                        label: '体重',
+                        data: [js_weight[11], js_weight[10], js_weight[9], 
+                                js_weight[8], js_weight[7], js_weight[6], 
+                                js_weight[5], js_weight[4], js_weight[3], 
+                                js_weight[2], js_weight[1], js_weight[0]],
+                        borderColor: "rgba(0,255,0,1)",
                         backgroundColor: "rgba(0,0,0,0)"
                     },
                 ],

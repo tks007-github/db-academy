@@ -66,6 +66,9 @@ if (!isset($_SESSION['p_login'])) {
         $json_date = json_encode($date);
         $json_height = json_encode($height);
 
+        var_dump($json_date);
+        var_dump($json_height);
+
     } catch (Exception $e) {
         exit();
     }
