@@ -165,7 +165,7 @@ if (!isset($_SESSION['p_login'])) {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            suggestedMax: 200,
+                            suggestedMax: 100,
                             suggestedMin: 0,
                             stepSize: 10,
                             callback: function(value, index, values) {
