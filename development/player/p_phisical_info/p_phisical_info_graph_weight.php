@@ -64,7 +64,7 @@ if (!isset($_SESSION['p_login'])) {
 
         // phisical_infoテーブルからplayer_codeを使って過去1年間の月平均のデータを検索
         $year_month_arr = [];
-        $avg_height_arr = [];
+        $avg_weight_arr = [];
 
         // 今年分
         for ($i = 0; $i < $current_month; $i++) {
@@ -180,8 +180,8 @@ if (!isset($_SESSION['p_login'])) {
 
     <br><br>
     <input type="button" onclick="location.href='p_phisical_info_top.php'" value="戻る">
-    <input type="button" onclick="location.href='p_phisical_info_graph_weight.php'" value="体重">
-    <input type="button" onclick="location.href='p_phisical_info_body_fat.php'" value="体脂肪率">
+    <input type="button" onclick="location.href='p_phisical_info_graph_height.php'" value="身長">
+    <input type="button" onclick="location.href='p_phisical_info_graph_body_fat.php'" value="体脂肪率">
     <input type="button" onclick="location.href='p_phisical_info_muscle_mass.php'" value="筋力">
 
 </body>
