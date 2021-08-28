@@ -123,7 +123,7 @@ if (!isset($_SESSION['c_login'])) {
 
             $record_start = ($page_now - 1) * $record_max;            // ページに表示する最初のレコード番号（1個目を0番目とする）
 
-            print '<form method="post" action="c_search_check.php">';
+            print '<form method="post" action="c_phisical_test_player_add.php">';
 
             // ページに表示する分のデータだけ切り取る
             $disp_data = array_slice($rec2, $record_start, $record_max, true);
