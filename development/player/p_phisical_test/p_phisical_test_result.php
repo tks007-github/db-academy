@@ -136,7 +136,7 @@ if (!isset($_SESSION['p_login'])) {
             }
 
             if ($test3_boolean[$i] == 1) {
-                if ($rec3 == '') {
+                if ($rec2 == '') {
                     $test3_value[] = '未入力';
                 } else {
                     $test3_value[] = $rec2['30m走'] . '秒';
@@ -258,7 +258,7 @@ if (!isset($_SESSION['p_login'])) {
 
         print '</table>';
 
-        
+
     } catch (Exception $e) {
         var_dump($e);
         exit();

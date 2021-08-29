@@ -108,7 +108,7 @@ if (!isset($_SESSION['c_login'])) {
         if (empty($rec2)) {
             print '未入力の選手はいません';
             print '<br><br>';
-            print '<input type="button" onclick="location.href=\'c_phisical_test_list.php\'" value="戻る">';
+            print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
         } else {
 
             $record_max = 3;                        // 1ページあたりの最大レコード数

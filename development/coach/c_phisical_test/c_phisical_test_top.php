@@ -1,15 +1,7 @@
 <?php
 session_start();
 session_regenerate_id(true);
-if (!isset($_SESSION['c_login'])) {
-    print 'ログインされていません。<br>';
-    print '<a href="../c_top/c_top_login.html">ログイン画面へ</a>';
-    exit();
-} else {
-    print $_SESSION['coach_name'];
-    print 'さんログイン中<br>';
-    print '<br>';
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -66,10 +58,19 @@ if (!isset($_SESSION['c_login'])) {
         $dbh = null;
 
         if (empty($rec)) {
-            print 'フィジカルテストの登録がありません';
-            print '<br><br>';
-            print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
+            header('Location:c_phisical_test_add.php');          
+            exit();
         } else {
+
+            if (!isset($_SESSION['c_login'])) {
+                print 'ログインされていません。<br>';
+                print '<a href="../c_top/c_top_login.html">ログイン画面へ</a>';
+                exit();
+            } else {
+                print $_SESSION['coach_name'];
+                print 'さんログイン中<br>';
+                print '<br>';
+            }
 
             $record_max = 3;                        // 1ページあたりの最大レコード数
             $record_num = count($rec);              // レコードの総数
