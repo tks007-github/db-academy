@@ -27,10 +27,10 @@ if (!isset($_SESSION['c_login'])) {
 
     <?php
 
-    if (isset($_GET)) {
-        $no_rec = $_GET['no_rec'];
-    } else {
+    if (empty($_GET)) {
         $no_rec = 0;
+    } else {
+        $no_rec = $_GET['no_rec'];
     }
 
     // SESSION変数の初期化
@@ -104,7 +104,7 @@ if (!isset($_SESSION['c_login'])) {
     <br><br>
     <?php
     
-    if ($no_rec == 1) {
+    if ($no_rec == 0) {
         print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
     } else {
         print '<input type="button" onclick="location.href=\'../c_top/c_top.php\'" value="戻る">';
