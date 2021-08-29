@@ -52,8 +52,22 @@ if (!isset($_SESSION['p_login'])) {
         $current_year = date('Y');
         // 現在の月を取得
         $current_month = date('m');
-        // 現在の年と月を結合(例. 2021年08月 → 202108)
-        $year_month = $current_year . $current_month;
+
+        if ($current_month < 4) {
+            // 今年度の4月(2021年2月の場合→202004)
+            $this_year_month_start1 = ($current_year - 1) . '04';
+            $this_year_month_start2 = ($current_year) . '01';
+            // 昨年度の4月
+            $last_year_month_start1 = ($current_year - 2) . '04';
+            $last_year_month_start2 = ($current_year - 1) . '01';
+        } else {
+            // 今年度の4月(2021年8月の場合→202104)
+            $this_year_month_start1 = $current_year . '04';
+            $this_year_month_start2 = ($current_year + 1) . '01';
+            // 昨年度の4月
+            $last_year_month_start1 = ($current_year - 1) . '04';
+            $last_year_month_start2 = $current_year . '01';
+        }
 
         // db_academyデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
@@ -63,11 +77,11 @@ if (!isset($_SESSION['p_login'])) {
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // phisical_infoテーブルからplayer_codeを使って過去1年間の月平均のデータを検索
-        $year_month_arr = [];
-        $avg_height_arr = [];
+        $this_year_avg_height_arr = [];
+        $last_year_avg_height_arr = [];
 
-        // 今年分
-        for ($i = 0; $i < $current_month; $i++) {
+        // 今年分(4月～12月)
+        for ($i = 0; $i < 9; $i++) {
             $sql = '
                 SELECT DATE_FORMAT(date, \'%Y%m\') AS grouping_date, 
                 AVG(height) AS grouping_height
@@ -78,22 +92,18 @@ if (!isset($_SESSION['p_login'])) {
                 ';
             $stmt = $dbh->prepare($sql);
             $data[0] = $player_code;
-            $data[1] = $year_month - $i;
+            $data[1] = $this_year_month_start1 + $i;
             $stmt->execute($data);
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($rec == '') {
-                $year_month_arr[] = $current_year . '/' . ($current_month - $i);
-                $avg_height_arr[] = 0;
+                $this_year_avg_height_arr[] = 0;
             } else {
-                $year_month_arr[] = $current_year . '/' . ($current_month - $i);
-                $avg_height_arr[] = $rec['grouping_height'];
+                $this_year_avg_height_arr[] = $rec['grouping_height'];
             }
         }
-
-        // 去年分
-        $year_month = ($current_year - 1) . 12;
-        for ($i = 0; $i < (12 - $current_month); $i++) {
+        // 今年分(1月～3月)
+        for ($i = 0; $i < 3; $i++) {
             $sql = '
                 SELECT DATE_FORMAT(date, \'%Y%m\') AS grouping_date, 
                 AVG(height) AS grouping_height
@@ -104,56 +114,110 @@ if (!isset($_SESSION['p_login'])) {
                 ';
             $stmt = $dbh->prepare($sql);
             $data[0] = $player_code;
-            $data[1] = $year_month - $i;
+            $data[1] = $this_year_month_start2 + $i;
             $stmt->execute($data);
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($rec == '') {
-                $year_month_arr[] = ($current_year - 1) . '/' . (12 - $i);
-                $avg_height_arr[] = 0;
+                $this_year_avg_height_arr[] = 0;
             } else {
-                $year_month_arr[] = ($current_year - 1) . '/' . (12 - $i);
-                $avg_height_arr[] = $rec['grouping_height'];
+                $this_year_avg_height_arr[] = $rec['grouping_height'];
             }
         }
+
+        // 昨年分(4月～12月)
+        for ($i = 0; $i < 9; $i++) {
+            $sql = '
+                SELECT DATE_FORMAT(date, \'%Y%m\') AS grouping_date, 
+                AVG(height) AS grouping_height
+                FROM phisical_info
+                WHERE player_code = ?
+                GROUP BY grouping_date
+                HAVING grouping_date = ?
+                ';
+            $stmt = $dbh->prepare($sql);
+            $data[0] = $player_code;
+            $data[1] = $last_year_month_start1 + $i;
+            $stmt->execute($data);
+            $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($rec == '') {
+                $last_year_avg_height_arr[] = 0;
+            } else {
+                $last_year_avg_height_arr[] = $rec['grouping_height'];
+            }
+        }
+        // 昨年分(1月～3月)
+        for ($i = 0; $i < 3; $i++) {
+            $sql = '
+                SELECT DATE_FORMAT(date, \'%Y%m\') AS grouping_date, 
+                AVG(height) AS grouping_height
+                FROM phisical_info
+                WHERE player_code = ?
+                GROUP BY grouping_date
+                HAVING grouping_date = ?
+                ';
+            $stmt = $dbh->prepare($sql);
+            $data[0] = $player_code;
+            $data[1] = $last_year_month_start2 + $i;
+            $stmt->execute($data);
+            $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($rec == '') {
+                $last_year_avg_height_arr[] = 0;
+            } else {
+                $last_year_avg_height_arr[] = $rec['grouping_height'];
+            }
+        }
+
+        
 
         // db_academyデータベースから切断する
         $dbh = null;
 
-        $json_date = json_encode($year_month_arr);
-        $json_height = json_encode($avg_height_arr);
-
+        $json_this_year_height = json_encode($this_year_avg_height_arr);
+        $json_last_year_height = json_encode($last_year_avg_height_arr);
     } catch (Exception $e) {
         var_dump($e);
         exit();
     }
     ?>
 
-<canvas id="canvas"></canvas>
+    <canvas id="canvas"></canvas>
     <script>
         let canvas = document.getElementById("canvas");
 
         // phpの配列をjavascriptで受け取る
-        let js_date = <?php print $json_date; ?>;
-        let js_height = <?php print $json_height; ?>;
+        let js_this_year_height = <?php print $json_this_year_height; ?>;
+        let js_last_year_height = <?php print $json_last_year_height; ?>;
 
         let myLineChart = new Chart(canvas, {
             type: 'line',
             data: {
-                labels: [js_date[11], js_date[10], js_date[9], 
-                            js_date[8], js_date[7], js_date[6], 
-                            js_date[5], js_date[4], js_date[3], 
-                            js_date[2], js_date[1], js_date[0]],
-                datasets: [{
-                        label: '身長',
-                        data: [js_height[11], js_height[10], js_height[9], 
-                                js_height[8], js_height[7], js_height[6], 
-                                js_height[5], js_height[4], js_height[3], 
-                                js_height[2], js_height[1], js_height[0]],
-                        borderColor: "rgba(255,0,0,1)",
-                        backgroundColor: "rgba(0,0,0,0)"
-                    },
+                labels: ['4月', '5月', '6月', '7月', '8月', '9月', '10月',
+                        '11月', '12月', '1月', '2月', '3月'
                 ],
+                datasets: [{
+                    label: '今年度',
+                    data: [js_this_year_height[0], js_this_year_height[1], js_this_year_height[2],
+                        js_this_year_height[3], js_this_year_height[4], js_this_year_height[5],
+                        js_this_year_height[6], js_this_year_height[7], js_this_year_height[8],
+                        js_this_year_height[9], js_this_year_height[10], js_this_year_height[11]
+                    ],
+                    borderColor: "rgba(0,0,255,1)",
+                    backgroundColor: "rgba(0,0,0,0)"
+                },
+                {
+                    label: '昨年度',
+                    data: [js_last_year_height[0], js_last_year_height[1], js_last_year_height[2],
+                        js_last_year_height[3], js_last_year_height[4], js_last_year_height[5],
+                        js_last_year_height[6], js_last_year_height[7], js_last_year_height[8],
+                        js_last_year_height[9], js_last_year_height[10], js_last_year_height[11]
+                    ],
+                    borderColor: "rgba(255,0,0,1)",
+                    backgroundColor: "rgba(0,0,0,0)"
+                },
+             ],
             },
             options: {
                 plugins: {
