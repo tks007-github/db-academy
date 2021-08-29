@@ -58,7 +58,7 @@ session_regenerate_id(true);
         $dbh = null;
 
         if (empty($rec)) {
-            header('Location:c_phisical_test_add.php');          
+            header('Location:c_phisical_test_add.php?no_rec=1');          
             exit();
         } else {
 

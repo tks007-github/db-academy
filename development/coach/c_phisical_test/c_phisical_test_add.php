@@ -27,6 +27,12 @@ if (!isset($_SESSION['c_login'])) {
 
     <?php
 
+    if (isset($_GET)) {
+        $no_rec = $_GET['no_rec'];
+    } else {
+        $no_rec = 0;
+    }
+
     // SESSION変数の初期化
     $_SESSION['belong_code'] = '';
     $_SESSION['date'] = '';
@@ -96,7 +102,16 @@ if (!isset($_SESSION['c_login'])) {
     <br>
     
     <br><br>
-    <input type="button" onclick="location.href='c_phisical_test_top.php'" value="戻る">
+    <?php
+    
+    if ($no_rec == 1) {
+        print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
+    } else {
+        print '<input type="button" onclick="location.href=\'../c_top/c_top.php\'" value="戻る">';
+    }
+    
+    ?>
+    
     <input type="submit" value="登録">
     </form>
 
