@@ -4,7 +4,7 @@ session_regenerate_id(true);
 
 try {
     
-    // c_phisical_test_player_addからの情報をSESSIONで受け取る
+    // c_phisical_test_player_editからの情報をSESSIONで受け取る
     $date = $_SESSION['date'];
     $test1_boolean = $_SESSION['10m走_boolean'];
     $test2_boolean = $_SESSION['20m走_boolean'];
@@ -26,6 +26,9 @@ try {
 
     // 入力内容の問題の有無をflgによって判定(問題なし:true、問題あり:false)
     $flg = true;
+
+    // phisical_test_record_codeを受け取る
+    $phisical_test_record_code = $post['phisical_test_record_code'];
 
     // 10m走
     if ($test1_boolean) {
@@ -163,6 +166,7 @@ try {
 
 
     if ($flg) {             // 入力に問題がなかった場合
+        $_SESSION['phisical_test_record_code'] = $phisical_test_record_code;
         $_SESSION['test1_value'] = $test1_value;            // セッション変数に10m走の記録を保持
         $_SESSION['test2_value'] = $test2_value;            // セッション変数に20m走の記録を保持
         $_SESSION['test3_value'] = $test3_value;            // セッション変数に30m走の記録を保持
@@ -176,11 +180,11 @@ try {
         $_SESSION['test10_value'] = $test10_value;          // セッション変数に背筋力の記録を保持
         $_SESSION['test11_value'] = $test11_value;          // セッション変数に握力の記録を保持
         $_SESSION['test12_value'] = $test12_value;          // セッション変数にサイドステップの記録を保持
-        header('Location:c_phisical_test_player_no_add_done.php');    // p_phisical_test_player_add_done.phpへリダイレクト
+        header('Location:c_phisical_test_player_edit_done.php');    // p_phisical_test_add_done.phpへリダイレクト
         exit();
     } else {                // 入力に問題があった場合
         print '入力に誤りがあります<br><br>';
-        print '<input type="button" onclick="location.href=\'c_phisical_test_player_no_add.php\'" value="戻る">';
+        print '<input type="button" onclick="location.href=\'c_phisical_test_player_edit.php\'" value="戻る">';
     }
 } catch (Exception $e) {
     var_dump($e);

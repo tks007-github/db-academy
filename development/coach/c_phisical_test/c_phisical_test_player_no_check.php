@@ -11,6 +11,7 @@ if (!isset($_POST['player_code'])) {
     require_once('../../function/function.php');
     // POSTの中身をすべてサニタイズする
     $post = sanitize($_POST);
+    $_SESSION['player_code'] = $post['player_code'];
     if (isset($_POST['add'])) {
         header('Location: c_phisical_test_player_no_add.php');
         exit();

@@ -181,6 +181,7 @@ if (!isset($_SESSION['c_login'])) {
             print '<br><br>';
             print '<input type="button" onclick="location.href=\'c_phisical_test_content.php\'" value="戻る">';
             print '<input type="submit" name="edit" value="編集">';
+            print '<input type="submit" name="result" value="成績表">';
         }
     } catch (Exception $e) {
         var_dump($e);
