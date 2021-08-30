@@ -19,22 +19,22 @@ if (!isset($_SESSION['c_login'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>c_phisical_test_player_no_add_done</title>
+    <title>c_phisical_test_player_edit_done</title>
 </head>
 
 <body>
 
-    <h3>フィジカルテストの登録完了</h3>
+    <h3>フィジカルテストの編集完了</h3>
 
     <?php
     try {
 
         // player_codeをSESSIONで受け取る
         $player_code = $_SESSION['player_code'];
-        // dateをSESSIONで受け取る
-        $date = $_SESSION['date'];
+        // phisical_test_record_codeをSESSIONで受け取る
+        $phisical_test_record_code = $_SESSION['phisical_test_record_code'];
 
-        // c_phisical_test_player_add_checkからSESSIONで身体情報を受け取る
+        // p_phisical_test_add_checkからSESSIONでフィジカルテスト情報を受け取る
         $test1_value = $_SESSION['test1_value'];
         $test2_value = $_SESSION['test2_value'];
         $test3_value = $_SESSION['test3_value'];
@@ -56,17 +56,16 @@ if (!isset($_SESSION['c_login'])) {
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // phisical_infoテーブルに情報を追加
+        // phisical_test_recordテーブルの情報を更新
         $sql = '
-                INSERT INTO phisical_test_record(player_code, date,
-                10m走, 20m走, 30m走, 50m走, 1500m走_min, 1500m走_sec, 
-                プロアジリティ, 立ち幅跳び, メディシンボール投げ, 垂直飛び,
-                背筋力, 握力, サイドステップ) 
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+                UPDATE phisical_test_record
+                SET 
+                10m走 = ?, 20m走 = ?, 30m走 = ?, 50m走 = ?, 1500m走_min = ?, 1500m走_sec = ?, 
+                プロアジリティ = ?, 立ち幅跳び = ?, メディシンボール投げ = ?, 垂直飛び = ?,
+                背筋力 = ?, 握力 = ?, サイドステップ = ?
+                WHERE phisical_test_record_code = ? 
                 ';
         $stmt = $dbh->prepare($sql);
-        $data[] = $player_code;
-        $data[] = $date;
         $data[] = $test1_value;
         $data[] = $test2_value;
         $data[] = $test3_value;
@@ -80,13 +79,14 @@ if (!isset($_SESSION['c_login'])) {
         $data[] = $test10_value;
         $data[] = $test11_value;
         $data[] = $test12_value;
+        $data[] = $phisical_test_record_code;
         $stmt->execute($data);
 
         // player_managementデータベースから切断する
         $dbh = null;
 
-        print '登録が完了しました<br><br>';
-        print '<input type="button" onclick="location.href=\'c_phisical_test_player_no_list.php\'" value="戻る">';
+        print '編集が完了しました<br><br>';
+        print '<input type="button" onclick="location.href=\'c_phisical_test_player_list.php\'" value="戻る">';
     } catch (Exception $e) {
         var_dump($e);
         exit();
