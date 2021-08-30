@@ -40,7 +40,7 @@ try {
         exit();
     } else {                // すでに選手の記録が登録されている場合
         print '選手の記録が登録されているので削除できません<br><br>';
-        print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
+        print '<input type="button" onclick="location.href=\'c_phisical_test_content.php\'" value="戻る">';
     }
 } catch (Exception $e) {
     var_dump($e);

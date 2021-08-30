@@ -21,18 +21,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>c_phisical_test_delete</title>
+    <title>c_phisical_test_content</title>
 </head>
 
 <body>
 
-    <h3>フィジカルテストの削除</h3>
+    <h3>フィジカルテストの内容</h3>
     <br>
 
     <?php
 
     try {
-        // c_phisical_test_list_check.phpからphisical_test_codeをSESSIONで受け取る
+        // c_phisical_test_top.phpからphisical_test_codeをSESSIONで受け取る
         $phisical_test_code = $_SESSION['phisical_test_code'];
 
         // db_academyデータベースに接続する
@@ -76,11 +76,58 @@
         // db_academyデータベースから切断する
         $dbh = null;
 
-        print '本当に削除しますか<br><br>';
+        print '日付<br>';
+        print $date;
+        print '<br><br>';
 
+        print '所属<br>';
+        print $belong_code;
+        print '<br><br>';
+
+        print '項目<br>';
+        if ($test1_boolean) {
+            print '10m走<br>';
+        }
+        if ($test2_boolean) {
+            print '20m走<br>';
+        }
+        if ($test3_boolean) {
+            print '30m走<br>';
+        }
+        if ($test4_boolean) {
+            print '50m走<br>';
+        }
+        if ($test5_boolean) {
+            print '1500m走<br>';
+        }
+        if ($test6_boolean) {
+            print 'プロアジリティ<br>';
+        }
+        if ($test7_boolean) {
+            print '立ち幅跳び<br>';
+        }
+        if ($test8_boolean) {
+            print 'メディシンボール投げ<br>';
+        }
+        if ($test9_boolean) {
+            print '垂直飛び<br>';
+        }
+        if ($test10_boolean) {
+            print '背筋力<br>';
+        }
+        if ($test11_boolean) {
+            print '握力<br>';
+        }
+        if ($test12_boolean) {
+            print 'サイドステップ<br>';
+        }
+
+        
         print '<br>';
-        print '<input type="button" onclick="location.href=\'c_phisical_test_content.php\'" value="戻る">';
-        print '<input type="button" onclick="location.href=\'c_phisical_test_delete_check.php\'" value="削除">';
+        print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
+        print '<input type="button" onclick="location.href=\'c_phisical_test_delete.php\'" value="削除">';
+        print '<input type="button" onclick="location.href=\'c_phisical_test_player_list.php\'" value="入力済選手一覧">';
+        print '<input type="button" onclick="location.href=\'c_phisical_test_player_no_list.php\'" value="未入力選手一覧">';
     } catch (Exception $e) {
         var_dump($e);
         exit();

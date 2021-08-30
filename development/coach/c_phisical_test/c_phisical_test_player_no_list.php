@@ -125,7 +125,7 @@ if (!isset($_SESSION['c_login'])) {
 
             $record_start = ($page_now - 1) * $record_max;            // ページに表示する最初のレコード番号（1個目を0番目とする）
 
-            print '<form method="post" action="c_phisical_test_player_add.php">';
+            print '<form method="post" action="c_phisical_test_player_no_check.php">';
 
             // ページに表示する分のデータだけ切り取る
             $disp_data = array_slice($rec2, $record_start, $record_max, true);
@@ -179,8 +179,8 @@ if (!isset($_SESSION['c_login'])) {
             }
 
             print '<br><br>';
-            print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
-            print '<input type="submit" value="入力">';
+            print '<input type="button" onclick="location.href=\'c_phisical_test_content.php\'" value="戻る">';
+            print '<input type="submit" name="add" value="登録">';
         }
     } catch (Exception $e) {
         var_dump($e);

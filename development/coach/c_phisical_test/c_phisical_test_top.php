@@ -142,8 +142,7 @@ session_regenerate_id(true);
             print '<br><br>';
             print '<input type="button" onclick="location.href=\'../c_top/c_top.php\'" value="戻る">';
             print '<input type="button" onclick="location.href=\'c_phisical_test_add.php\'" value="追加">';
-            print '<input type="submit" name="delete" value="削除">';
-            print '<input type="submit" name="player_list" value="未入力選手">';
+            print '<input type="submit" name="content" value="内容">';
         }
     } catch (Exception $e) {
         var_dump($e);
