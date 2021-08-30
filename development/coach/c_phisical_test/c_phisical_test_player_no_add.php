@@ -101,7 +101,7 @@ if (!isset($_SESSION['c_login'])) {
         print 'フィジカルテスト結果(' . $date . ')<br><br>';
         print '会員コード:' . $player_code . '  ';
         print '氏名:' . $player_name . '<br><br>';
-        print '<form method="post" action="c_phisical_test_player_add_check.php">';
+        print '<form method="post" action="c_phisical_test_player_no_add_check.php">';
         if ($test1_boolean) {
             print '10m走 <input type="text" name="10m走_value" value=""> 秒<br>';
         }

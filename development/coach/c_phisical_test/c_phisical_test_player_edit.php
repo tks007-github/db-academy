@@ -88,7 +88,7 @@ if (!isset($_SESSION['c_login'])) {
         $dbh = null;
 
         print 'フィジカルテスト結果(' . $date . ')<br><br>';
-        print '<form method="post" action="p_phisical_test_edit_check.php">';
+        print '<form method="post" action="c_phisical_test_player_edit_check.php">';
         print '<input type="hidden" name="phisical_test_record_code" value="' . $rec['phisical_test_record_code'] . '">';
         if ($test1_boolean) {
             print '10m走 <input type="text" name="10m走_value" value="' . $rec['10m走'] . '"> 秒<br>';
