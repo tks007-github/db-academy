@@ -179,7 +179,7 @@ if (!isset($_SESSION['c_login'])) {
             }
 
             print '<br><br>';
-            print '<input type="button" onclick="location.href=\'c_phisical_test_list.php\'" value="戻る">';
+            print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
             print '<input type="submit" value="入力">';
         }
     } catch (Exception $e) {

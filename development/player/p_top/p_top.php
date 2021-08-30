@@ -44,7 +44,7 @@
     if (!isset($_SESSION['c_login'])) {
         print '<input type="button" onclick="location.href=\'p_top_logout.php\'" value="ログアウト">';
     } else {
-        print '<input type="button" onclick="location.href=\'../../coach/c_search/c_search_top.php\'" value="戻る">';
+        print '<input type="button" onclick="location.href=\'../../coach/c_search/c_search_list.php\'" value="戻る">';
     }
     
 
