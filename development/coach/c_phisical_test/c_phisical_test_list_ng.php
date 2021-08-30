@@ -11,7 +11,7 @@
     <h3>NG画面</h3>
     
     データが選択されていません。<br>
-    <a href="c_phisical_test_list.php">戻る</a>
+    <a href="c_phisical_test_top.php">戻る</a>
     
 </body>
 </html>
