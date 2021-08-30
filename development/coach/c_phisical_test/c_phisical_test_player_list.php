@@ -24,7 +24,7 @@ if (!isset($_SESSION['c_login'])) {
 
 <body>
 
-    <h3>フィジカルテスト未入力選手一覧</h3>
+    <h3>フィジカルテスト入力済選手一覧</h3>
 
     <?php
 
@@ -88,7 +88,7 @@ if (!isset($_SESSION['c_login'])) {
         $sql2 = '
                 SELECT player_code, player_name 
                 FROM player 
-                WHERE player_code NOT IN (
+                WHERE player_code IN (
                     SELECT player_code
                     FROM phisical_test_record
                     WHERE date = ? AND belong_code = ?
@@ -106,7 +106,7 @@ if (!isset($_SESSION['c_login'])) {
         $dbh = null;
 
         if (empty($rec2)) {
-            print '未入力の選手はいません';
+            print '入力済の選手はいません';
             print '<br><br>';
             print '<input type="button" onclick="location.href=\'c_phisical_test_content.php\'" value="戻る">';
         } else {
@@ -125,7 +125,7 @@ if (!isset($_SESSION['c_login'])) {
 
             $record_start = ($page_now - 1) * $record_max;            // ページに表示する最初のレコード番号（1個目を0番目とする）
 
-            print '<form method="post" action="c_phisical_test_player_no_check.php">';
+            print '<form method="post" action="c_phisical_test_player_check.php">';
 
             // ページに表示する分のデータだけ切り取る
             $disp_data = array_slice($rec2, $record_start, $record_max, true);
@@ -180,7 +180,7 @@ if (!isset($_SESSION['c_login'])) {
 
             print '<br><br>';
             print '<input type="button" onclick="location.href=\'c_phisical_test_content.php\'" value="戻る">';
-            print '<input type="submit" name="add" value="登録">';
+            print '<input type="submit" name="edit" value="編集">';
         }
     } catch (Exception $e) {
         var_dump($e);
