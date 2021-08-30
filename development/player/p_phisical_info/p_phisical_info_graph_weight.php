@@ -221,7 +221,7 @@ if (!isset($_SESSION['p_login'])) {
                 plugins: {
                     title: {
                         display: true,
-                        text: '折れ線グラフ'
+                        text: '体重(kg)'
                     }
                 },
                 scales: {

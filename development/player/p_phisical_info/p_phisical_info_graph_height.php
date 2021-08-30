@@ -223,7 +223,7 @@ if (!isset($_SESSION['p_login'])) {
                 plugins: {
                     title: {
                         display: true,
-                        text: '折れ線グラフ'
+                        text: '身長(cm)'
                     }
                 },
                 scales: {
