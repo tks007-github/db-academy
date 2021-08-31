@@ -251,8 +251,16 @@ if (!isset($_SESSION['p_login'])) {
         $test1_recent_value[] = $rec3_1['10m走'];
         $rec3_1 = $stmt3_1->fetch(PDO::FETCH_ASSOC);
         $test1_recent_value[] = $rec3_1['10m走'];
-        $rec3_1 = $stmt3_1->fetch(PDO::FETCH_ASSOC);
-        $test1_recent_value[] = $rec3_1['10m走'];
+
+        for ($i = 0; $i < 2; $i++) {
+            for ($j = 0; $j < 10; $j++) {
+                if($test1_recent_value[$i] >= 2.05 - (0.05 * $j)) {
+                    $test1_recent_value[$i] = $j + 1;
+                    break;
+                }
+            }
+        }
+        
 
         $sql3_2 = '
                     SELECT 20m走  
@@ -267,6 +275,16 @@ if (!isset($_SESSION['p_login'])) {
         $test2_recent_value[] = $rec3_2['20m走'];
         $rec3_2 = $stmt3_2->fetch(PDO::FETCH_ASSOC);
         $test2_recent_value[] = $rec3_2['20m走'];
+
+        for ($i = 0; $i < 2; $i++) {
+            for ($j = 0; $j < 10; $j++) {
+                if($test2_recent_value[$i] >= 3.25 - (0.05 * $j)) {
+                    $test2_recent_value[$i] = $j + 1;
+                    break;
+                }
+            }
+        }
+
 
         $sql3_3 = '
                     SELECT 30m走  
