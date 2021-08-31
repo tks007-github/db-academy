@@ -251,6 +251,8 @@ if (!isset($_SESSION['p_login'])) {
         $test1_recent_value[] = $rec3_1['10m走'];
         $rec3_1 = $stmt3_1->fetch(PDO::FETCH_ASSOC);
         $test1_recent_value[] = $rec3_1['10m走'];
+        $rec3_1 = $stmt3_1->fetch(PDO::FETCH_ASSOC);
+        $test1_recent_value[] = $rec3_1['10m走'];
 
         $sql3_2 = '
                     SELECT 20m走  
@@ -280,6 +282,131 @@ if (!isset($_SESSION['p_login'])) {
         $rec3_3 = $stmt3_3->fetch(PDO::FETCH_ASSOC);
         $test3_recent_value[] = $rec3_3['30m走'];
 
+        $sql3_4 = '
+                    SELECT 50m走  
+                    FROM phisical_test_record 
+                    WHERE player_code = ? AND 50m走 > 0
+                    ORDER BY date DESC
+                ';
+        $stmt3_4 = $dbh->prepare($sql3_4);
+        $data3_4[] = $player_code;
+        $stmt3_4->execute($data3_4);
+        $rec3_4 = $stmt3_4->fetch(PDO::FETCH_ASSOC);
+        $test4_recent_value[] = $rec3_4['50m走'];
+        $rec3_4 = $stmt3_4->fetch(PDO::FETCH_ASSOC);
+        $test4_recent_value[] = $rec3_4['50m走'];
+
+        $sql3_5 = '
+                    SELECT 1500m走_min, 1500m走_sec
+                    FROM phisical_test_record 
+                    WHERE player_code = ? AND 1500m走_min > 0
+                    ORDER BY date DESC
+                ';
+        $stmt3_5 = $dbh->prepare($sql3_5);
+        $data3_5[] = $player_code;
+        $stmt3_5->execute($data3_5);
+        $rec3_5 = $stmt3_5->fetch(PDO::FETCH_ASSOC);
+        $test5_recent_value[] = $rec3_5['1500m走_min'] * 60 + $rec3_5['1500m走_sec'];
+        $rec3_5 = $stmt3_5->fetch(PDO::FETCH_ASSOC);
+        $test5_recent_value[] = $rec3_5['1500m走_min'] * 60 + $rec3_5['1500m走_sec'];
+
+        $sql3_6 = '
+                    SELECT プロアジリティ
+                    FROM phisical_test_record 
+                    WHERE player_code = ? AND プロアジリティ > 0
+                    ORDER BY date DESC
+                ';
+        $stmt3_6 = $dbh->prepare($sql3_6);
+        $data3_6[] = $player_code;
+        $stmt3_6->execute($data3_6);
+        $rec3_6 = $stmt3_6->fetch(PDO::FETCH_ASSOC);
+        $test6_recent_value[] = $rec3_6['プロアジリティ'];
+        $rec3_6 = $stmt3_6->fetch(PDO::FETCH_ASSOC);
+        $test6_recent_value[] = $rec3_6['プロアジリティ'];
+        
+        $sql3_7 = '
+                    SELECT 立ち幅跳び
+                    FROM phisical_test_record 
+                    WHERE player_code = ? AND 立ち幅跳び > 0
+                    ORDER BY date DESC
+                ';
+        $stmt3_7 = $dbh->prepare($sql3_7);
+        $data3_7[] = $player_code;
+        $stmt3_7->execute($data3_7);
+        $rec3_7 = $stmt3_7->fetch(PDO::FETCH_ASSOC);
+        $test7_recent_value[] = $rec3_7['立ち幅跳び'];
+        $rec3_7 = $stmt3_7->fetch(PDO::FETCH_ASSOC);
+        $test7_recent_value[] = $rec3_7['立ち幅跳び'];
+        
+        $sql3_8 = '
+                    SELECT メディシンボール投げ
+                    FROM phisical_test_record 
+                    WHERE player_code = ? AND メディシンボール投げ > 0
+                    ORDER BY date DESC
+                ';
+        $stmt3_8 = $dbh->prepare($sql3_8);
+        $data3_8[] = $player_code;
+        $stmt3_8->execute($data3_8);
+        $rec3_8 = $stmt3_8->fetch(PDO::FETCH_ASSOC);
+        $test8_recent_value[] = $rec3_8['メディシンボール投げ'];
+        $rec3_8 = $stmt3_8->fetch(PDO::FETCH_ASSOC);
+        $test8_recent_value[] = $rec3_8['メディシンボール投げ'];
+
+        $sql3_9 = '
+                    SELECT 垂直飛び
+                    FROM phisical_test_record 
+                    WHERE player_code = ? AND 垂直飛び > 0
+                    ORDER BY date DESC
+                ';
+        $stmt3_9 = $dbh->prepare($sql3_9);
+        $data3_9[] = $player_code;
+        $stmt3_9->execute($data3_9);
+        $rec3_9 = $stmt3_9->fetch(PDO::FETCH_ASSOC);
+        $test9_recent_value[] = $rec3_9['垂直飛び'];
+        $rec3_9 = $stmt3_9->fetch(PDO::FETCH_ASSOC);
+        $test9_recent_value[] = $rec3_9['垂直飛び'];
+
+        $sql3_10 = '
+                    SELECT 背筋力
+                    FROM phisical_test_record 
+                    WHERE player_code = ? AND 背筋力 > 0
+                    ORDER BY date DESC
+                ';
+        $stmt3_10 = $dbh->prepare($sql3_10);
+        $data3_10[] = $player_code;
+        $stmt3_10->execute($data3_10);
+        $rec3_10 = $stmt3_10->fetch(PDO::FETCH_ASSOC);
+        $test10_recent_value[] = $rec3_10['背筋力'];
+        $rec3_10 = $stmt3_10->fetch(PDO::FETCH_ASSOC);
+        $test10_recent_value[] = $rec3_10['背筋力'];
+
+        $sql3_11 = '
+                    SELECT 握力
+                    FROM phisical_test_record 
+                    WHERE player_code = ? AND 握力 > 0
+                    ORDER BY date DESC
+                ';
+        $stmt3_11 = $dbh->prepare($sql3_11);
+        $data3_11[] = $player_code;
+        $stmt3_11->execute($data3_11);
+        $rec3_11 = $stmt3_11->fetch(PDO::FETCH_ASSOC);
+        $test11_recent_value[] = $rec3_11['握力'];
+        $rec3_11 = $stmt3_11->fetch(PDO::FETCH_ASSOC);
+        $test11_recent_value[] = $rec3_11['握力'];
+
+        $sql3_12 = '
+                    SELECT サイドステップ
+                    FROM phisical_test_record 
+                    WHERE player_code = ? AND サイドステップ > 0
+                    ORDER BY date DESC
+                ';
+        $stmt3_12 = $dbh->prepare($sql3_12);
+        $data3_12[] = $player_code;
+        $stmt3_12->execute($data3_12);
+        $rec3_12 = $stmt3_12->fetch(PDO::FETCH_ASSOC);
+        $test12_recent_value[] = $rec3_12['サイドステップ'];
+        $rec3_12 = $stmt3_12->fetch(PDO::FETCH_ASSOC);
+        $test12_recent_value[] = $rec3_12['サイドステップ'];
 
         // db_academyデータベースから切断する
         $dbh = null;
@@ -310,6 +437,52 @@ if (!isset($_SESSION['p_login'])) {
     }
 
     ?>
+
+    <!-- レーダーチャート -->
+    <canvas id="myRaderChart"></canvas>
+    　
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+    <script>
+        let ctx1 = document.getElementById("myRaderChart");
+        let myRadarChart = new Chart(ctx1, {
+            type: 'radar',
+            data: {
+                labels: ["10m走", "20m走", "30m走", "50m走", "1500m走", "プロアジリティ", "立ち幅跳び", "メディシンボール投げ", "垂直飛び", "背筋力", "握力", "サイドステップ"],
+                datasets: [{
+                    label: '今回',
+                    data: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+                    backgroundColor: 'RGBA(225,95,150, 0.5)',
+                    borderColor: 'RGBA(225,95,150, 1)',
+                    borderWidth: 1,
+                    pointBackgroundColor: 'RGB(46,106,177)'
+                }, {
+                    label: '前回',
+                    data: [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+                    backgroundColor: 'RGBA(115,255,25, 0.5)',
+                    borderColor: 'RGBA(115,255,25, 1)',
+                    borderWidth: 1,
+                    pointBackgroundColor: 'RGB(46,106,177)'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'フィジカルテスト'
+                },
+                scale: {
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        stepSize: 1,
+                        callback: function (value, index, values) {
+                            return value + '点'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 
 
 
