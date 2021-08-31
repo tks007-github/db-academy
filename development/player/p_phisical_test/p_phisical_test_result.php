@@ -236,6 +236,51 @@ if (!isset($_SESSION['p_login'])) {
             }
         }
 
+
+        // 以下、レーダーチャート用の結果を保持
+        $sql3_1 = '
+                    SELECT 10m走  
+                    FROM phisical_test_record 
+                    WHERE player_code = ? AND 10m走 > 0
+                    ORDER BY date DESC
+                ';
+        $stmt3_1 = $dbh->prepare($sql3_1);
+        $data3_1[] = $player_code;
+        $stmt3_1->execute($data3_1);
+        $rec3_1 = $stmt3_1->fetch(PDO::FETCH_ASSOC);
+        $test1_recent_value[] = $rec3_1['10m走'];
+        $rec3_1 = $stmt3_1->fetch(PDO::FETCH_ASSOC);
+        $test1_recent_value[] = $rec3_1['10m走'];
+
+        $sql3_2 = '
+                    SELECT 20m走  
+                    FROM phisical_test_record 
+                    WHERE player_code = ? AND 20m走 > 0
+                    ORDER BY date DESC
+                ';
+        $stmt3_2 = $dbh->prepare($sql3_2);
+        $data3_2[] = $player_code;
+        $stmt3_2->execute($data3_2);
+        $rec3_2 = $stmt3_2->fetch(PDO::FETCH_ASSOC);
+        $test2_recent_value[] = $rec3_2['20m走'];
+        $rec3_2 = $stmt3_2->fetch(PDO::FETCH_ASSOC);
+        $test2_recent_value[] = $rec3_2['20m走'];
+
+        $sql3_3 = '
+                    SELECT 30m走  
+                    FROM phisical_test_record 
+                    WHERE player_code = ? AND 30m走 > 0
+                    ORDER BY date DESC
+                ';
+        $stmt3_3 = $dbh->prepare($sql3_3);
+        $data3_3[] = $player_code;
+        $stmt3_3->execute($data3_3);
+        $rec3_3 = $stmt3_3->fetch(PDO::FETCH_ASSOC);
+        $test3_recent_value[] = $rec3_3['30m走'];
+        $rec3_3 = $stmt3_3->fetch(PDO::FETCH_ASSOC);
+        $test3_recent_value[] = $rec3_3['30m走'];
+
+
         // db_academyデータベースから切断する
         $dbh = null;
 
