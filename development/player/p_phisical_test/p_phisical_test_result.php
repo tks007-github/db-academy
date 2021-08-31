@@ -300,6 +300,15 @@ if (!isset($_SESSION['p_login'])) {
         $rec3_3 = $stmt3_3->fetch(PDO::FETCH_ASSOC);
         $test3_recent_value[] = $rec3_3['30m走'];
 
+        for ($i = 0; $i < 2; $i++) {
+            for ($j = 0; $j < 10; $j++) {
+                if($test3_recent_value[$i] >= 5.2 - (0.15 * $j)) {
+                    $test3_recent_value[$i] = $j + 1;
+                    break;
+                }
+            }
+        }
+
         $sql3_4 = '
                     SELECT 50m走  
                     FROM phisical_test_record 
@@ -313,6 +322,15 @@ if (!isset($_SESSION['p_login'])) {
         $test4_recent_value[] = $rec3_4['50m走'];
         $rec3_4 = $stmt3_4->fetch(PDO::FETCH_ASSOC);
         $test4_recent_value[] = $rec3_4['50m走'];
+
+        for ($i = 0; $i < 2; $i++) {
+            for ($j = 0; $j < 10; $j++) {
+                if($test4_recent_value[$i] >= 7.5 - (0.2 * $j)) {
+                    $test4_recent_value[$i] = $j + 1;
+                    break;
+                }
+            }
+        }
 
         $sql3_5 = '
                     SELECT 1500m走_min, 1500m走_sec
@@ -328,6 +346,15 @@ if (!isset($_SESSION['p_login'])) {
         $rec3_5 = $stmt3_5->fetch(PDO::FETCH_ASSOC);
         $test5_recent_value[] = $rec3_5['1500m走_min'] * 60 + $rec3_5['1500m走_sec'];
 
+        for ($i = 0; $i < 2; $i++) {
+            for ($j = 0; $j < 10; $j++) {
+                if($test5_recent_value[$i] >= 405 - (15 * $j)) {
+                    $test5_recent_value[$i] = $j + 1;
+                    break;
+                }
+            }
+        }
+
         $sql3_6 = '
                     SELECT プロアジリティ
                     FROM phisical_test_record 
@@ -341,6 +368,15 @@ if (!isset($_SESSION['p_login'])) {
         $test6_recent_value[] = $rec3_6['プロアジリティ'];
         $rec3_6 = $stmt3_6->fetch(PDO::FETCH_ASSOC);
         $test6_recent_value[] = $rec3_6['プロアジリティ'];
+
+        for ($i = 0; $i < 2; $i++) {
+            for ($j = 0; $j < 10; $j++) {
+                if($test6_recent_value[$i] >= 5.3 - (0.1 * $j)) {
+                    $test6_recent_value[$i] = $j + 1;
+                    break;
+                }
+            }
+        }
         
         $sql3_7 = '
                     SELECT 立ち幅跳び
@@ -355,6 +391,15 @@ if (!isset($_SESSION['p_login'])) {
         $test7_recent_value[] = $rec3_7['立ち幅跳び'];
         $rec3_7 = $stmt3_7->fetch(PDO::FETCH_ASSOC);
         $test7_recent_value[] = $rec3_7['立ち幅跳び'];
+
+        for ($i = 0; $i < 2; $i++) {
+            for ($j = 0; $j < 10; $j++) {
+                if($test7_recent_value[$i] >= 300 - (10 * $j)) {
+                    $test7_recent_value[$i] = 10 - $j;
+                    break;
+                }
+            }
+        }
         
         $sql3_8 = '
                     SELECT メディシンボール投げ
@@ -369,6 +414,15 @@ if (!isset($_SESSION['p_login'])) {
         $test8_recent_value[] = $rec3_8['メディシンボール投げ'];
         $rec3_8 = $stmt3_8->fetch(PDO::FETCH_ASSOC);
         $test8_recent_value[] = $rec3_8['メディシンボール投げ'];
+
+        for ($i = 0; $i < 2; $i++) {
+            for ($j = 0; $j < 10; $j++) {
+                if($test7_recent_value[$i] >= 300 - (10 * $j)) {
+                    $test7_recent_value[$i] = 10 - $j;
+                    break;
+                }
+            }
+        }
 
         $sql3_9 = '
                     SELECT 垂直飛び
