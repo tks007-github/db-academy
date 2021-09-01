@@ -398,7 +398,7 @@ if (!isset($_SESSION['p_login'])) {
                     break;
                 }
             }
-            if ($test5_recent_value[$i] < 325 && $test5_recent_value[$i] != '') {
+            if ($test5_recent_value[$i] < 285 && $test5_recent_value[$i] != '') {
                 $test5_recent_score[] = 10;
             } else if ($test5_recent_value[$i] == '') {
                 $test5_recent_score[] = NULL;
