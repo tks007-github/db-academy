@@ -268,7 +268,7 @@ if (!isset($_SESSION['p_login'])) {
             if ($test1_recent_value[$i] < 1.65 && $test1_recent_value[$i] != '') {
                 $test1_recent_score[] = 10;
             } else if ($test1_recent_value[$i] == '') {
-                $test1_recent_score[] = '';
+                $test1_recent_score[] = NULL;
             }
         }
 
@@ -301,7 +301,7 @@ if (!isset($_SESSION['p_login'])) {
             if ($test2_recent_value[$i] < 2.85 && $test2_recent_value[$i] != '') {
                 $test2_recent_score[] = 10;
             } else if ($test2_recent_value[$i] == '') {
-                $test2_recent_score[] = '';
+                $test2_recent_score[] = NULL;
             }
         }
 
@@ -335,7 +335,7 @@ if (!isset($_SESSION['p_login'])) {
             if ($test3_recent_value[$i] < 4 && $test3_recent_value[$i] != '') {
                 $test3_recent_score[] = 10;
             } else if ($test3_recent_value[$i] == '') {
-                $test3_recent_score[] = '';
+                $test3_recent_score[] = NULL;
             }
         }
 
@@ -368,7 +368,7 @@ if (!isset($_SESSION['p_login'])) {
             if ($test4_recent_value[$i] < 5.9 && $test4_recent_value[$i] != '') {
                 $test4_recent_score[] = 10;
             } else if ($test4_recent_value[$i] == '') {
-                $test4_recent_score[] = '';
+                $test4_recent_score[] = NULL;
             }
         }
 
@@ -401,7 +401,7 @@ if (!isset($_SESSION['p_login'])) {
             if ($test5_recent_value[$i] < 325 && $test5_recent_value[$i] != '') {
                 $test5_recent_score[] = 10;
             } else if ($test5_recent_value[$i] == '') {
-                $test5_recent_score[] = '';
+                $test5_recent_score[] = NULL;
             }
         }
 
@@ -434,7 +434,7 @@ if (!isset($_SESSION['p_login'])) {
             if ($test6_recent_value[$i] < 4.5 && $test6_recent_value[$i] != '') {
                 $test6_recent_score[] = 10;
             } else if ($test6_recent_value[$i] == '') {
-                $test6_recent_score[] = '';
+                $test6_recent_score[] = NULL;
             }
         }
 
@@ -460,7 +460,7 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
                 if ($test7_recent_value[$i] == '') {
-                    $test7_recent_score[] = '';
+                    $test7_recent_score[] = NULL;
                     break;
                 }
                 if ($test7_recent_value[$i] <= 220 + (10 * $j)) {
@@ -495,7 +495,7 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
                 if ($test8_recent_value[$i] == '') {
-                    $test8_recent_score[] = '';
+                    $test8_recent_score[] = NULL;
                     break;
                 }
                 if ($test8_recent_value[$i] <= 12 + (1 * $j)) {
@@ -530,7 +530,7 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
                 if ($test9_recent_value[$i] == '') {
-                    $test9_recent_score[] = '';
+                    $test9_recent_score[] = NULL;
                     break;
                 }
                 if ($test9_recent_value[$i] <= 45 + (5 * $j)) {
@@ -565,7 +565,7 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
                 if ($test10_recent_value[$i] == '') {
-                    $test10_recent_score[] = '';
+                    $test10_recent_score[] = NULL;
                     break;
                 }
                 if ($test10_recent_value[$i] <= 110 + (10 * $j)) {
@@ -600,7 +600,7 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
                 if ($test11_recent_value[$i] == '') {
-                    $test11_recent_score[] = '';
+                    $test11_recent_score[] = NULL;
                     break;
                 }
                 if ($test11_recent_value[$i] <= 30 + (5 * $j)) {
@@ -625,7 +625,7 @@ if (!isset($_SESSION['p_login'])) {
         $stmt3_12->execute($data3_12);
         $rec3_12 = $stmt3_12->fetch(PDO::FETCH_ASSOC);
         $test12_recent_value[] = $rec3_12['サイドステップ'];
-        if ($rec3_11['date'] != $date) {
+        if ($rec3_12['date'] != $date) {
             $test12_recent_value[] = $rec3_12['サイドステップ'];
         } else {
             $rec3_12 = $stmt3_12->fetch(PDO::FETCH_ASSOC);
@@ -635,7 +635,7 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
                 if ($test12_recent_value[$i] == '') {
-                    $test12_recent_score[] = '';
+                    $test12_recent_score[] = NULL;
                     break;
                 }
                 if ($test12_recent_value[$i] <= 30 + (5 * $j)) {

@@ -97,7 +97,7 @@ if (!isset($_SESSION['p_login'])) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($rec == '') {
-                $this_year_avg_weight_arr[] = 0;
+                $this_year_avg_weight_arr[] = NULL;
             } else {
                 $this_year_avg_weight_arr[] = $rec['grouping_weight'];
             }
@@ -119,7 +119,7 @@ if (!isset($_SESSION['p_login'])) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($rec == '') {
-                $this_year_avg_weight_arr[] = 0;
+                $this_year_avg_weight_arr[] = NULL;
             } else {
                 $this_year_avg_weight_arr[] = $rec['grouping_weight'];
             }
@@ -142,7 +142,7 @@ if (!isset($_SESSION['p_login'])) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($rec == '') {
-                $last_year_avg_weight_arr[] = 0;
+                $last_year_avg_weight_arr[] = NULL;
             } else {
                 $last_year_avg_weight_arr[] = $rec['grouping_weight'];
             }
@@ -164,7 +164,7 @@ if (!isset($_SESSION['p_login'])) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($rec == '') {
-                $last_year_avg_weight_arr[] = 0;
+                $last_year_avg_weight_arr[] = NULL;
             } else {
                 $last_year_avg_weight_arr[] = $rec['grouping_weight'];
             }
@@ -203,7 +203,8 @@ if (!isset($_SESSION['p_login'])) {
                         js_this_year_weight[9], js_this_year_weight[10], js_this_year_weight[11]
                     ],
                     borderColor: "rgba(0,0,255,1)",
-                    backgroundColor: "rgba(0,0,0,0)"
+                    backgroundColor: "rgba(0,0,0,0)",
+                    spanGaps: true,
                 },
                 {
                     label: '昨年度',
@@ -213,7 +214,8 @@ if (!isset($_SESSION['p_login'])) {
                         js_last_year_weight[9], js_last_year_weight[10], js_last_year_weight[11]
                     ],
                     borderColor: "rgba(255,0,0,1)",
-                    backgroundColor: "rgba(0,0,0,0)"
+                    backgroundColor: "rgba(0,0,0,0)",
+                    spanGaps: true,
                 },
              ],
             },
