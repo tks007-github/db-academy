@@ -760,6 +760,20 @@ if (!isset($_SESSION['p_login'])) {
         });
     </script>
 
+    <br><br>
+    <input type="button" onclick="location.href='p_phisical_test_content.php'" value="戻る">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test1.php'" value="10m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test2.php'" value="20m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test3.php'" value="30m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test4.php'" value="50m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test5.php'" value="1500m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test6.php'" value="プロアジリティ">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test1.php'" value="立ち幅跳び">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test2.php'" value="メディシンボール投げ">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test3.php'" value="垂直飛び">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test4.php'" value="背筋力">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test5.php'" value="握力">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test6.php'" value="サイドステップ">
 
 
 </body>
