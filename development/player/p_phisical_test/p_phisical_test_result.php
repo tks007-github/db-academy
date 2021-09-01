@@ -254,10 +254,13 @@ if (!isset($_SESSION['p_login'])) {
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test1_recent_value[$i] >= 2.05 - (0.05 * $j)) {
-                    $test1_recent_value[$i] = $j + 1;
+                if ($test1_recent_value[$i] >= 2.05 - (0.05 * $j)) {
+                    $test1_recent_score[] = $j + 1;
                     break;
                 }
+            }
+            if ($test1_recent_value[$i] < 1.65) {
+                $test1_recent_score[] = 10;
             }
         }
         
@@ -279,9 +282,12 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
                 if($test2_recent_value[$i] >= 3.25 - (0.05 * $j)) {
-                    $test2_recent_value[$i] = $j + 1;
+                    $test2_recent_score[] = $j + 1;
                     break;
                 }
+            }
+            if ($test2_recent_value[$i] < 2.85) {
+                $test2_recent_score[] = 10;
             }
         }
 
@@ -303,9 +309,12 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
                 if($test3_recent_value[$i] >= 5.2 - (0.15 * $j)) {
-                    $test3_recent_value[$i] = $j + 1;
+                    $test3_recent_score[] = $j + 1;
                     break;
                 }
+            }
+            if ($test3_recent_value[$i] < 4) {
+                $test3_recent_score[] = 10;
             }
         }
 
@@ -326,9 +335,12 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
                 if($test4_recent_value[$i] >= 7.5 - (0.2 * $j)) {
-                    $test4_recent_value[$i] = $j + 1;
+                    $test4_recent_score[] = $j + 1;
                     break;
                 }
+            }
+            if ($test4_recent_value[$i] < 5.9) {
+                $test4_recent_score[] = 10;
             }
         }
 
@@ -349,12 +361,12 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 9; $j++) {
                 if($test5_recent_value[$i] >= 405 - (15 * $j)) {
-                    $test5_recent_value[$i] = $j + 1;
+                    $test5_recent_score[] = $j + 1;
                     break;
                 } 
             }
             if ($test5_recent_value[$i] < 325) {
-                $test5_recent_value[$i] = 10;
+                $test5_recent_score[] = 10;
             }
         }
 
@@ -375,9 +387,12 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
                 if($test6_recent_value[$i] >= 5.3 - (0.1 * $j)) {
-                    $test6_recent_value[$i] = $j + 1;
+                    $test6_recent_score[] = $j + 1;
                     break;
                 }
+            }
+            if ($test6_recent_value[$i] < 4.5) {
+                $test6_recent_score[] = 10;
             }
         }
         
@@ -398,9 +413,12 @@ if (!isset($_SESSION['p_login'])) {
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
                 if($test7_recent_value[$i] <= 220 + (10 * $j)) {
-                    $test7_recent_value[$i] = $j + 1;
+                    $test7_recent_score[] = $j + 1;
                     break;
                 }
+            }
+            if ($test7_recent_value[$i] > 300) {
+                $test7_recent_score[] = 10;
             }
         }
         
@@ -420,10 +438,13 @@ if (!isset($_SESSION['p_login'])) {
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test8_recent_value[$i] >= 12 + (1 * $j)) {
-                    $test8_recent_value[$i] = $j + 1;
+                if($test8_recent_value[$i] <= 12 + (1 * $j)) {
+                    $test8_recent_score[] = $j + 1;
                     break;
                 }
+            }
+            if ($test8_recent_value[$i] > 20) {
+                $test8_recent_score[] = 10;
             }
         }
 
@@ -443,10 +464,13 @@ if (!isset($_SESSION['p_login'])) {
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test9_recent_value[$i] >= 45 + (5 * $j)) {
-                    $test9_recent_value[$i] = $j + 1;
+                if($test9_recent_value[$i] <= 45 + (5 * $j)) {
+                    $test9_recent_score[] = $j + 1;
                     break;
                 }
+            }
+            if ($test9_recent_value[$i] > 85) {
+                $test9_recent_score[] = 10;
             }
         }
 
@@ -466,10 +490,13 @@ if (!isset($_SESSION['p_login'])) {
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test10_recent_value[$i] >= 110 + (10 * $j)) {
-                    $test10_recent_value[$i] = $j + 1;
+                if($test10_recent_value[$i] <= 110 + (10 * $j)) {
+                    $test10_recent_score[] = $j + 1;
                     break;
                 }
+            }
+            if ($test10_recent_value[$i] > 190) {
+                $test10_recent_score[] = 10;
             }
         }
 
@@ -489,10 +516,13 @@ if (!isset($_SESSION['p_login'])) {
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test11_recent_value[$i] >= 30 + (5 * $j)) {
-                    $test11_recent_value[$i] = $j + 1;
+                if($test11_recent_value[$i] <= 30 + (5 * $j)) {
+                    $test11_recent_score[] = $j + 1;
                     break;
                 }
+            }
+            if ($test11_recent_value[$i] > 70) {
+                $test11_recent_score[] = 10;
             }
         }
 
@@ -510,19 +540,31 @@ if (!isset($_SESSION['p_login'])) {
         $rec3_12 = $stmt3_12->fetch(PDO::FETCH_ASSOC);
         $test12_recent_value[] = $rec3_12['サイドステップ'];
 
+        for ($i = 0; $i < 2; $i++) {
+            for ($j = 0; $j < 10; $j++) {
+                if($test12_recent_value[$i] <= 30 + (5 * $j)) {
+                    $test12_recent_score[] = $j + 1;
+                    break;
+                }
+            }
+            if ($test12_recent_value[$i] > 70) {
+                $test12_recent_score[] = 10;
+            }
+        }
 
-        $json_test1_recent_value = json_encode($test1_recent_value);
-        $json_test2_recent_value = json_encode($test2_recent_value);
-        $json_test3_recent_value = json_encode($test3_recent_value);
-        $json_test4_recent_value = json_encode($test4_recent_value);
-        $json_test5_recent_value = json_encode($test5_recent_value);
-        $json_test6_recent_value = json_encode($test6_recent_value);
-        $json_test7_recent_value = json_encode($test7_recent_value);
-        $json_test8_recent_value = json_encode($test8_recent_value);
-        $json_test9_recent_value = json_encode($test9_recent_value);
-        $json_test10_recent_value = json_encode($test10_recent_value);
-        $json_test11_recent_value = json_encode($test11_recent_value);
-        $json_test12_recent_value = json_encode($test12_recent_value);
+
+        $json_test1_recent_score = json_encode($test1_recent_score);
+        $json_test2_recent_score = json_encode($test2_recent_score);
+        $json_test3_recent_score = json_encode($test3_recent_score);
+        $json_test4_recent_score = json_encode($test4_recent_score);
+        $json_test5_recent_score = json_encode($test5_recent_score);
+        $json_test6_recent_score = json_encode($test6_recent_score);
+        $json_test7_recent_score = json_encode($test7_recent_score);
+        $json_test8_recent_score = json_encode($test8_recent_score);
+        $json_test9_recent_score = json_encode($test9_recent_score);
+        $json_test10_recent_score = json_encode($test10_recent_score);
+        $json_test11_recent_score = json_encode($test11_recent_score);
+        $json_test12_recent_score = json_encode($test12_recent_score);
 
 
         // db_academyデータベースから切断する
@@ -564,18 +606,18 @@ if (!isset($_SESSION['p_login'])) {
         let ctx1 = document.getElementById("myRaderChart");
 
         // phpの配列をjavascriptで受け取る
-        let js_test1_recent_value = <?php print $json_test1_recent_value; ?>;
-        let js_test2_recent_value = <?php print $json_test2_recent_value; ?>;
-        let js_test3_recent_value = <?php print $json_test3_recent_value; ?>;
-        let js_test4_recent_value = <?php print $json_test4_recent_value; ?>;
-        let js_test5_recent_value = <?php print $json_test5_recent_value; ?>;
-        let js_test6_recent_value = <?php print $json_test6_recent_value; ?>;
-        let js_test7_recent_value = <?php print $json_test7_recent_value; ?>;
-        let js_test8_recent_value = <?php print $json_test8_recent_value; ?>;
-        let js_test9_recent_value = <?php print $json_test9_recent_value; ?>;
-        let js_test10_recent_value = <?php print $json_test10_recent_value; ?>;
-        let js_test11_recent_value = <?php print $json_test11_recent_value; ?>;
-        let js_test12_recent_value = <?php print $json_test12_recent_value; ?>;
+        let js_test1_recent_score = <?php print $json_test1_recent_score; ?>;
+        let js_test2_recent_score = <?php print $json_test2_recent_score; ?>;
+        let js_test3_recent_score = <?php print $json_test3_recent_score; ?>;
+        let js_test4_recent_score = <?php print $json_test4_recent_score; ?>;
+        let js_test5_recent_score = <?php print $json_test5_recent_score; ?>;
+        let js_test6_recent_score = <?php print $json_test6_recent_score; ?>;
+        let js_test7_recent_score = <?php print $json_test7_recent_score; ?>;
+        let js_test8_recent_score = <?php print $json_test8_recent_score; ?>;
+        let js_test9_recent_score = <?php print $json_test9_recent_score; ?>;
+        let js_test10_recent_score = <?php print $json_test10_recent_score; ?>;
+        let js_test11_recent_score = <?php print $json_test11_recent_score; ?>;
+        let js_test12_recent_score = <?php print $json_test12_recent_score; ?>;
 
         let myRadarChart = new Chart(ctx1, {
             type: 'radar',
@@ -583,20 +625,20 @@ if (!isset($_SESSION['p_login'])) {
                 labels: ["10m走", "20m走", "30m走", "50m走", "1500m走", "プロアジリティ", "立ち幅跳び", "メディシンボール投げ", "垂直飛び", "背筋力", "握力", "サイドステップ"],
                 datasets: [{
                     label: '今回',
-                    data: [js_test1_recent_value[0], js_test2_recent_value[0], js_test3_recent_value[0],
-                            js_test4_recent_value[0], js_test5_recent_value[0], js_test6_recent_value[0],
-                            js_test7_recent_value[0], js_test8_recent_value[0], js_test9_recent_value[0], 
-                            js_test10_recent_value[0], js_test11_recent_value[0], js_test12_recent_value[0]],
+                    data: [js_test1_recent_score[0], js_test2_recent_score[0], js_test3_recent_score[0],
+                            js_test4_recent_score[0], js_test5_recent_score[0], js_test6_recent_score[0],
+                            js_test7_recent_score[0], js_test8_recent_score[0], js_test9_recent_score[0], 
+                            js_test10_recent_score[0], js_test11_recent_score[0], js_test12_recent_score[0]],
                     backgroundColor: 'RGBA(225,95,150, 0.5)',
                     borderColor: 'RGBA(225,95,150, 1)',
                     borderWidth: 1,
                     pointBackgroundColor: 'RGB(46,106,177)'
                 }, {
                     label: '前回',
-                    data: [js_test1_recent_value[1], js_test2_recent_value[1], js_test3_recent_value[1],
-                            js_test4_recent_value[1], js_test5_recent_value[1], js_test6_recent_value[1],
-                            js_test7_recent_value[1], js_test8_recent_value[1], js_test9_recent_value[1], 
-                            js_test11_recent_value[1], js_test11_recent_value[1], js_test12_recent_value[1]],
+                    data: [js_test1_recent_score[1], js_test2_recent_score[1], js_test3_recent_score[1],
+                            js_test4_recent_score[1], js_test5_recent_score[1], js_test6_recent_score[1],
+                            js_test7_recent_score[1], js_test8_recent_score[1], js_test9_recent_score[1], 
+                            js_test11_recent_score[1], js_test11_recent_score[1], js_test12_recent_score[1]],
                     backgroundColor: 'RGBA(115,255,25, 0.5)',
                     borderColor: 'RGBA(115,255,25, 1)',
                     borderWidth: 1,
