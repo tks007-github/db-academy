@@ -3,8 +3,6 @@
 【取組中】
 p_phisical_test_result.php
 
-10点の場合の場合分けが必要。。。
-
 【未完成】
 p_phisical_test_result.php
 
