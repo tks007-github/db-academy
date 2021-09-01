@@ -239,18 +239,24 @@ if (!isset($_SESSION['p_login'])) {
 
         // 以下、レーダーチャート用の結果を保持
         $sql3_1 = '
-                    SELECT 10m走  
+                    SELECT date, 10m走  
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND 10m走 > 0
+                    WHERE player_code = ? AND date <= ? AND 10m走 > 0
                     ORDER BY date DESC
                 ';
         $stmt3_1 = $dbh->prepare($sql3_1);
         $data3_1[] = $player_code;
+        $data3_1[] = $date;
         $stmt3_1->execute($data3_1);
         $rec3_1 = $stmt3_1->fetch(PDO::FETCH_ASSOC);
         $test1_recent_value[] = $rec3_1['10m走'];
-        $rec3_1 = $stmt3_1->fetch(PDO::FETCH_ASSOC);
-        $test1_recent_value[] = $rec3_1['10m走'];
+        if ($rec3_1['date'] != $date) {
+            $test1_recent_value[] = $rec3_1['10m走'];
+        } else {
+            $rec3_1 = $stmt3_1->fetch(PDO::FETCH_ASSOC);
+            $test1_recent_value[] = $rec3_1['10m走'];
+        }
+
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
@@ -259,160 +265,205 @@ if (!isset($_SESSION['p_login'])) {
                     break;
                 }
             }
-            if ($test1_recent_value[$i] < 1.65) {
+            if ($test1_recent_value[$i] < 1.65 && $test1_recent_value[$i] != '') {
                 $test1_recent_score[] = 10;
+            } else if ($test1_recent_value[$i] == '') {
+                $test1_recent_score[] = '';
             }
         }
-        
 
         $sql3_2 = '
-                    SELECT 20m走  
+                    SELECT date, 20m走  
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND 20m走 > 0
+                    WHERE player_code = ? AND date <= ? AND 20m走 > 0
                     ORDER BY date DESC
                 ';
         $stmt3_2 = $dbh->prepare($sql3_2);
         $data3_2[] = $player_code;
+        $data3_2[] = $date;
         $stmt3_2->execute($data3_2);
         $rec3_2 = $stmt3_2->fetch(PDO::FETCH_ASSOC);
         $test2_recent_value[] = $rec3_2['20m走'];
-        $rec3_2 = $stmt3_2->fetch(PDO::FETCH_ASSOC);
-        $test2_recent_value[] = $rec3_2['20m走'];
+        if ($rec3_2['date'] != $date) {
+            $test2_recent_value[] = $rec3_2['20m走'];
+        } else {
+            $rec3_2 = $stmt3_2->fetch(PDO::FETCH_ASSOC);
+            $test2_recent_value[] = $rec3_2['20m走'];
+        }
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test2_recent_value[$i] >= 3.25 - (0.05 * $j)) {
+                if ($test2_recent_value[$i] >= 3.25 - (0.05 * $j)) {
                     $test2_recent_score[] = $j + 1;
                     break;
                 }
             }
-            if ($test2_recent_value[$i] < 2.85) {
+            if ($test2_recent_value[$i] < 2.85 && $test2_recent_value[$i] != '') {
                 $test2_recent_score[] = 10;
+            } else if ($test2_recent_value[$i] == '') {
+                $test2_recent_score[] = '';
             }
         }
 
 
         $sql3_3 = '
-                    SELECT 30m走  
+                    SELECT date, 30m走  
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND 30m走 > 0
+                    WHERE player_code = ? AND date <= ? AND 30m走 > 0
                     ORDER BY date DESC
                 ';
         $stmt3_3 = $dbh->prepare($sql3_3);
         $data3_3[] = $player_code;
+        $data3_3[] = $date;
         $stmt3_3->execute($data3_3);
         $rec3_3 = $stmt3_3->fetch(PDO::FETCH_ASSOC);
         $test3_recent_value[] = $rec3_3['30m走'];
-        $rec3_3 = $stmt3_3->fetch(PDO::FETCH_ASSOC);
-        $test3_recent_value[] = $rec3_3['30m走'];
+        if ($rec3_3['date'] != $date) {
+            $test3_recent_value[] = $rec3_3['30m走'];
+        } else {
+            $rec3_3 = $stmt3_3->fetch(PDO::FETCH_ASSOC);
+            $test3_recent_value[] = $rec3_3['30m走'];
+        }
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test3_recent_value[$i] >= 5.2 - (0.15 * $j)) {
+                if ($test3_recent_value[$i] >= 5.2 - (0.15 * $j)) {
                     $test3_recent_score[] = $j + 1;
                     break;
                 }
             }
-            if ($test3_recent_value[$i] < 4) {
+            if ($test3_recent_value[$i] < 4 && $test3_recent_value[$i] != '') {
                 $test3_recent_score[] = 10;
+            } else if ($test3_recent_value[$i] == '') {
+                $test3_recent_score[] = '';
             }
         }
 
         $sql3_4 = '
-                    SELECT 50m走  
+                    SELECT date, 50m走  
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND 50m走 > 0
+                    WHERE player_code = ? AND date <= ? AND 50m走 > 0
                     ORDER BY date DESC
                 ';
         $stmt3_4 = $dbh->prepare($sql3_4);
         $data3_4[] = $player_code;
+        $data3_4[] = $date;
         $stmt3_4->execute($data3_4);
         $rec3_4 = $stmt3_4->fetch(PDO::FETCH_ASSOC);
         $test4_recent_value[] = $rec3_4['50m走'];
-        $rec3_4 = $stmt3_4->fetch(PDO::FETCH_ASSOC);
-        $test4_recent_value[] = $rec3_4['50m走'];
+        if ($rec3_4['date'] != $date) {
+            $test4_recent_value[] = $rec3_4['50m走'];
+        } else {
+            $rec3_4 = $stmt3_4->fetch(PDO::FETCH_ASSOC);
+            $test4_recent_value[] = $rec3_4['50m走'];
+        }
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test4_recent_value[$i] >= 7.5 - (0.2 * $j)) {
+                if ($test4_recent_value[$i] >= 7.5 - (0.2 * $j)) {
                     $test4_recent_score[] = $j + 1;
                     break;
                 }
             }
-            if ($test4_recent_value[$i] < 5.9) {
+            if ($test4_recent_value[$i] < 5.9 && $test4_recent_value[$i] != '') {
                 $test4_recent_score[] = 10;
+            } else if ($test4_recent_value[$i] == '') {
+                $test4_recent_score[] = '';
             }
         }
 
         $sql3_5 = '
-                    SELECT 1500m走_min, 1500m走_sec
+                    SELECT date, 1500m走_min, 1500m走_sec
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND 1500m走_min > 0
+                    WHERE player_code = ? AND date <= ? AND 1500m走_min > 0
                     ORDER BY date DESC
                 ';
         $stmt3_5 = $dbh->prepare($sql3_5);
         $data3_5[] = $player_code;
+        $data3_5[] = $date;
         $stmt3_5->execute($data3_5);
         $rec3_5 = $stmt3_5->fetch(PDO::FETCH_ASSOC);
         $test5_recent_value[] = $rec3_5['1500m走_min'] * 60 + $rec3_5['1500m走_sec'];
-        $rec3_5 = $stmt3_5->fetch(PDO::FETCH_ASSOC);
-        $test5_recent_value[] = $rec3_5['1500m走_min'] * 60 + $rec3_5['1500m走_sec'];
+        if ($rec3_5['date'] != $date) {
+            $test5_recent_value[] = $rec3_5['1500m走_min'] * 60 + $rec3_5['1500m走_sec'];
+        } else {
+            $rec3_5 = $stmt3_5->fetch(PDO::FETCH_ASSOC);
+            $test5_recent_value[] = $rec3_5['1500m走_min'] * 60 + $rec3_5['1500m走_sec'];
+        }
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 9; $j++) {
-                if($test5_recent_value[$i] >= 405 - (15 * $j)) {
+                if ($test5_recent_value[$i] >= 405 - (15 * $j)) {
                     $test5_recent_score[] = $j + 1;
                     break;
-                } 
+                }
             }
-            if ($test5_recent_value[$i] < 325) {
+            if ($test5_recent_value[$i] < 325 && $test5_recent_value[$i] != '') {
                 $test5_recent_score[] = 10;
+            } else if ($test5_recent_value[$i] == '') {
+                $test5_recent_score[] = '';
             }
         }
 
         $sql3_6 = '
-                    SELECT プロアジリティ
+                    SELECT date, プロアジリティ
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND プロアジリティ > 0
+                    WHERE player_code = ? AND date <= ? AND プロアジリティ > 0
                     ORDER BY date DESC
                 ';
         $stmt3_6 = $dbh->prepare($sql3_6);
         $data3_6[] = $player_code;
+        $data3_6[] = $date;
         $stmt3_6->execute($data3_6);
         $rec3_6 = $stmt3_6->fetch(PDO::FETCH_ASSOC);
         $test6_recent_value[] = $rec3_6['プロアジリティ'];
-        $rec3_6 = $stmt3_6->fetch(PDO::FETCH_ASSOC);
-        $test6_recent_value[] = $rec3_6['プロアジリティ'];
+        if ($rec3_6['date'] != $date) {
+            $test6_recent_value[] = $rec3_6['プロアジリティ'];
+        } else {
+            $rec3_6 = $stmt3_6->fetch(PDO::FETCH_ASSOC);
+            $test6_recent_value[] = $rec3_6['プロアジリティ'];
+        }
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test6_recent_value[$i] >= 5.3 - (0.1 * $j)) {
+                if ($test6_recent_value[$i] >= 5.3 - (0.1 * $j)) {
                     $test6_recent_score[] = $j + 1;
                     break;
                 }
             }
-            if ($test6_recent_value[$i] < 4.5) {
+            if ($test6_recent_value[$i] < 4.5 && $test6_recent_value[$i] != '') {
                 $test6_recent_score[] = 10;
+            } else if ($test6_recent_value[$i] == '') {
+                $test6_recent_score[] = '';
             }
         }
-        
+
         $sql3_7 = '
-                    SELECT 立ち幅跳び
+                    SELECT date, 立ち幅跳び
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND 立ち幅跳び > 0
+                    WHERE player_code = ? AND date <= ? AND 立ち幅跳び > 0
                     ORDER BY date DESC
                 ';
         $stmt3_7 = $dbh->prepare($sql3_7);
         $data3_7[] = $player_code;
+        $data3_7[] = $date;
         $stmt3_7->execute($data3_7);
         $rec3_7 = $stmt3_7->fetch(PDO::FETCH_ASSOC);
         $test7_recent_value[] = $rec3_7['立ち幅跳び'];
-        $rec3_7 = $stmt3_7->fetch(PDO::FETCH_ASSOC);
-        $test7_recent_value[] = $rec3_7['立ち幅跳び'];
+        if ($rec3_7['date'] != $date) {
+            $test7_recent_value[] = $rec3_7['立ち幅跳び'];
+        } else {
+            $rec3_7 = $stmt3_7->fetch(PDO::FETCH_ASSOC);
+            $test7_recent_value[] = $rec3_7['立ち幅跳び'];
+        }
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test7_recent_value[$i] <= 220 + (10 * $j)) {
+                if ($test7_recent_value[$i] == '') {
+                    $test7_recent_score[] = '';
+                    break;
+                }
+                if ($test7_recent_value[$i] <= 220 + (10 * $j)) {
                     $test7_recent_score[] = $j + 1;
                     break;
                 }
@@ -421,24 +472,33 @@ if (!isset($_SESSION['p_login'])) {
                 $test7_recent_score[] = 10;
             }
         }
-        
+
         $sql3_8 = '
-                    SELECT メディシンボール投げ
+                    SELECT date, メディシンボール投げ
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND メディシンボール投げ > 0
+                    WHERE player_code = ? AND date <= ? AND メディシンボール投げ > 0
                     ORDER BY date DESC
                 ';
         $stmt3_8 = $dbh->prepare($sql3_8);
         $data3_8[] = $player_code;
+        $data3_8[] = $date;
         $stmt3_8->execute($data3_8);
         $rec3_8 = $stmt3_8->fetch(PDO::FETCH_ASSOC);
         $test8_recent_value[] = $rec3_8['メディシンボール投げ'];
-        $rec3_8 = $stmt3_8->fetch(PDO::FETCH_ASSOC);
-        $test8_recent_value[] = $rec3_8['メディシンボール投げ'];
+        if ($rec3_8['date'] != $date) {
+            $test8_recent_value[] = $rec3_8['メディシンボール投げ'];
+        } else {
+            $rec3_8 = $stmt3_8->fetch(PDO::FETCH_ASSOC);
+            $test8_recent_value[] = $rec3_8['メディシンボール投げ'];
+        }
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test8_recent_value[$i] <= 12 + (1 * $j)) {
+                if ($test8_recent_value[$i] == '') {
+                    $test8_recent_score[] = '';
+                    break;
+                }
+                if ($test8_recent_value[$i] <= 12 + (1 * $j)) {
                     $test8_recent_score[] = $j + 1;
                     break;
                 }
@@ -449,22 +509,31 @@ if (!isset($_SESSION['p_login'])) {
         }
 
         $sql3_9 = '
-                    SELECT 垂直飛び
+                    SELECT date, 垂直飛び
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND 垂直飛び > 0
+                    WHERE player_code = ? AND date <= ? AND 垂直飛び > 0
                     ORDER BY date DESC
                 ';
         $stmt3_9 = $dbh->prepare($sql3_9);
         $data3_9[] = $player_code;
+        $data3_9[] = $date;
         $stmt3_9->execute($data3_9);
         $rec3_9 = $stmt3_9->fetch(PDO::FETCH_ASSOC);
         $test9_recent_value[] = $rec3_9['垂直飛び'];
-        $rec3_9 = $stmt3_9->fetch(PDO::FETCH_ASSOC);
-        $test9_recent_value[] = $rec3_9['垂直飛び'];
+        if ($rec3_9['date'] != $date) {
+            $test9_recent_value[] = $rec3_9['垂直飛び'];
+        } else {
+            $rec3_9 = $stmt3_9->fetch(PDO::FETCH_ASSOC);
+            $test9_recent_value[] = $rec3_9['垂直飛び'];
+        }
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test9_recent_value[$i] <= 45 + (5 * $j)) {
+                if ($test9_recent_value[$i] == '') {
+                    $test9_recent_score[] = '';
+                    break;
+                }
+                if ($test9_recent_value[$i] <= 45 + (5 * $j)) {
                     $test9_recent_score[] = $j + 1;
                     break;
                 }
@@ -475,22 +544,31 @@ if (!isset($_SESSION['p_login'])) {
         }
 
         $sql3_10 = '
-                    SELECT 背筋力
+                    SELECT date, 背筋力
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND 背筋力 > 0
+                    WHERE player_code = ? AND date <= ? AND 背筋力 > 0
                     ORDER BY date DESC
                 ';
         $stmt3_10 = $dbh->prepare($sql3_10);
         $data3_10[] = $player_code;
+        $data3_10[] = $date;
         $stmt3_10->execute($data3_10);
         $rec3_10 = $stmt3_10->fetch(PDO::FETCH_ASSOC);
         $test10_recent_value[] = $rec3_10['背筋力'];
-        $rec3_10 = $stmt3_10->fetch(PDO::FETCH_ASSOC);
-        $test10_recent_value[] = $rec3_10['背筋力'];
+        if ($rec3_10['date'] != $date) {
+            $test10_recent_value[] = $rec3_10['背筋力'];
+        } else {
+            $rec3_10 = $stmt3_10->fetch(PDO::FETCH_ASSOC);
+            $test10_recent_value[] = $rec3_10['背筋力'];
+        }
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test10_recent_value[$i] <= 110 + (10 * $j)) {
+                if ($test10_recent_value[$i] == '') {
+                    $test10_recent_score[] = '';
+                    break;
+                }
+                if ($test10_recent_value[$i] <= 110 + (10 * $j)) {
                     $test10_recent_score[] = $j + 1;
                     break;
                 }
@@ -501,22 +579,31 @@ if (!isset($_SESSION['p_login'])) {
         }
 
         $sql3_11 = '
-                    SELECT 握力
+                    SELECT date, 握力
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND 握力 > 0
+                    WHERE player_code = ? AND date <= ? AND 握力 > 0
                     ORDER BY date DESC
                 ';
         $stmt3_11 = $dbh->prepare($sql3_11);
         $data3_11[] = $player_code;
+        $data3_11[] = $date;
         $stmt3_11->execute($data3_11);
         $rec3_11 = $stmt3_11->fetch(PDO::FETCH_ASSOC);
         $test11_recent_value[] = $rec3_11['握力'];
-        $rec3_11 = $stmt3_11->fetch(PDO::FETCH_ASSOC);
-        $test11_recent_value[] = $rec3_11['握力'];
+        if ($rec3_11['date'] != $date) {
+            $test11_recent_value[] = $rec3_11['握力'];
+        } else {
+            $rec3_11 = $stmt3_11->fetch(PDO::FETCH_ASSOC);
+            $test11_recent_value[] = $rec3_11['握力'];
+        }
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test11_recent_value[$i] <= 30 + (5 * $j)) {
+                if ($test11_recent_value[$i] == '') {
+                    $test11_recent_score[] = '';
+                    break;
+                }
+                if ($test11_recent_value[$i] <= 30 + (5 * $j)) {
                     $test11_recent_score[] = $j + 1;
                     break;
                 }
@@ -527,22 +614,31 @@ if (!isset($_SESSION['p_login'])) {
         }
 
         $sql3_12 = '
-                    SELECT サイドステップ
+                    SELECT date, サイドステップ
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND サイドステップ > 0
+                    WHERE player_code = ? AND date <= ? AND サイドステップ > 0
                     ORDER BY date DESC
                 ';
         $stmt3_12 = $dbh->prepare($sql3_12);
         $data3_12[] = $player_code;
+        $data3_12[] = $date;
         $stmt3_12->execute($data3_12);
         $rec3_12 = $stmt3_12->fetch(PDO::FETCH_ASSOC);
         $test12_recent_value[] = $rec3_12['サイドステップ'];
-        $rec3_12 = $stmt3_12->fetch(PDO::FETCH_ASSOC);
-        $test12_recent_value[] = $rec3_12['サイドステップ'];
+        if ($rec3_11['date'] != $date) {
+            $test12_recent_value[] = $rec3_12['サイドステップ'];
+        } else {
+            $rec3_12 = $stmt3_12->fetch(PDO::FETCH_ASSOC);
+            $test12_recent_value[] = $rec3_12['サイドステップ'];
+        }
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
-                if($test12_recent_value[$i] <= 30 + (5 * $j)) {
+                if ($test12_recent_value[$i] == '') {
+                    $test12_recent_score[] = '';
+                    break;
+                }
+                if ($test12_recent_value[$i] <= 30 + (5 * $j)) {
                     $test12_recent_score[] = $j + 1;
                     break;
                 }
@@ -588,8 +684,6 @@ if (!isset($_SESSION['p_login'])) {
         }
 
         print '</table>';
-
-
     } catch (Exception $e) {
         var_dump($e);
         exit();
@@ -626,9 +720,10 @@ if (!isset($_SESSION['p_login'])) {
                 datasets: [{
                     label: '今回',
                     data: [js_test1_recent_score[0], js_test2_recent_score[0], js_test3_recent_score[0],
-                            js_test4_recent_score[0], js_test5_recent_score[0], js_test6_recent_score[0],
-                            js_test7_recent_score[0], js_test8_recent_score[0], js_test9_recent_score[0], 
-                            js_test10_recent_score[0], js_test11_recent_score[0], js_test12_recent_score[0]],
+                        js_test4_recent_score[0], js_test5_recent_score[0], js_test6_recent_score[0],
+                        js_test7_recent_score[0], js_test8_recent_score[0], js_test9_recent_score[0],
+                        js_test10_recent_score[0], js_test11_recent_score[0], js_test12_recent_score[0]
+                    ],
                     backgroundColor: 'RGBA(225,95,150, 0.5)',
                     borderColor: 'RGBA(225,95,150, 1)',
                     borderWidth: 1,
@@ -636,9 +731,10 @@ if (!isset($_SESSION['p_login'])) {
                 }, {
                     label: '前回',
                     data: [js_test1_recent_score[1], js_test2_recent_score[1], js_test3_recent_score[1],
-                            js_test4_recent_score[1], js_test5_recent_score[1], js_test6_recent_score[1],
-                            js_test7_recent_score[1], js_test8_recent_score[1], js_test9_recent_score[1], 
-                            js_test11_recent_score[1], js_test11_recent_score[1], js_test12_recent_score[1]],
+                        js_test4_recent_score[1], js_test5_recent_score[1], js_test6_recent_score[1],
+                        js_test7_recent_score[1], js_test8_recent_score[1], js_test9_recent_score[1],
+                        js_test11_recent_score[1], js_test11_recent_score[1], js_test12_recent_score[1]
+                    ],
                     backgroundColor: 'RGBA(115,255,25, 0.5)',
                     borderColor: 'RGBA(115,255,25, 1)',
                     borderWidth: 1,
@@ -655,7 +751,7 @@ if (!isset($_SESSION['p_login'])) {
                         suggestedMin: 0,
                         suggestedMax: 10,
                         stepSize: 1,
-                        callback: function (value, index, values) {
+                        callback: function(value, index, values) {
                             return value + '点'
                         }
                     }
