@@ -1,3 +1,9 @@
+<!-- 
+    選手のサインアップ画面です。
+    所属(belong_code)、氏名(player_name)、パスワード(player_password)、パスワード確認(player_password2)の
+    入力を受け付ける。
+ -->
+
 <?php
     session_start();
     session_regenerate_id(true);
@@ -14,7 +20,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p_signup_top</title>
+    <title>p_signup_top.php</title>
 </head>
 <body>
 

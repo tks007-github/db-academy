@@ -1,3 +1,10 @@
+<!-- 
+    p_signup_top.phpから所属(belong_code)、氏名(player_name)、パスワード(player_password)、パスワード確認(player_password2)を
+    受け取り、入力漏れがないかの確認をする。
+    入力漏れがない場合→p_signup_check.phpへリダイレクト
+    入力漏れがある場合→エラーメッセージの表示(戻るボタンでp_signup_topへ戻す)
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);
@@ -15,7 +22,7 @@ if (!isset($_SESSION['p_signup_login'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p_signup_top_check</title>
+    <title>p_signup_top_check.php</title>
 </head>
 
 <body>
@@ -27,7 +34,7 @@ if (!isset($_SESSION['p_signup_login'])) {
     // POSTの中身をすべてサニタイズする
     $post = sanitize($_POST);
 
-    // p_signup_top.htmlからmst_passwordを受け取る
+    // p_signup_top.phpからbelong_code、player_name、player_password、player_password2を受け取る
     $belong_code = $post['belong_code'];
     $player_name = $post['player_name'];
     $player_password = $post['player_password'];

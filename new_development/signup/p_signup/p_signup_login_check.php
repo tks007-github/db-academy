@@ -1,3 +1,10 @@
+<!-- 
+	p_signup_login.phpからパスワード(mst_password)を受け取って、
+	正しいパスワードが入力されたかの確認を行います。
+	パスワード(mst_password)が正しい場合→p_signup_top.phpへリダイレクト
+	パスワード(mst_password)が正しくない場合→p_signup_login.phpへリダイレクト
+ -->
+
 <?php
 
 // 自作のsanitize関数を呼び出す

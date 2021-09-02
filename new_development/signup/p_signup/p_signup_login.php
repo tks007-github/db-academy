@@ -1,3 +1,8 @@
+<!-- 
+    選手のサインアップページへのログイン画面です。
+    選手は管理者から教えてもらっったパスワード(mst_password)を用いてログインをします。
+ -->
+
 <?php
     session_start();
     session_regenerate_id(true);
