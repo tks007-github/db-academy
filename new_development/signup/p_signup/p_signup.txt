@@ -1,0 +1,8 @@
+【概要】
+選手のサインアップを行います。
+
+【SESSION変数一覧】
+p_signup_login      // 1:ログイン中
+p_signup_login_ng   // 1:ログイン失敗
+
+
