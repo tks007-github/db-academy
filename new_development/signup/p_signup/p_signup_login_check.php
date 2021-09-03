@@ -44,7 +44,7 @@ try {
 session_start();
 if ($rec['mst_code'] == 1) {					// データベースからの問い合わせ結果があった場合(mst_passwordが正しかった場合)	
 	$_SESSION['p_signup_login'] = 1;				// SESSION['p_signup_login']に1をセット(ログイン状態を表す)
-	unset($_SESSION['p_signup_login_ng']);			// SESSION['p_signup_login_ng']を削除
+	unset($_SESSION['p_signup_login_ng']);			// SESSION['p_signup_login_ng']を削除(初期化)
 	header('Location:p_signup_top.php');			// p_signup_top.phpへリダイレクト
 	exit();
 } else {										// データベースからの問い合わせ結果がない場合(mst_passwordが正しくなかった場合)

@@ -9,9 +9,14 @@
     session_regenerate_id(true);
     if (!isset($_SESSION['p_signup_login'])) {
         print 'ログインされていません。<br>';
-        print '<a href="p_signup_login.html">ログイン画面へ</a>';
+        print '<a href="p_signup_login.php">ログイン画面へ</a>';
         exit();
     }
+
+    // SESSION変数(playerテーブルにインサートする内容を表す変数)の削除(初期化)
+    unset($_SESSION['belong_code']);
+    unset($_SESSION['player_name']);
+    unset($_SESSION['player_password']);
 ?>
 
 <!DOCTYPE html>
