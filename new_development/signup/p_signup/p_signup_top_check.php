@@ -2,7 +2,7 @@
     p_signup_top.phpから所属(belong_code)、氏名(player_name)、パスワード(player_password)、パスワード確認(player_password2)を
     受け取り、入力漏れがないかの確認をする。
     入力漏れがない場合→p_signup_check.phpへリダイレクト
-    入力漏れがある場合→エラーメッセージの表示(戻るボタンでp_signup_topへ戻す)
+    入力漏れがある場合→エラーメッセージの表示(戻るボタンでp_signup_top.phpへ戻す)
  -->
 
 <?php

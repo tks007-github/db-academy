@@ -1,3 +1,9 @@
+<!-- 
+    p_signup_top.phpで入力された所属(belong_code)、氏名(player_name)、パスワード(player_password)を
+    playerテーブルにインサートする。
+    その際、パスワード(player_password)はmd5で暗号化する。
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);
@@ -35,6 +41,7 @@ if (!isset($_SESSION['p_signup_login'])) {
     $belong_name['A'] = '新川高校';
     $belong_name['B'] = 'D.B.アカデミー';
 
+    // DB接続
     try {
 
         // db_academyデータベースに接続

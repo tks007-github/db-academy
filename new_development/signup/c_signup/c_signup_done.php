@@ -1,12 +1,19 @@
+<!-- 
+    c_signup_top.phpで入力された氏名(coach_name)、パスワード(coach_password)を
+    coachテーブルにインサートする。
+    その際、パスワード(coach_password)はmd5で暗号化する。
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);
 if (!isset($_SESSION['c_signup_login'])) {
     print 'ログインされていません。<br>';
-    print '<a href="c_signup_login.html">ログイン画面へ</a>';
+    print '<a href="c_signup_login.php">ログイン画面へ</a>';
     exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -15,7 +22,7 @@ if (!isset($_SESSION['c_signup_login'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>c_signup_done</title>
+    <title>c_signup_done.php</title>
 </head>
 
 <body>
@@ -23,11 +30,15 @@ if (!isset($_SESSION['c_signup_login'])) {
     <h3>新規登録完了</h3>
 
     <?php
+
+    // c_signup_top_check.phpから渡された値をセッションで受け取る
+    $coach_name = $_SESSION['coach_name'];
+    $coach_password = $_SESSION['coach_password'];
+    // coach_codeをmd5で暗号化
+    $coach_password = md5($coach_password);
+
+    // DB接続
     try {
-        // c_signup_top_check.phpから渡された値をセッションで受け取る
-        $coach_name = $_SESSION['coach_name'];
-        $coach_password = $_SESSION['coach_password'];
-        $coach_password = md5($coach_password);
 
         // db_academyデータベースに接続
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8mb4';
@@ -52,7 +63,7 @@ if (!isset($_SESSION['c_signup_login'])) {
         // coach_codeを決定
         $coach_code = 'C' . sprintf('%04d', $new_coach_code);
 
-        // coachテーブルにINSERT文で選手の追加
+        // coachテーブルにINSERT文で管理者の追加
         $sql3 = 'INSERT INTO coach (coach_code, coach_name, coach_password) VALUES (?, ?, ?)';
         $stmt3 = $dbh->prepare($sql3);
         $data3[] = $coach_code;
@@ -62,21 +73,20 @@ if (!isset($_SESSION['c_signup_login'])) {
 
         // db_academyデータベースから切断
         $dbh = null;
-
-        print '以下の情報を登録しました。<br>';
-        print '管理者コード：' . $coach_code . '<br>';
-        print '氏名：' . $coach_name . '<br>';
-        print 'パスワード：' . $_SESSION['coach_password'] . '<br>';
-        
     } catch (Exception $e) {
         var_dump($e);
         exit();
     }
 
-    ?>
+    print '以下の情報を登録しました。<br>';
+    print '管理者コードとパスワードは忘れないようにしてください。<br>';
+    print '<br>';
+    print '管理者コード：' . $coach_code . '<br>';
+    print '氏名：' . $coach_name . '<br>';
+    print 'パスワード：' . $_SESSION['coach_password'] . '<br>';
 
-    <br>
-    <a href="../../coach/c_top/c_top_login.html">トップ画面</a>
+
+    ?>
 
 </body>
 

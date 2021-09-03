@@ -1,9 +1,16 @@
+<!-- 
+    c_signup_top.phpから氏名(coach_name)、パスワード(coach_password)、パスワード確認(player_password2)を
+    受け取り、入力漏れがないかの確認をする。
+    入力漏れがない場合→c_signup_check.phpへリダイレクト
+    入力漏れがある場合→エラーメッセージの表示(戻るボタンでc_signup_top.phpへ戻す)
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);
 if (!isset($_SESSION['c_signup_login'])) {
     print 'ログインされていません。<br>';
-    print '<a href="c_signup_login.html">ログイン画面へ</a>';
+    print '<a href="c_signup_login.php">ログイン画面へ</a>';
     exit();
 }
 ?>
@@ -15,7 +22,7 @@ if (!isset($_SESSION['c_signup_login'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>c_signup_top_check</title>
+    <title>c_signup_top_check.php</title>
 </head>
 
 <body>
@@ -27,7 +34,7 @@ if (!isset($_SESSION['c_signup_login'])) {
     // POSTの中身をすべてサニタイズする
     $post = sanitize($_POST);
 
-    // c_signup_top.htmlからmst_passwordを受け取る
+    // c_signup_top.phpからmst_passwordを受け取る
     $coach_name = $post['coach_name'];
     $coach_password = $post['coach_password'];
     $coach_password2 = $post['coach_password2'];

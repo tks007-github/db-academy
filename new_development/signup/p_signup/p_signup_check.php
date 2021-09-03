@@ -1,3 +1,9 @@
+<!-- 
+    p_signup_top.phpで入力された情報で登録して良いかの最終確認。
+    登録→p_signup_done.php
+    戻る→p_signup_top.php
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);

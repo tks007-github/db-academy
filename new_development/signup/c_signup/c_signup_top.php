@@ -1,11 +1,21 @@
+<!-- 
+    コーチのサインアップ画面です。
+    氏名(coach_name)、パスワード(coach_password)、パスワード確認(coach_password2)の
+    入力を受け付ける。
+ -->
+
 <?php
     session_start();
     session_regenerate_id(true);
     if (!isset($_SESSION['c_signup_login'])) {
         print 'ログインされていません。<br>';
-        print '<a href="c_signup_login.html">ログイン画面へ</a>';
+        print '<a href="c_signup_login.php">ログイン画面へ</a>';
         exit();
     }
+
+    // SESSION変数(coachテーブルにインサートする内容を表す変数)の削除(初期化)
+    unset($_SESSION['coach_name']);
+    unset($_SESSION['coach_password']);
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +24,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>c_signup_top</title>
+    <title>c_signup_top.php</title>
 </head>
 <body>
 

@@ -1,0 +1,12 @@
+【SESSION変数一覧】
+// ログイン状態を表す変数
+c_signup_login      // 1:ログイン中
+
+// ログイン失敗を表す変数
+// c_signup_login_check.phpで入力されたパスワード(mst_password)が正しかった場合に削除(初期化)
+c_signup_login_ng   // 1:ログイン失敗
+
+// coachテーブルにインサートする内容を表す変数
+// c_signup_top.phpにて削除(初期化)
+coach_name         // コーチの名前
+coach_password     // コーチのパスワード

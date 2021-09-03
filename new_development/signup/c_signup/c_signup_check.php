@@ -1,9 +1,15 @@
+<!-- 
+    c_signup_top.phpで入力された情報で登録して良いかの最終確認。
+    登録→c_signup_done.php
+    戻る→c_signup_top.php
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);
 if (!isset($_SESSION['c_signup_login'])) {
     print 'ログインされていません。<br>';
-    print '<a href="c_signup_login.html">ログイン画面へ</a>';
+    print '<a href="c_signup_login.php">ログイン画面へ</a>';
     exit();
 }
 ?>
