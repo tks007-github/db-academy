@@ -15,7 +15,7 @@ if (!isset($_SESSION['p_signup_login'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p_signup_done</title>
+    <title>p_signup_done.php</title>
 </head>
 
 <body>
@@ -23,16 +23,19 @@ if (!isset($_SESSION['p_signup_login'])) {
     <h3>新規登録完了</h3>
 
     <?php
-    try {
-        // p_signup_top_check.phpから渡された値をセッションで受け取る
-        $belong_code = $_SESSION['belong_code'];
-        $player_name = $_SESSION['player_name'];
-        $player_password = $_SESSION['player_password'];
-        $player_password = md5($player_password);
 
-        // belong_codeからbelong_nameを得るための連想配列を用意
-        $belong_name['A'] = '新川高校';
-        $belong_name['B'] = 'D.B.アカデミー';
+    // p_signup_top_check.phpから渡された値をセッションで受け取る
+    $belong_code = $_SESSION['belong_code'];
+    $player_name = $_SESSION['player_name'];
+    $player_password = $_SESSION['player_password'];
+    // player_passwordをmd5で暗号化
+    $player_password = md5($player_password);
+
+    // belong_codeからbelong_nameを得るための連想配列を用意
+    $belong_name['A'] = '新川高校';
+    $belong_name['B'] = 'D.B.アカデミー';
+
+    try {
 
         // db_academyデータベースに接続
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8mb4';
@@ -70,24 +73,22 @@ if (!isset($_SESSION['p_signup_login'])) {
 
         // player_managementデータベースから切断
         $dbh = null;
-
-        print '以下の情報を登録しました。<br>';
-        print '下記のリンクからログインし、問診票の入力を完了してください。<br>';
-        print '<br>';
-        print '会員コード：' . $player_code . '<br>';
-        print '所属：' . $belong_name[$belong_code] . '<br>';
-        print '氏名：' . $player_name . '<br>';
-        print 'パスワード：' . $_SESSION['player_password'] . '<br>';
-        
     } catch (Exception $e) {
         var_dump($e);
         exit();
     }
 
-    ?>
 
-    <br>
-    <a href="../../player/p_top/p_top_login.html">トップ画面</a>
+    print '以下の情報を登録しました。<br>';
+    print '会員コードとパスワードは忘れないようにしてください。<br>';
+    print '<br>';
+    print '会員コード：' . $player_code . '<br>';
+    print '所属：' . $belong_name[$belong_code] . '<br>';
+    print '氏名：' . $player_name . '<br>';
+    print 'パスワード：' . $_SESSION['player_password'] . '<br>';   // $player_passwordは暗号化されてしまっているのでSESSION変数を用いている
+
+
+    ?>
 
 </body>
 
