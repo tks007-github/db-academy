@@ -1,12 +1,24 @@
+<!-- 
+    選手ページのトップ画面です。
+    以下のページへのリンクを用意します。
+
+    問診票→p_questionnaire_top_branch.php
+    身体情報→p_phisical_info_top_branch.php
+    フィジカルテスト→p_phisical_test_top.php
+
+    パスワード変更→p_top_password_change.php
+    ログアウト→p_top_logout.php
+ -->
+
 <?php
     session_start();
     session_regenerate_id(true);
-    if (!isset($_SESSION['p_login'])) {
+    if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない場合(SESSION['p_login']が未定義の場合)
         print 'ログインされていません。<br>';
-        print '<a href="p_top_login.html">ログイン画面へ</a>';
+        print '<a href="p_top_login.php">ログイン画面へ</a>';
         exit();
-    } else {
-        if (!isset($_SESSION['c_login'])) {
+    } else {                                // 選手でログイン状態の場合(SESSION['p_login']が定義されている(=1)の場合)
+        if (!isset($_SESSION['c_login'])) {         // 管理者でログイン状態の場合(SESSION[''])
             print $_SESSION['player_name'];
             print 'さんログイン中<br>';
             print '<br>';
@@ -25,7 +37,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p_top</title>
+    <title>p_top.php</title>
 </head>
 <body>
 
@@ -36,7 +48,7 @@
     <a href="../p_phisical_info/p_phisical_info_top_branch.php">身体情報</a><br>
     <a href="../p_phisical_test/p_phisical_test_top.php">フィジカルテスト</a><br>
     <br><br>
-    <a href="p_top_pass_change.php">パスワードの変更はこちらから</a>
+    <a href="p_top_password_change.php">パスワードの変更はこちらから</a>
     <br><br>
 
     <?php
