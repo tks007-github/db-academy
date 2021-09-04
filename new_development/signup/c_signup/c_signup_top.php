@@ -13,9 +13,6 @@
         exit();
     }
 
-    // SESSION変数(coachテーブルにインサートする内容を表す変数)の削除(初期化)
-    unset($_SESSION['coach_name']);
-    unset($_SESSION['coach_password']);
 ?>
 
 <!DOCTYPE html>
