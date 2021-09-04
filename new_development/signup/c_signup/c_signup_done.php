@@ -79,9 +79,9 @@ if (!isset($_SESSION['c_signup_login'])) {
     }
 
     print '以下の情報を登録しました。<br>';
-    print '管理者コードとパスワードは忘れないようにしてください。<br>';
+    print 'コーチコードとパスワードは忘れないようにしてください。<br>';
     print '<br>';
-    print '管理者コード：' . $coach_code . '<br>';
+    print 'コーチコード：' . $coach_code . '<br>';
     print '氏名：' . $coach_name . '<br>';
     print 'パスワード：' . $_SESSION['coach_password'] . '<br>';
 

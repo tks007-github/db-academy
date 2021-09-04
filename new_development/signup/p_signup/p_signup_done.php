@@ -87,9 +87,9 @@ if (!isset($_SESSION['p_signup_login'])) {
 
 
     print '以下の情報を登録しました。<br>';
-    print '会員コードとパスワードは忘れないようにしてください。<br>';
+    print '選手コードとパスワードは忘れないようにしてください。<br>';
     print '<br>';
-    print '会員コード：' . $player_code . '<br>';
+    print '選手コード：' . $player_code . '<br>';
     print '所属：' . $belong_name[$belong_code] . '<br>';
     print '氏名：' . $player_name . '<br>';
     print 'パスワード：' . $_SESSION['player_password'] . '<br>';   // $player_passwordは暗号化されてしまっているのでSESSION変数を用いている

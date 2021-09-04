@@ -29,6 +29,11 @@
         }
     }
 
+    // SESSION変数(ログインしている選手情報を表す変数)の削除(初期化)
+    unset($_SESSION['player_code']);
+    unset($_SESSION['player_name']);
+    unset($_SESSION['belong_code']);
+
     // SESSION変数(パスワード変更をする内容を表す変数)の削除(初期化)
     unset($_SESSION['new_plaeyr_password']);
 ?>
