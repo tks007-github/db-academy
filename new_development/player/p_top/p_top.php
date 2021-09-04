@@ -53,9 +53,9 @@
 
     <?php
 
-    if (!isset($_SESSION['c_login'])) {
+    if (!isset($_SESSION['c_login'])) {     // 管理者でログイン状態でない場合(SESSION['c_login']が未定義の場合)
         print '<input type="button" onclick="location.href=\'p_top_logout.php\'" value="ログアウト">';
-    } else {
+    } else {                                // 管理者でログイン状態の場合(SESSION['c_login']が定義されている(=1)の場合)
         print '<input type="button" onclick="location.href=\'../../coach/c_search/c_search_list.php\'" value="戻る">';
     }
     
