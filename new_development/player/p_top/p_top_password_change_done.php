@@ -1,3 +1,8 @@
+<!-- 
+    p_top_password_change_checkから受け取った新しいパスワード(new_player_password)を
+    playerテーブルにアップデートする。
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);
