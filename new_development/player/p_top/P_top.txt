@@ -8,11 +8,10 @@ p_login      // 1:ログイン中
 p_signup_login_ng   // 1:ログイン失敗
 
 // ログインしている選手情報を表す変数
-// p_top.phpで削除(初期化)
+// ログアウト時(p_top_logout.php)に削除(初期化)
 player_code     // 選手コード
 player_name     // 氏名
 belong_code     // 所属コード
-
 
 // パスワード変更をする内容を表す変数
 // p_top.phpで削除(初期化)

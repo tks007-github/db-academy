@@ -2,10 +2,10 @@
 session_start();
 session_regenerate_id(true);
 
-try {
-    // player_codeをセッションで受け取る
-    $player_code = $_SESSION['player_code'];
+// player_codeをセッションで受け取る
+$player_code = $_SESSION['player_code'];
 
+try {
     // db_academyデータベースに接続する
     $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
     $user = 'root';
@@ -19,22 +19,22 @@ try {
             FROM questionnaire 
             WHERE player_code = ?
             ';
-    $stmt = $dbh -> prepare($sql);
+    $stmt = $dbh->prepare($sql);
     $data[] = $player_code;
-    $stmt -> execute($data);
-    $rec = $stmt -> fetch(PDO::FETCH_ASSOC);
+    $stmt->execute($data);
+    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // player_managementデータベースから切断する
     $dbh = null;
-
-    if ($rec == '') {                     // データベースからの問い合わせ結果がない場合
-        header('Location: p_questionnaire_add.php');
-        exit();
-    } else {                              // データベースからの問い合わせ結果があった場合
-        header('Location: p_questionnaire_edit.php');
-        exit();
-    }
 } catch (Exception $e) {
     var_dump($e);
+    exit();
+}
+
+if ($rec == '') {                     // データベースからの問い合わせ結果がない場合
+    header('Location: p_questionnaire_add.php');
+    exit();
+} else {                              // データベースからの問い合わせ結果があった場合
+    header('Location: p_questionnaire_edit.php');
     exit();
 }
