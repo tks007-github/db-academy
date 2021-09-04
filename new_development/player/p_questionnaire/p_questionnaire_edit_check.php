@@ -1,3 +1,9 @@
+<!-- 
+    p_questionnaire_edit.phpからの入力情報をチェックし、遷移先を決定する。
+    問題なし→p_questionnaire_edit_done.phpへリダイレクト
+    問題あり→エラーメッセージを出力し、戻るボタンでp_questionnaire_edit.phpへ遷移
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);

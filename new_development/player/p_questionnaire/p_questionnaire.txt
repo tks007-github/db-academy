@@ -1,6 +1,6 @@
 【SESSION変数一覧】
 // 問診表の登録・編集内容を表す変数
-// p_questionnaire_add.phpにて初期化
+// p_questionnaire_add.php・p_questionnaire_edit.phpにて初期化
 injury?_name        // 怪我の名前(?には1から10までの値が入る)
 injury?_status      // 怪我の状態(?には1から10までの値が入る)
 injury?_year        // 怪我の年(?には1から10までの値が入る)
@@ -14,3 +14,4 @@ sick?_status        // 病気の状態(?には1から5までの値が入る)
 sick?_year          // 病気の年(?には1から5までの値が入る)
 sick?_month         // 病気の月(?には1から5までの値が入る)
 note                // メモ
+

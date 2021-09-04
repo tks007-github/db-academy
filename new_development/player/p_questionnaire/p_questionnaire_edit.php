@@ -1,22 +1,27 @@
+<!-- 
+    問診表の編集画面です。
+    function.phpのユーザ定義関数のselect_status()、select_year()、select_month()を利用する。
+ -->
+
 <?php
-    session_start();
-    session_regenerate_id(true);
-    if (!isset($_SESSION['p_login'])) {
-        print 'ログインされていません。<br>';
-        print '<a href="../p_top/p_top_login.html">ログイン画面へ</a>';
-        exit();
+session_start();
+session_regenerate_id(true);
+if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない場合(SESSION['p_login']が未定義の場合)
+    print 'ログインされていません。<br>';
+    print '<a href="p_top_login.php">ログイン画面へ</a>';
+    exit();
+} else {                                // 選手でログイン状態の場合(SESSION['p_login']が定義されている(=1)の場合)
+    if (!isset($_SESSION['c_login'])) {         // 管理者でログイン状態の場合(SESSION[''])
+        print $_SESSION['player_name'];
+        print 'さんログイン中<br>';
+        print '<br>';
     } else {
-        if (!isset($_SESSION['c_login'])) {
-            print $_SESSION['player_name'];
-            print 'さんログイン中<br>';
-            print '<br>';
-        } else {
-            print $_SESSION['coach_name'];
-            print 'さんログイン中<br>';
-            print '選手検索：' . $_SESSION['player_name'];
-        }
-        
+        print $_SESSION['coach_name'];
+        print 'さんログイン中<br>';
+        print '選手検索：' . $_SESSION['player_name'];
     }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -34,13 +39,14 @@
     <h3>問診表の編集</h3>
 
     <?php
+
+    // 自作の関数を呼び出す
+    require_once('../../function/function.php');
+
+    // player_codeをSESSIONで受け取る
+    $player_code = $_SESSION['player_code'];
+
     try {
-        // 自作の関数を呼び出す
-	    require_once('../../function/function.php');
-
-        // player_codeをセッションで受け取る
-        $player_code = $_SESSION['player_code'];
-
         // player_managementデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
         $user = 'root';
@@ -48,7 +54,7 @@
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // questionnaireテーブルから会員コードを使って情報を検索
+        // questionnaireテーブルから選手コードを使って情報を検索
         $sql = '
                 SELECT *
                 FROM questionnaire 
@@ -61,71 +67,73 @@
 
         // player_managementデータベースから切断する
         $dbh = null;
-
-        print '<form method="post" action="p_questionnaire_edit_check.php">';
-
-        // 怪我の情報
-        print '怪我<br>';
-        for ($i = 1; $i <= 10; $i++) {
-            $injury_name = 'injury' . (string)$i . '_name';
-            $injury_status = 'injury' . (string)$i . '_status';
-            $injury_year = 'injury' . (string)$i . '_year';
-            $injury_month = 'injury' . (string)$i . '_month';
-
-            print $i . '.　';
-            print '<input type="text" name="' . $injury_name . '" value="' . $rec[$injury_name] . '">　';
-            print select_status($injury_status, $rec[$injury_status]) . '　';
-            print select_year($injury_year, $rec[$injury_year]) . '年　';
-            print select_month($injury_month, $rec[$injury_month]) . '月<br>';
-        }
-        print '<br>';
-
-        // アレルギーの情報
-        print 'アレルギー<br>';
-        for ($i = 1; $i <= 5; $i++) {
-            $allergy_name = 'allergy' . (string)$i . '_name';
-            $allergy_status = 'allergy' . (string)$i . '_status';
-            $allergy_year = 'allergy' . (string)$i . '_year';
-            $allergy_month = 'allergy' . (string)$i . '_month';
-
-            print $i . '.　';
-            print '<input type="text" name="' . $allergy_name . '" value="' . $rec[$allergy_name] . '">　';
-            print select_status($allergy_status, $rec[$allergy_status]) . '　';
-            print select_year($allergy_year, $rec[$allergy_year]) . '年　';
-            print select_month($allergy_month, $rec[$allergy_month]) . '月<br>';
-        }
-        print '<br>';
-
-        // 病気の情報
-        print '病気<br>';
-        for ($i = 1; $i <= 5; $i++) {
-            $sick_name = 'sick' . (string)$i . '_name';
-            $sick_status = 'sick' . (string)$i . '_status';
-            $sick_year = 'sick' . (string)$i . '_year';
-            $sick_month = 'sick' . (string)$i . '_month';
-
-            print $i . '.　';
-            print '<input type="text" name="' . $sick_name . '" value="' . $rec[$sick_name] . '">　';
-            print select_status($sick_status, $rec[$sick_status]) . '　';
-            print select_year($sick_year, $rec[$sick_year]) . '年　';
-            print select_month($sick_month, $rec[$sick_month]) . '月<br>';
-        }
-        print '<br>';
-
-        // メモの情報
-        print 'メモ<br>';
-        print '<textarea name="note" rows="4" cols="40">' . $rec['note'] . '</textarea><br>';
-
-        print '<br><br>';
-
-        print '<input type="button" onclick="location.href=\'../p_top/p_top.php\'" value="戻る">';
-        print '<input type="submit" value="編集">';
-        print '</form>';
-
     } catch (Exception $e) {
         var_dump($e);
         exit();
     }
+
+    print '<form method="post" action="p_questionnaire_edit_check.php">';
+
+    // 怪我の情報
+    print '怪我<br>';
+    for ($i = 1; $i <= 10; $i++) {
+        $injury_name = 'injury' . (string)$i . '_name';
+        $injury_status = 'injury' . (string)$i . '_status';
+        $injury_year = 'injury' . (string)$i . '_year';
+        $injury_month = 'injury' . (string)$i . '_month';
+
+        print $i . '.　';
+        print '<input type="text" name="' . $injury_name . '" value="' . $rec[$injury_name] . '">　';
+        print select_status($injury_status, $rec[$injury_status]) . '　';
+        print select_year($injury_year, $rec[$injury_year]) . '年　';
+        print select_month($injury_month, $rec[$injury_month]) . '月<br>';
+    }
+    print '<br>';
+
+    // アレルギーの情報
+    print 'アレルギー<br>';
+    for ($i = 1; $i <= 5; $i++) {
+        $allergy_name = 'allergy' . (string)$i . '_name';
+        $allergy_status = 'allergy' . (string)$i . '_status';
+        $allergy_year = 'allergy' . (string)$i . '_year';
+        $allergy_month = 'allergy' . (string)$i . '_month';
+
+        print $i . '.　';
+        print '<input type="text" name="' . $allergy_name . '" value="' . $rec[$allergy_name] . '">　';
+        print select_status($allergy_status, $rec[$allergy_status]) . '　';
+        print select_year($allergy_year, $rec[$allergy_year]) . '年　';
+        print select_month($allergy_month, $rec[$allergy_month]) . '月<br>';
+    }
+    print '<br>';
+
+    // 病気の情報
+    print '病気<br>';
+    for ($i = 1; $i <= 5; $i++) {
+        $sick_name = 'sick' . (string)$i . '_name';
+        $sick_status = 'sick' . (string)$i . '_status';
+        $sick_year = 'sick' . (string)$i . '_year';
+        $sick_month = 'sick' . (string)$i . '_month';
+
+        print $i . '.　';
+        print '<input type="text" name="' . $sick_name . '" value="' . $rec[$sick_name] . '">　';
+        print select_status($sick_status, $rec[$sick_status]) . '　';
+        print select_year($sick_year, $rec[$sick_year]) . '年　';
+        print select_month($sick_month, $rec[$sick_month]) . '月<br>';
+    }
+    print '<br>';
+
+    // メモの情報
+    print 'メモ<br>';
+    print '<textarea name="note" rows="4" cols="40">' . $rec['note'] . '</textarea><br>';
+    print '<br>';
+
+    print '<br><br>';
+
+    print '<input type="button" onclick="location.href=\'../p_top/p_top.php\'" value="戻る">';
+    print '<input type="submit" value="編集">';
+    print '</form>';
+
+
     ?>
 
 </body>
