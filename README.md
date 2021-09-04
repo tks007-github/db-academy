@@ -1,13 +1,13 @@
 # db-academy
 
 【取組中】
-p_phisical_test_graph_test1.php
+p_questionnaire_edit.php
 
 【未完成】
 p_phisical_test_result.php
 
 【説明】
-developmentディレクトリ
+new_developmentディレクトリ
 
 パスワード
 →マスターパスワード:xxx、管理者パスワード:ccc
