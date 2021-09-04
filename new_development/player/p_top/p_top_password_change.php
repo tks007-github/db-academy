@@ -22,8 +22,9 @@
             print 'さんログイン中<br>';
             print '選手検索：' . $_SESSION['player_name'];
         }
-        
     }
+
+    
 ?>
 
 <!DOCTYPE html>

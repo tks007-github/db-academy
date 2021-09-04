@@ -27,8 +27,10 @@
             print 'さんログイン中<br>';
             print '選手検索：' . $_SESSION['player_name'];
         }
-        
     }
+
+    // SESSION変数(パスワード変更をする内容を表す変数)の削除(初期化)
+    unset($_SESSION['new_plaeyr_password']);
 ?>
 
 <!DOCTYPE html>

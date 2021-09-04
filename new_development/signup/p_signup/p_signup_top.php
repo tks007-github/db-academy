@@ -13,7 +13,7 @@
         exit();
     }
 
-    // SESSION変数(playerテーブルにインサートする内容を表す変数)の削除(初期化)
+    // SESSION変数(サインアップする内容を表す変数)の削除(初期化)
     unset($_SESSION['belong_code']);
     unset($_SESSION['player_name']);
     unset($_SESSION['player_password']);

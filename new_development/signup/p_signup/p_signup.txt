@@ -6,7 +6,7 @@ p_signup_login      // 1:ログイン中
 // p_signup_login_check.phpで入力されたパスワード(mst_password)が正しかった場合に削除(初期化)
 p_signup_login_ng   // 1:ログイン失敗
 
-// playerテーブルにインサートする内容を表す変数
+// サインアップする内容を表す変数
 // p_signup_top.phpにて削除(初期化)
 belong_code         // 1:新川高校  2:D.B.アカデミー  
 player_name         // 選手の名前

@@ -6,3 +6,7 @@ p_login      // 1:ログイン中
 // ログイン失敗を表す変数
 // p_top_login_check.phpで入力されたパスワード(mst_password)が正しかった場合に削除(初期化)
 p_signup_login_ng   // 1:ログイン失敗
+
+// パスワード変更をする内容を表す変数
+// p_top.phpで削除(初期化)
+new_player_password     // 新しいパスワード
