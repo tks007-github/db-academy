@@ -84,7 +84,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     // メモの情報
     $note = $_SESSION['note'];
 
-
+    // DB接続
     try {
         // db_academyデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';

@@ -1,22 +1,27 @@
+<!-- 
+    p_questionnaire_edit_check.phpから受け取った問診表の情報をquestionnaireテーブルに
+    アップデートする。
+ -->
+
 <?php
-    session_start();
-    session_regenerate_id(true);
-    if (!isset($_SESSION['p_login'])) {
-        print 'ログインされていません。<br>';
-        print '<a href="../p_top/p_top_login.html">ログイン画面へ</a>';
-        exit();
+session_start();
+session_regenerate_id(true);
+if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない場合(SESSION['p_login']が未定義の場合)
+    print 'ログインされていません。<br>';
+    print '<a href="p_top_login.php">ログイン画面へ</a>';
+    exit();
+} else {                                // 選手でログイン状態の場合(SESSION['p_login']が定義されている(=1)の場合)
+    if (!isset($_SESSION['c_login'])) {         // 管理者でログイン状態の場合(SESSION[''])
+        print $_SESSION['player_name'];
+        print 'さんログイン中<br>';
+        print '<br>';
     } else {
-        if (!isset($_SESSION['c_login'])) {
-            print $_SESSION['player_name'];
-            print 'さんログイン中<br>';
-            print '<br>';
-        } else {
-            print $_SESSION['coach_name'];
-            print 'さんログイン中<br>';
-            print '選手検索：' . $_SESSION['player_name'];
-        }
-        
+        print $_SESSION['coach_name'];
+        print 'さんログイン中<br>';
+        print '選手検索：' . $_SESSION['player_name'];
     }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -34,52 +39,53 @@
     <h3>問診表の編集完了</h3>
 
     <?php
+
+
+    // p_questionnaire_edit_check.phpから怪我(injury)、アレルギー(allergy)、病気(sick)の情報を受け取る
+    // 怪我の情報
+    for ($i = 1; $i <= 10; $i++) {
+        $injury_name = 'injury' . (string)$i . '_name';
+        $injury_status = 'injury' . (string)$i . '_status';
+        $injury_year = 'injury' . (string)$i . '_year';
+        $injury_month = 'injury' . (string)$i . '_month';
+
+        $injury_name_array[$i] = $_SESSION[$injury_name];
+        $injury_status_array[$i] = $_SESSION[$injury_status];
+        $injury_year_array[$i] = $_SESSION[$injury_year];
+        $injury_month_array[$i] = $_SESSION[$injury_month];
+    }
+
+    // アレルギーの情報
+    for ($i = 1; $i <= 5; $i++) {
+        $allergy_name = 'allergy' . (string)$i . '_name';
+        $allergy_status = 'allergy' . (string)$i . '_status';
+        $allergy_year = 'allergy' . (string)$i . '_year';
+        $allergy_month = 'allergy' . (string)$i . '_month';
+
+        $allergy_name_array[$i] = $_SESSION[$allergy_name];
+        $allergy_status_array[$i] = $_SESSION[$allergy_status];
+        $allergy_year_array[$i] = $_SESSION[$allergy_year];
+        $allergy_month_array[$i] = $_SESSION[$allergy_month];
+    }
+
+    // 病気の情報
+    for ($i = 1; $i <= 5; $i++) {
+        $sick_name = 'sick' . (string)$i . '_name';
+        $sick_status = 'sick' . (string)$i . '_status';
+        $sick_year = 'sick' . (string)$i . '_year';
+        $sick_month = 'sick' . (string)$i . '_month';
+
+        $sick_name_array[$i] = $_SESSION[$sick_name];
+        $sick_status_array[$i] = $_SESSION[$sick_status];
+        $sick_year_array[$i] = $_SESSION[$sick_year];
+        $sick_month_array[$i] = $_SESSION[$sick_month];
+    }
+
+    // メモの情報
+    $note = $_SESSION['note'];
+
+    // DB接続
     try {
-
-        // p_questionnaire_edit_check.phpから怪我(injury)、アレルギー(allergy)、病気(sick)の情報を受け取る
-        // 怪我の情報
-        for ($i = 1; $i <= 10; $i++) {
-            $injury_name = 'injury' . (string)$i . '_name';
-            $injury_status = 'injury' . (string)$i . '_status';
-            $injury_year = 'injury' . (string)$i . '_year';
-            $injury_month = 'injury' . (string)$i . '_month';
-
-            $injury_name_array[$i] = $_SESSION[$injury_name];
-            $injury_status_array[$i] = $_SESSION[$injury_status];
-            $injury_year_array[$i] = $_SESSION[$injury_year];
-            $injury_month_array[$i] = $_SESSION[$injury_month];
-        }
-
-        // アレルギーの情報
-        for ($i = 1; $i <= 5; $i++) {
-            $allergy_name = 'allergy' . (string)$i . '_name';
-            $allergy_status = 'allergy' . (string)$i . '_status';
-            $allergy_year = 'allergy' . (string)$i . '_year';
-            $allergy_month = 'allergy' . (string)$i . '_month';
-
-            $allergy_name_array[$i] = $_SESSION[$allergy_name];
-            $allergy_status_array[$i] = $_SESSION[$allergy_status];
-            $allergy_year_array[$i] = $_SESSION[$allergy_year];
-            $allergy_month_array[$i] = $_SESSION[$allergy_month];
-        }
-
-        // 病気の情報
-        for ($i = 1; $i <= 5; $i++) {
-            $sick_name = 'sick' . (string)$i . '_name';
-            $sick_status = 'sick' . (string)$i . '_status';
-            $sick_year = 'sick' . (string)$i . '_year';
-            $sick_month = 'sick' . (string)$i . '_month';
-
-            $sick_name_array[$i] = $_SESSION[$sick_name];
-            $sick_status_array[$i] = $_SESSION[$sick_status];
-            $sick_year_array[$i] = $_SESSION[$sick_year];
-            $sick_month_array[$i] = $_SESSION[$sick_month];
-        }
-
-        // メモの情報
-        $note = $_SESSION['note'];
-
-
         // db_academyデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
         $user = 'root';
@@ -153,13 +159,14 @@
 
         // player_managementデータベースから切断する
         $dbh = null;
-
-        print '編集が完了しました<br><br>';
-        print '<input type="button" onclick="location.href=\'../p_top/p_top.php\'" value="戻る">';
     } catch (Exception $e) {
         var_dump($e);
         exit();
     }
+
+    print '編集が完了しました<br><br>';
+    print '<input type="button" onclick="location.href=\'p_questionnaire_top_branch.php\'" value="戻る">';
+
     ?>
 
 </body>
