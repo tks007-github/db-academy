@@ -38,6 +38,7 @@ for ($i = 1; $i <= 10; $i++) {
     ) {
         // 何もしない
     } else {
+        print '怪我の情報について入力漏れがあります<br>';
         // flgにfalseを代入
         $flg = false;
     }
@@ -64,6 +65,7 @@ for ($i = 1; $i <= 5; $i++) {
     ) {
         // 何もしない
     } else {
+        print 'アレルギーの情報について入力漏れがあります<br>';
         // flgにfalseを代入
         $flg = false;
     }
@@ -90,6 +92,7 @@ for ($i = 1; $i <= 5; $i++) {
     ) {
         // 何もしない
     } else {
+        print '病気の情報について入力漏れがあります<br>';
         // flgにfalseを代入
         $flg = false;
     }
@@ -144,6 +147,6 @@ if ($flg) {             // 入力に問題がなかった場合
     header('Location:p_questionnaire_add_done.php');    // p_questionnaire_add_done.phpへリダイレクト
     exit();
 } else {                // 入力に問題があった場合
-    print '入力に誤りがあります<br><br>';
+    print '<br><br>';
     print '<input type="button" onclick="location.href=\'p_questionnaire_add.php\'" value="戻る">';
 }
