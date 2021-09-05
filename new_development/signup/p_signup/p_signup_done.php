@@ -8,7 +8,7 @@
 session_start();
 session_regenerate_id(true);
 if (!isset($_SESSION['p_signup_login'])) {
-    print 'ログインされていません。<br>';
+    print 'ログインされていません<br>';
     print '<a href="p_signup_login.php">ログイン画面へ</a>';
     exit();
 }
@@ -86,8 +86,8 @@ if (!isset($_SESSION['p_signup_login'])) {
     }
 
 
-    print '以下の情報を登録しました。<br>';
-    print '選手コードとパスワードは忘れないようにしてください。<br>';
+    print '以下の情報を登録しました<br>';
+    print '選手コードとパスワードは忘れないようにしてください<br>';
     print '<br>';
     print '選手コード：' . $player_code . '<br>';
     print '所属：' . $belong_name[$belong_code] . '<br>';

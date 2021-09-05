@@ -8,7 +8,7 @@
     session_start();
     session_regenerate_id(true);
     if (!isset($_SESSION['p_signup_login'])) {
-        print 'ログインされていません。<br>';
+        print 'ログインされていません<br>';
         print '<a href="p_signup_login.php">ログイン画面へ</a>';
         exit();
     }

@@ -23,7 +23,7 @@
     <?php 
         // p_signup_login_check.phpからリダイレクトされた場合(パスワードが正しくなかった場合)
         if (isset($_SESSION['p_signup_login_ng'])) {
-            print '入力されたパスワードに誤りがあります。<br><br>';
+            print '入力されたパスワードに誤りがあります<br><br>';
         }
     ?>
     <form method="post" action="p_signup_login_check.php">

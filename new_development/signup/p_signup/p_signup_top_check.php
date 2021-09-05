@@ -9,7 +9,7 @@
 session_start();
 session_regenerate_id(true);
 if (!isset($_SESSION['p_signup_login'])) {
-    print 'ログインされていません。<br>';
+    print 'ログインされていません<br>';
     print '<a href="p_signup_login.php">ログイン画面へ</a>';
     exit();
 }
@@ -50,25 +50,25 @@ if (!isset($_SESSION['p_signup_login'])) {
 
     // belong_codeが空の場合
     if ($belong_code == '') {
-        print '所属先が選択されていません。<br>';
+        print '所属先が選択されていません<br>';
         $flg = false;
     }
 
     // player_nameが空の場合
     if ($player_name == '') {
-        print '氏名が入力されていません。<br>';
+        print '氏名が入力されていません<br>';
         $flg = false;
     }
 
     // player_passwordが空の場合
     if ($player_password == '') {
-        print 'パスワードが入力されていません。<br>';
+        print 'パスワードが入力されていません<br>';
         $flg = false;
     }
 
     // player_passwordとplayer_password2が一致しない場合
     if ($player_password != $player_password2) {
-        print 'パスワードが一致しません。<br>';
+        print 'パスワードが一致しません<br>';
         $flg = false;
     }
 

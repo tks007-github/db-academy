@@ -1,21 +1,12 @@
 <!-- 
     身体情報の入力データがあるかないかで遷移先を決定する。
-    入力データあり→p_questionnaire_add.php
-    入力データなし→p_questionnaire_edit.php
+    入力データあり→p_phisical_info_add.php
+    入力データなし→p_phisical_info_top.php
  -->
 
 <?php
 session_start();
 session_regenerate_id(true);
-
-
-// p_phisical_infoディレクトリで使うSESSIONを初期化
-$_SESSION['phisical_info_flg'] = '';
-$_SESSION['date'] = '';
-$_SESSION['height'] = '';
-$_SESSION['weight'] = '';
-$_SESSION['body_fat'] = '';
-$_SESSION['muscle_mass'] = '';
 
 // SESSION変数からplayer_codeを受け取る
 $player_code = $_SESSION['player_code'];
@@ -54,7 +45,7 @@ try {
 }
 
 if ($rec == '') {                     // データベースからの問い合わせ結果がない場合
-    header('Location: p_phisical_info_first_add.php');
+    header('Location: p_phisical_info_add.php');
     exit();
 } else {                              // データベースからの問い合わせ結果があった場合
     header('Location: p_phisical_info_top.php');

@@ -8,7 +8,7 @@
 session_start();
 session_regenerate_id(true);
 if (!isset($_SESSION['c_signup_login'])) {
-    print 'ログインされていません。<br>';
+    print 'ログインされていません<br>';
     print '<a href="c_signup_login.php">ログイン画面へ</a>';
     exit();
 }
@@ -78,8 +78,8 @@ if (!isset($_SESSION['c_signup_login'])) {
         exit();
     }
 
-    print '以下の情報を登録しました。<br>';
-    print 'コーチコードとパスワードは忘れないようにしてください。<br>';
+    print '以下の情報を登録しました<br>';
+    print 'コーチコードとパスワードは忘れないようにしてください<br>';
     print '<br>';
     print 'コーチコード：' . $coach_code . '<br>';
     print '氏名：' . $coach_name . '<br>';
