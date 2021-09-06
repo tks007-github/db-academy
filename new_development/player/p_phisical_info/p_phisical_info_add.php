@@ -1,6 +1,5 @@
 <!-- 
     身体情報の登録画面です。
-    function.phpのユーザ定義関数のselect_status()、select_year()、select_month()を利用する。
  -->
 
 
