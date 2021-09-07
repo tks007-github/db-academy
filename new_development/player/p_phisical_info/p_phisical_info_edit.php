@@ -46,7 +46,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     require_once('../../function/function.php');
 
     // 身体情報コード(phisical_info_code)を受け取る
-    if ($_SESSION['phisical_info_code'] == '') {    // p_phisical_info_list_branch.phpからの遷移
+    if (isset($_GET)) {                             // p_phisical_info_list_branch.phpからの遷移
         // getの中身をすべてサニタイズする
         $get = sanitize($_GET);
         // p_phisical_info_branchからphisical_info_codeをGETで受け取る

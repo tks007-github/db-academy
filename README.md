@@ -1,7 +1,7 @@
 # db-academy
 
 【取組中】
-p_phisical_info_edit_check.php
+p_phisical_info_edit.php(GETの場合分け)
 
 【未完成】
 p_phisical_test_result.php

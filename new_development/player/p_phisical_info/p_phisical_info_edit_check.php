@@ -97,6 +97,5 @@ if ($flg) {             // 入力に問題がなかった場合
     header('Location:p_phisical_info_edit_done.php');   // p_phisical_info_edit_done.phpへリダイレクト
     exit();
 } else {                // 入力に問題があった場合
-    print '入力に誤りがあります<br><br>';
     print '<input type="button" onclick="location.href=\'p_phisical_info_edit.php\'" value="戻る">';
 }
