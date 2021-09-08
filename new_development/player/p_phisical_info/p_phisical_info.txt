@@ -1,8 +1,11 @@
 【SESSION変数一覧】
 // 身体情報の登録・編集内容を表す変数
+// p_phisical_info_edit.php・p_phisical_info_delete.phpにて初期化
+phisical_info_code  // 身体情報コード
+
 // p_phisical_info_add_check.php・p_phisical_info_edit_check.phpにて初期化
-date        // 日付
-height      // 身長
-weight      // 体重
-body_fat    // 体脂肪率
-muscle_mass // 筋量
+date                // 日付(p_phisical_info_add_check.phpのみ)
+height              // 身長
+weight              // 体重
+body_fat            // 体脂肪率
+muscle_mass         // 筋量
