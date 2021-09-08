@@ -93,7 +93,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     print '<input type="button" onclick="location.href=\'../p_top/p_top.php\'" value="戻る">';
     print '<input type="button" onclick="location.href=\'p_phisical_info_add.php\'" value="登録">';
     print '<input type="button" onclick="location.href=\'p_phisical_info_list.php\'" value="一覧">';
-    print '<input type="button" onclick="location.href=\'p_phisical_info_graph.php?graph=0\'" value="グラフ">';
+    print '<input type="button" onclick="location.href=\'p_phisical_info_graph.php?graph=height\'" value="グラフ">';
 
 
     ?>
