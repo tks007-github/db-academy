@@ -46,7 +46,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     require_once('../../function/function.php');
 
     // 身体情報コード(phisical_info_code)を受け取る
-    if (isset($_GET)) {                             // p_phisical_info_list_branch.phpからの遷移
+    if (!empty($_GET)) {                            // p_phisical_info_list_branch.phpからの遷移
         // getの中身をすべてサニタイズする
         $get = sanitize($_GET);
         // p_phisical_info_branchからphisical_info_codeをGETで受け取る
@@ -92,8 +92,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
 
     print '<form method="post" action="p_phisical_info_edit_check.php">';
 
+    // 同じ日付でのデータベースへの登録を避けるために日付は変更不可
     print '日付<br>';
-    print '<input type="date" name="date" value="' . $date . '">';
+    print $date;
     print '<br><br>';
 
     print '身長<br>';

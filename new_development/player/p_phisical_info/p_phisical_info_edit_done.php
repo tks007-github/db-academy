@@ -42,7 +42,6 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
 
     // p_phisical_info_edit_checkからSESSIONで身体情報を受け取る
     $phisical_info_code = $_SESSION['phisical_info_code'];
-    $date = $_SESSION['date'];
     $height = $_SESSION['height'];
     $weight = $_SESSION['weight'];
     $body_fat = $_SESSION['body_fat'];
@@ -60,11 +59,10 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         // phisical_infoテーブルに情報を追加
         $sql = '
                 UPDATE phisical_info  
-                SET date = ?, height = ?, weight = ?, body_fat = ?, muscle_mass = ?
+                SET height = ?, weight = ?, body_fat = ?, muscle_mass = ?
                 WHERE phisical_info_code = ? 
                 ';
         $stmt = $dbh->prepare($sql);
-        $data[] = $date;
         $data[] = $height;
         $data[] = $weight;
         $data[] = $body_fat;
