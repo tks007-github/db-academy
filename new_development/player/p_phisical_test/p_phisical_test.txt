@@ -1,0 +1,17 @@
+【SESSION変数一覧】
+// フィジカルテストの内容を表す変数
+// p_phisical_test_top_checkにて初期化
+date                            // 日付
+10m走_boolean                   // 10m走の登録の有無
+20m走_boolean                   // 20m走の登録の有無
+30m走_boolean                   // 30m走の登録の有無
+50m走_boolean                   // 50m走の登録の有無
+1500m走_boolean                 // 1500m走の登録の有無
+プロアジリティ_boolean           // プロアジリティの登録の有無
+立ち幅跳び_boolean               // 立ち幅跳びの登録の有無
+メディシンボール投げ_boolean      // メディシンボール投げの登録の有無
+垂直飛び_boolean                 // 垂直飛びの登録の有無
+背筋力_boolean                  // 背筋力の登録の有無
+握力_boolean                    // 握力の登録の有無
+サイドステップ_boolean           // サイドステップの登録の有無
+

@@ -1,21 +1,26 @@
-<?php
+<!-- 
+    p_phisical_test_top.phpからの入力情報をチェックし、遷移先を決定する。
+    問題なし→p_phisical_test_branch.phpへリダイレクト
+    問題あり→エラーメッセージを出力し、戻るボタンでp_phisical_test_top_ng.phpへ遷移
+ -->
 
+<?php
 session_start();
 session_regenerate_id(true);
 
-if (!isset($_POST['phisical_test_code'])) {
+if (!isset($_POST['phisical_test_code'])) {     // ラジオボタンが選択されていない場合
     header('Location: p_phisical_test_top_ng.php');
     exit();
-} else {
+} else {                                        // ラジオボタンが選択されている場合
     // 自作の関数を呼び出す
     require_once('../../function/function.php');
 
     // POSTの中身をすべてサニタイズする
     $post = sanitize($_POST);
-
     // p_phisical_test_topから情報をPOSTで受け取る
     $phisical_test_code = $post['phisical_test_code'];
 
+    // DB接続
     try {
         // db_academyデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
@@ -39,25 +44,26 @@ if (!isset($_POST['phisical_test_code'])) {
 
         // db_academyデータベースから切断する
         $dbh = null;
-
-        $_SESSION['date'] = $rec['date'];
-        $_SESSION['10m走_boolean'] = $rec['10m走'];
-        $_SESSION['20m走_boolean'] = $rec['20m走'];
-        $_SESSION['30m走_boolean'] = $rec['30m走'];
-        $_SESSION['50m走_boolean'] = $rec['50m走'];
-        $_SESSION['1500m走_boolean'] = $rec['1500m走'];
-        $_SESSION['プロアジリティ_boolean'] = $rec['プロアジリティ'];
-        $_SESSION['立ち幅跳び_boolean'] = $rec['立ち幅跳び'];
-        $_SESSION['メディシンボール投げ_boolean'] = $rec['メディシンボール投げ'];
-        $_SESSION['垂直飛び_boolean'] = $rec['垂直飛び'];
-        $_SESSION['背筋力_boolean'] = $rec['背筋力'];
-        $_SESSION['握力_boolean'] = $rec['握力'];
-        $_SESSION['サイドステップ_boolean'] = $rec['サイドステップ'];
-
-        header('Location: p_phisical_test_top_branch.php');
-        exit();
     } catch (Exception $e) {
         var_dump($e);
         exit();
     }
+
+    // SESSION変数にフィジカルテストの日付と各項目の登録の有無を格納
+    $_SESSION['date'] = $rec['date'];
+    $_SESSION['10m走_boolean'] = $rec['10m走'];
+    $_SESSION['20m走_boolean'] = $rec['20m走'];
+    $_SESSION['30m走_boolean'] = $rec['30m走'];
+    $_SESSION['50m走_boolean'] = $rec['50m走'];
+    $_SESSION['1500m走_boolean'] = $rec['1500m走'];
+    $_SESSION['プロアジリティ_boolean'] = $rec['プロアジリティ'];
+    $_SESSION['立ち幅跳び_boolean'] = $rec['立ち幅跳び'];
+    $_SESSION['メディシンボール投げ_boolean'] = $rec['メディシンボール投げ'];
+    $_SESSION['垂直飛び_boolean'] = $rec['垂直飛び'];
+    $_SESSION['背筋力_boolean'] = $rec['背筋力'];
+    $_SESSION['握力_boolean'] = $rec['握力'];
+    $_SESSION['サイドステップ_boolean'] = $rec['サイドステップ'];
+
+    header('Location: p_phisical_test_top_branch.php');
+    exit();
 }
