@@ -1,12 +1,16 @@
+<!-- 
+    フィジカルテストのグラフを表示する。
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);
-if (!isset($_SESSION['p_login'])) {
+if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない場合(SESSION['p_login']が未定義の場合)
     print 'ログインされていません。<br>';
-    print '<a href="../p_top/p_top_login.html">ログイン画面へ</a>';
+    print '<a href="p_top_login.php">ログイン画面へ</a>';
     exit();
-} else {
-    if (!isset($_SESSION['c_login'])) {
+} else {                                // 選手でログイン状態の場合(SESSION['p_login']が定義されている(=1)の場合)
+    if (!isset($_SESSION['c_login'])) {         // 管理者でログイン状態の場合(SESSION[''])
         print $_SESSION['player_name'];
         print 'さんログイン中<br>';
         print '<br>';
@@ -16,6 +20,7 @@ if (!isset($_SESSION['p_login'])) {
         print '選手検索：' . $_SESSION['player_name'];
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +30,7 @@ if (!isset($_SESSION['p_login'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p_phisical_test_result(総合)</title>
+    <title>p_phisical_test_result.php</title>
 </head>
 
 <body>
@@ -41,8 +46,8 @@ if (!isset($_SESSION['p_login'])) {
     // p_phisical_test_topからの情報をSESSIONで受け取る
     $date = $_SESSION['date'];
 
+    // DB接続
     try {
-
         // db_academyデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
         $user = 'root';
@@ -65,7 +70,7 @@ if (!isset($_SESSION['p_login'])) {
         $data[] = $date;
         $stmt->execute($data);
 
-
+        // 過去3回分のフィジカルテストの項目の登録の有無を変数に保持
         for ($i = 0; $i < 3; $i++) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($rec == '') {
@@ -648,46 +653,47 @@ if (!isset($_SESSION['p_login'])) {
             }
         }
 
-
-        $json_test1_recent_score = json_encode($test1_recent_score);
-        $json_test2_recent_score = json_encode($test2_recent_score);
-        $json_test3_recent_score = json_encode($test3_recent_score);
-        $json_test4_recent_score = json_encode($test4_recent_score);
-        $json_test5_recent_score = json_encode($test5_recent_score);
-        $json_test6_recent_score = json_encode($test6_recent_score);
-        $json_test7_recent_score = json_encode($test7_recent_score);
-        $json_test8_recent_score = json_encode($test8_recent_score);
-        $json_test9_recent_score = json_encode($test9_recent_score);
-        $json_test10_recent_score = json_encode($test10_recent_score);
-        $json_test11_recent_score = json_encode($test11_recent_score);
-        $json_test12_recent_score = json_encode($test12_recent_score);
-
-
         // db_academyデータベースから切断する
         $dbh = null;
-
-        print '<table border=1>';
-        print '<tr><th>日付</th> <th>10m走</th> <th>20m走</th> <th>30m走</th>';
-        print '<th>50m走</th> <th>1500m走</th> <th>プロアジリティ</th>';
-        print '<th>立ち幅跳び</th> <th>メディシンボール投げ</th> <th>垂直飛び</th>';
-        print '<th>背筋力</th> <th>握力</th> <th>サイドステップ</th></tr>';
-
-        for ($i = 0; $i < 3; $i++) {
-            print '<tr><th>' . $date_arr[$i] . '</th> <th>' . $test1_value[$i] . '</th>';
-            print '<th>' . $test2_value[$i] . '</th>';
-            print '<th>' . $test3_value[$i] . '</th> <th>' . $test4_value[$i] . '</th>';
-            print '<th>' . $test5_value[$i] . '</th>';
-            print '<th>' . $test6_value[$i] . '</th> <th>' . $test7_value[$i] . '</th>';
-            print '<th>' . $test8_value[$i] . '</th> <th>' . $test9_value[$i] . '</th>';
-            print '<th>' . $test10_value[$i] . '</th> <th>' . $test11_value[$i] . '</th>';
-            print '<th>' . $test12_value[$i] . '</th></tr>';
-        }
-
-        print '</table>';
     } catch (Exception $e) {
         var_dump($e);
         exit();
     }
+
+
+    $json_test1_recent_score = json_encode($test1_recent_score);
+    $json_test2_recent_score = json_encode($test2_recent_score);
+    $json_test3_recent_score = json_encode($test3_recent_score);
+    $json_test4_recent_score = json_encode($test4_recent_score);
+    $json_test5_recent_score = json_encode($test5_recent_score);
+    $json_test6_recent_score = json_encode($test6_recent_score);
+    $json_test7_recent_score = json_encode($test7_recent_score);
+    $json_test8_recent_score = json_encode($test8_recent_score);
+    $json_test9_recent_score = json_encode($test9_recent_score);
+    $json_test10_recent_score = json_encode($test10_recent_score);
+    $json_test11_recent_score = json_encode($test11_recent_score);
+    $json_test12_recent_score = json_encode($test12_recent_score);
+
+
+    print '<table border=1>';
+    print '<tr><th>日付</th> <th>10m走</th> <th>20m走</th> <th>30m走</th>';
+    print '<th>50m走</th> <th>1500m走</th> <th>プロアジリティ</th>';
+    print '<th>立ち幅跳び</th> <th>メディシンボール投げ</th> <th>垂直飛び</th>';
+    print '<th>背筋力</th> <th>握力</th> <th>サイドステップ</th></tr>';
+
+    for ($i = 0; $i < 3; $i++) {
+        print '<tr><th>' . $date_arr[$i] . '</th> <th>' . $test1_value[$i] . '</th>';
+        print '<th>' . $test2_value[$i] . '</th>';
+        print '<th>' . $test3_value[$i] . '</th> <th>' . $test4_value[$i] . '</th>';
+        print '<th>' . $test5_value[$i] . '</th>';
+        print '<th>' . $test6_value[$i] . '</th> <th>' . $test7_value[$i] . '</th>';
+        print '<th>' . $test8_value[$i] . '</th> <th>' . $test9_value[$i] . '</th>';
+        print '<th>' . $test10_value[$i] . '</th> <th>' . $test11_value[$i] . '</th>';
+        print '<th>' . $test12_value[$i] . '</th></tr>';
+    }
+
+    print '</table>';
+
 
     ?>
 
@@ -762,18 +768,18 @@ if (!isset($_SESSION['p_login'])) {
 
     <br><br>
     <input type="button" onclick="location.href='p_phisical_test_content.php'" value="戻る">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test1.php'" value="10m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test2.php'" value="20m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test3.php'" value="30m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test4.php'" value="50m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test5.php'" value="1500m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test6.php'" value="プロアジリティ">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test1.php'" value="立ち幅跳び">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test2.php'" value="メディシンボール投げ">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test3.php'" value="垂直飛び">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test4.php'" value="背筋力">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test5.php'" value="握力">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test6.php'" value="サイドステップ">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=10m走'" value="10m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=20m走'" value="20m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=30m走'" value="30m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=50m走'" value="50m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=1500m走'" value="1500m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=プロアジリティ'" value="プロアジリティ">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=立ち幅跳び'" value="立ち幅跳び">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=メディシンボール投げ'" value="メディシンボール投げ">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=垂直飛び'" value="垂直飛び">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=背筋力'" value="背筋力">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=握力'" value="握力">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=サイドステップ'" value="サイドステップ">
 
 
 </body>

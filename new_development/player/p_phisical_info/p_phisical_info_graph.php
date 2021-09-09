@@ -2,7 +2,6 @@
     身長(height)、体重(weight)、体脂肪率(body_fat)、筋量(muscle_mass)のグラフを表示する。
  -->
 
-
 <?php
 session_start();
 session_regenerate_id(true);

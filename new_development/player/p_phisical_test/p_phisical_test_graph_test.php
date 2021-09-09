@@ -1,12 +1,17 @@
+<!-- 
+    10m走、20m走、30m走、50m走、1500m走、プロアジリティ、立ち幅跳び、メディシンボール投げ、
+    垂直飛び、背筋力、握力、サイドステップのグラフを表示する。
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);
-if (!isset($_SESSION['p_login'])) {
+if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない場合(SESSION['p_login']が未定義の場合)
     print 'ログインされていません。<br>';
-    print '<a href="../p_top/p_top_login.html">ログイン画面へ</a>';
+    print '<a href="p_top_login.php">ログイン画面へ</a>';
     exit();
-} else {
-    if (!isset($_SESSION['c_login'])) {
+} else {                                // 選手でログイン状態の場合(SESSION['p_login']が定義されている(=1)の場合)
+    if (!isset($_SESSION['c_login'])) {         // 管理者でログイン状態の場合(SESSION[''])
         print $_SESSION['player_name'];
         print 'さんログイン中<br>';
         print '<br>';
@@ -16,6 +21,7 @@ if (!isset($_SESSION['p_login'])) {
         print '選手検索：' . $_SESSION['player_name'];
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +32,7 @@ if (!isset($_SESSION['p_login'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
-    <title>p_phisical_test_graph_test1</title>
+    <title>p_phisical_test_graph_test.php</title>
 </head>
 
 <style>
@@ -39,7 +45,7 @@ if (!isset($_SESSION['p_login'])) {
 
 <body>
 
-    <h3>フィジカルテスト成績表(10m走)</h3>
+    <h3>フィジカルテストグラフ</h3>
 
     <?php
 
@@ -50,8 +56,17 @@ if (!isset($_SESSION['p_login'])) {
     // p_phisical_test_topからの情報をSESSIONで受け取る
     $date = $_SESSION['date'];
 
-    try {
+    // 自作の関数を呼び出す
+    require_once('../../function/function.php');
 
+    // テストコードを受け取る
+    // getの中身をすべてサニタイズする
+    $get = sanitize($_GET);
+    // p_phisical_test_resultからtestをGETで受け取る
+    $test = $get['test'];
+
+    // DB接続
+    try {
         // db_academyデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
         $user = 'root';
@@ -73,7 +88,6 @@ if (!isset($_SESSION['p_login'])) {
         $data[] = $belong_code;
         $data[] = $date;
         $stmt->execute($data);
-
 
         for ($i = 0; $i < 3; $i++) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -109,29 +123,48 @@ if (!isset($_SESSION['p_login'])) {
         }
 
         // phisical_test_recordテーブルからplayer_codeとdateを使って直近3回分の情報を検索
-        $sql2 = '
-                    SELECT 10m走
+        if ($test != '1500m走') {       // 1500m走以外の場合
+            $sql2 = '
+                    SELECT ' . $test . '
                     FROM phisical_test_record 
                     WHERE player_code = ?
                     AND date <= ?
-                    AND 10m走 > 0
+                    AND ' . $test . ' > 0
                 ';
-        $stmt2 = $dbh->prepare($sql2);
-        $data2[0] = $player_code;
-        $data2[1] = $date;
-        $stmt2->execute($data2);
-        for ($i = 0; $i < 3; $i++) {
-            $rec2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-            if ($rec2 == '') {
-                $test1_value[] = NULL;
-            } else {
-                $test1_value[] = $rec2['10m走'];
+            $stmt2 = $dbh->prepare($sql2);
+            $data2[0] = $player_code;
+            $data2[1] = $date;
+            $stmt2->execute($data2);
+            for ($i = 0; $i < 3; $i++) {
+                $rec2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+                if ($rec2 == '') {
+                    $test_value[] = NULL;
+                } else {
+                    $test_value[] = $rec2[$test];
+                }
+            }
+        } else {                        // 1500m走の場合
+            $sql2 = '
+                    SELECT 1500m走_min, 1500m走_sec 
+                    FROM phisical_test_record 
+                    WHERE player_code = ?
+                    AND date <= ?
+                    AND 1500m走_min > 0
+                    AND 1500m走_sec > 0
+                ';
+            $stmt2 = $dbh->prepare($sql2);
+            $data2[0] = $player_code;
+            $data2[1] = $date;
+            $stmt2->execute($data2);
+            for ($i = 0; $i < 3; $i++) {
+                $rec2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+                if ($rec2 == '') {
+                    $test_value[] = NULL;
+                } else {
+                    $test_value[] = $rec2['1500m走_min'] * 60 + $rec2['1500m走_sec'];
+                }
             }
         }
-        var_dump($test1_value);
-
-        $json_test1_value = json_encode($test1_value);
-
 
         // db_academyデータベースから切断する
         $dbh = null;
@@ -140,14 +173,19 @@ if (!isset($_SESSION['p_login'])) {
         exit();
     }
 
+    $json_test = json_encode($test);
+    $json_test_value = json_encode($test_value);
+
     ?>
 
     <canvas id="canvas"></canvas>
     <script>
         let canvas = document.getElementById("canvas");
 
+        // phpの変数をjavascriptで受け取る
+        let js_test = <?php print $json_test; ?>;
         // phpの配列をjavascriptで受け取る
-        let js_test1_value = <?php print $json_test1_value; ?>;
+        let js_test_value = <?php print $json_test_value; ?>;
 
         let myLineChart = new Chart(canvas, {
             type: 'line',
@@ -155,8 +193,8 @@ if (!isset($_SESSION['p_login'])) {
                 labels: ['今回', '前回', '前々回'],
                 datasets: [{
                     label: '',
-                    data: [js_test1_value[0], js_test1_value[1], js_test1_value[2]],
-                    borderColor: "rgba(0,0,255,1)",
+                    data: [js_test_value[0], js_test_value[1], js_test_value[2]],
+                    borderColor: "rgba(255,0,0,1)",
                     backgroundColor: "rgba(0,0,0,0)",
                     spanGaps: true,
                 }, ],
@@ -165,7 +203,7 @@ if (!isset($_SESSION['p_login'])) {
                 plugins: {
                     title: {
                         display: true,
-                        text: '10m走(秒)'
+                        text: js_test,
                     }
                 },
                 scales: {
@@ -186,19 +224,19 @@ if (!isset($_SESSION['p_login'])) {
 
 
     <br><br>
-    <input type="button" onclick="location.href='p_phisical_test_content.php'" value="戻る">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test1.php'" value="10m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test2.php'" value="20m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test3.php'" value="30m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test4.php'" value="50m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test5.php'" value="1500m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test6.php'" value="プロアジリティ">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test1.php'" value="立ち幅跳び">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test2.php'" value="メディシンボール投げ">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test3.php'" value="垂直飛び">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test4.php'" value="背筋力">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test5.php'" value="握力">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test6.php'" value="サイドステップ">
+    <input type="button" onclick="location.href='p_phisical_test_result.php'" value="戻る">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=10m走'" value="10m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=20m走'" value="20m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=30m走'" value="30m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=50m走'" value="50m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=1500m走'" value="1500m走">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=プロアジリティ'" value="プロアジリティ">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=立ち幅跳び'" value="立ち幅跳び">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=メディシンボール投げ'" value="メディシンボール投げ">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=垂直飛び'" value="垂直飛び">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=背筋力'" value="背筋力">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=握力'" value="握力">
+    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=サイドステップ'" value="サイドステップ">
 
 
 </body>
