@@ -71,7 +71,7 @@ function select_month($month_index, $month_value) {
 // 関数名:test1_score(10m走)  引数:$test1_recent_value  戻り値:$test1_recent_score
 function test1_score($test1_recent_value) {
     if ($test1_recent_value == '') {
-        $test1_recent_value = NULL;
+        $test1_recent_score = NULL;
     } else if ($test1_recent_value >= 2.05) {
         $test1_recent_score = 1;
     } else if ($test1_recent_value >= 2.0) {
@@ -100,7 +100,7 @@ function test1_score($test1_recent_value) {
 // 関数名:test2_score(20m走)  引数:$test2_recent_value  戻り値:$test2_recent_score
 function test2_score($test2_recent_value) {
     if ($test2_recent_value == '') {
-        $test2_recent_value = NULL;
+        $test2_recent_score = NULL;
     } else if ($test2_recent_value >= 3.26) {
         $test2_recent_score = 1;
     } else if ($test2_recent_value >= 3.2) {
@@ -129,7 +129,7 @@ function test2_score($test2_recent_value) {
 // 関数名:test3_score(30m走)  引数:$test3_recent_value  戻り値:$test3_recent_score
 function test3_score($test3_recent_value) {
     if ($test3_recent_value == '') {
-        $test3_recent_value = NULL;
+        $test3_recent_score = NULL;
     } else if ($test3_recent_value >= 5.21) {
         $test3_recent_score = 1;
     } else if ($test3_recent_value >= 5.06) {
@@ -158,7 +158,7 @@ function test3_score($test3_recent_value) {
 // 関数名:test4_score(50m走)  引数:$test4_recent_value  戻り値:$test4_recent_score
 function test4_score($test4_recent_value) {
     if ($test4_recent_value == '') {
-        $test4_recent_value = NULL;
+        $test4_recent_score = NULL;
     } else if ($test4_recent_value >= 7.5) {
         $test4_recent_score = 1;
     } else if ($test4_recent_value >= 7.3) {
@@ -187,7 +187,7 @@ function test4_score($test4_recent_value) {
 // 関数名:test5_score(1500m走)  引数:$test5_recent_value  戻り値:$test5_recent_score
 function test5_score($test5_recent_value) {
     if ($test5_recent_value == '') {
-        $test5_recent_value = NULL;
+        $test5_recent_score = NULL;
     } else if ($test5_recent_value >= 406) {
         $test5_recent_score = 1;
     } else if ($test5_recent_value >= 391) {
@@ -216,7 +216,7 @@ function test5_score($test5_recent_value) {
 // 関数名:test6_score(プロアジリティ)  引数:$test6_recent_value  戻り値:$test6_recent_score
 function test6_score($test6_recent_value) {
     if ($test6_recent_value == '') {
-        $test6_recent_value = NULL;
+        $test6_recent_score = NULL;
     } else if ($test6_recent_value >= 5.31) {
         $test6_recent_score = 1;
     } else if ($test6_recent_value >= 5.21) {
@@ -245,7 +245,7 @@ function test6_score($test6_recent_value) {
 // 関数名:test7_score(立ち幅跳び)  引数:$test7_recent_value  戻り値:$test7_recent_score
 function test7_score($test7_recent_value) {
     if ($test7_recent_value == '') {
-        $test7_recent_value = NULL;
+        $test7_recent_score = NULL;
     } else if ($test7_recent_value <= 219) {
         $test7_recent_score = 1;
     } else if ($test7_recent_value <= 229) {
@@ -274,7 +274,7 @@ function test7_score($test7_recent_value) {
 // 関数名:test8_score(メディシンボール投げ)  引数:$test8_recent_value  戻り値:$test8_recent_score
 function test8_score($test8_recent_value) {
     if ($test8_recent_value == '') {
-        $test8_recent_value = NULL;
+        $test8_recent_score = NULL;
     } else if ($test8_recent_value <= 11.99) {
         $test8_recent_score = 1;
     } else if ($test8_recent_value <= 12.99) {
@@ -303,7 +303,7 @@ function test8_score($test8_recent_value) {
 // 関数名:test9_score(垂直飛び)  引数:$test9_recent_value  戻り値:$test9_recent_score
 function test9_score($test9_recent_value) {
     if ($test9_recent_value == '') {
-        $test9_recent_value = NULL;
+        $test9_recent_score = NULL;
     } else if ($test9_recent_value <= 44) {
         $test9_recent_score = 1;
     } else if ($test9_recent_value <= 49) {
@@ -332,7 +332,7 @@ function test9_score($test9_recent_value) {
 // 関数名:test10_score(背筋力)  引数:$test10_recent_value  戻り値:$test10_recent_score
 function test10_score($test10_recent_value) {
     if ($test10_recent_value == '') {
-        $test10_recent_value = NULL;
+        $test10_recent_score = NULL;
     } else if ($test10_recent_value <= 109) {
         $test10_recent_score = 1;
     } else if ($test10_recent_value <= 119) {
@@ -361,7 +361,7 @@ function test10_score($test10_recent_value) {
 // 関数名:test11_score(握力)  引数:$test11_recent_value  戻り値:$test11_recent_score
 function test11_score($test11_recent_value) {
     if ($test11_recent_value == '') {
-        $test11_recent_value = NULL;
+        $test11_recent_score = NULL;
     } else if ($test11_recent_value <= 29) {
         $test11_recent_score = 1;
     } else if ($test11_recent_value <= 34) {
@@ -390,7 +390,7 @@ function test11_score($test11_recent_value) {
 // 関数名:test12_score(サイドステップ)  引数:$test12_recent_value  戻り値:$test12_recent_score
 function test12_score($test12_recent_value) {
     if ($test12_recent_value == '') {
-        $test12_recent_value = NULL;
+        $test12_recent_score = NULL;
     } else if ($test12_recent_value <= 29) {
         $test12_recent_score = 1;
     } else if ($test12_recent_value <= 36) {

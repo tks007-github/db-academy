@@ -264,7 +264,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $rec3_1 = $stmt3_1->fetch(PDO::FETCH_ASSOC);
             $test1_recent_value[] = $rec3_1['10m走'];
         }
-
+    
         // 過去3回分の10m走の点数の決定
         for ($i = 0; $i < 2; $i++) {
             $test1_recent_score[] = test1_score($test1_recent_value[$i]);
