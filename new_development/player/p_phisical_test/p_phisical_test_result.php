@@ -291,22 +291,8 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         }
 
         // 過去3回分の20m走の点数の決定
-        // for ($i = 0; $i < 2; $i++) {
-        //     $test2_recent_score[] = test2_score($test2_recent_value[$i]);
-        // }
-
         for ($i = 0; $i < 2; $i++) {
-            for ($j = 0; $j < 10; $j++) {
-                if ($test2_recent_value[$i] >= 3.25 - (0.05 * $j)) {
-                    $test2_recent_score[] = $j + 1;
-                    break;
-                }
-            }
-            if ($test2_recent_value[$i] < 2.85 && $test2_recent_value[$i] != '') {
-                $test2_recent_score[] = 10;
-            } else if ($test2_recent_value[$i] == '') {
-                $test2_recent_score[] = NULL;
-            }
+            $test2_recent_score[] = test2_score($test2_recent_value[$i]);
         }
 
 
@@ -329,18 +315,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $test3_recent_value[] = $rec3_3['30m走'];
         }
 
+        // 過去3回分の30m走の点数の決定
         for ($i = 0; $i < 2; $i++) {
-            for ($j = 0; $j < 10; $j++) {
-                if ($test3_recent_value[$i] >= 5.2 - (0.15 * $j)) {
-                    $test3_recent_score[] = $j + 1;
-                    break;
-                }
-            }
-            if ($test3_recent_value[$i] < 4 && $test3_recent_value[$i] != '') {
-                $test3_recent_score[] = 10;
-            } else if ($test3_recent_value[$i] == '') {
-                $test3_recent_score[] = NULL;
-            }
+            $test3_recent_score[] = test3_score($test3_recent_value[$i]);
         }
 
         $sql3_4 = '
@@ -362,18 +339,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $test4_recent_value[] = $rec3_4['50m走'];
         }
 
+        // 過去3回分の50m走の点数の決定
         for ($i = 0; $i < 2; $i++) {
-            for ($j = 0; $j < 10; $j++) {
-                if ($test4_recent_value[$i] >= 7.5 - (0.2 * $j)) {
-                    $test4_recent_score[] = $j + 1;
-                    break;
-                }
-            }
-            if ($test4_recent_value[$i] < 5.9 && $test4_recent_value[$i] != '') {
-                $test4_recent_score[] = 10;
-            } else if ($test4_recent_value[$i] == '') {
-                $test4_recent_score[] = NULL;
-            }
+            $test4_recent_score[] = test4_score($test4_recent_value[$i]);
         }
 
         $sql3_5 = '
@@ -395,18 +363,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $test5_recent_value[] = $rec3_5['1500m走'];
         }
 
+        // 過去3回分の1500m走の点数の決定
         for ($i = 0; $i < 2; $i++) {
-            for ($j = 0; $j < 9; $j++) {
-                if ($test5_recent_value[$i] >= 405 - (15 * $j)) {
-                    $test5_recent_score[] = $j + 1;
-                    break;
-                }
-            }
-            if ($test5_recent_value[$i] < 285 && $test5_recent_value[$i] != '') {
-                $test5_recent_score[] = 10;
-            } else if ($test5_recent_value[$i] == '') {
-                $test5_recent_score[] = NULL;
-            }
+            $test5_recent_score[] = test5_score($test5_recent_value[$i]);
         }
 
         $sql3_6 = '
@@ -428,18 +387,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $test6_recent_value[] = $rec3_6['プロアジリティ'];
         }
 
+        // 過去3回分のプロアジリティの点数の決定
         for ($i = 0; $i < 2; $i++) {
-            for ($j = 0; $j < 10; $j++) {
-                if ($test6_recent_value[$i] >= 5.3 - (0.1 * $j)) {
-                    $test6_recent_score[] = $j + 1;
-                    break;
-                }
-            }
-            if ($test6_recent_value[$i] < 4.5 && $test6_recent_value[$i] != '') {
-                $test6_recent_score[] = 10;
-            } else if ($test6_recent_value[$i] == '') {
-                $test6_recent_score[] = NULL;
-            }
+            $test6_recent_score[] = test6_score($test6_recent_value[$i]);
         }
 
         $sql3_7 = '
@@ -461,20 +411,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $test7_recent_value[] = $rec3_7['立ち幅跳び'];
         }
 
+        // 過去3回分の立ち幅跳びの点数の決定
         for ($i = 0; $i < 2; $i++) {
-            for ($j = 0; $j < 10; $j++) {
-                if ($test7_recent_value[$i] == '') {
-                    $test7_recent_score[] = NULL;
-                    break;
-                }
-                if ($test7_recent_value[$i] <= 220 + (10 * $j)) {
-                    $test7_recent_score[] = $j + 1;
-                    break;
-                }
-            }
-            if ($test7_recent_value[$i] > 300) {
-                $test7_recent_score[] = 10;
-            }
+            $test7_recent_score[] = test7_score($test7_recent_value[$i]);
         }
 
         $sql3_8 = '
@@ -496,20 +435,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $test8_recent_value[] = $rec3_8['メディシンボール投げ'];
         }
 
+        // 過去3回分のメディシンボール投げの点数の決定
         for ($i = 0; $i < 2; $i++) {
-            for ($j = 0; $j < 10; $j++) {
-                if ($test8_recent_value[$i] == '') {
-                    $test8_recent_score[] = NULL;
-                    break;
-                }
-                if ($test8_recent_value[$i] <= 12 + (1 * $j)) {
-                    $test8_recent_score[] = $j + 1;
-                    break;
-                }
-            }
-            if ($test8_recent_value[$i] > 20) {
-                $test8_recent_score[] = 10;
-            }
+            $test8_recent_score[] = test8_score($test8_recent_value[$i]);
         }
 
         $sql3_9 = '
@@ -531,20 +459,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $test9_recent_value[] = $rec3_9['垂直飛び'];
         }
 
+        // 過去3回分の垂直飛びの点数の決定
         for ($i = 0; $i < 2; $i++) {
-            for ($j = 0; $j < 10; $j++) {
-                if ($test9_recent_value[$i] == '') {
-                    $test9_recent_score[] = NULL;
-                    break;
-                }
-                if ($test9_recent_value[$i] <= 45 + (5 * $j)) {
-                    $test9_recent_score[] = $j + 1;
-                    break;
-                }
-            }
-            if ($test9_recent_value[$i] > 85) {
-                $test9_recent_score[] = 10;
-            }
+            $test9_recent_score[] = test9_score($test9_recent_value[$i]);
         }
 
         $sql3_10 = '
@@ -566,20 +483,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $test10_recent_value[] = $rec3_10['背筋力'];
         }
 
+        // 過去3回分の背筋力の点数の決定
         for ($i = 0; $i < 2; $i++) {
-            for ($j = 0; $j < 10; $j++) {
-                if ($test10_recent_value[$i] == '') {
-                    $test10_recent_score[] = NULL;
-                    break;
-                }
-                if ($test10_recent_value[$i] <= 110 + (10 * $j)) {
-                    $test10_recent_score[] = $j + 1;
-                    break;
-                }
-            }
-            if ($test10_recent_value[$i] > 190) {
-                $test10_recent_score[] = 10;
-            }
+            $test10_recent_score[] = test10_score($test10_recent_value[$i]);
         }
 
         $sql3_11 = '
@@ -601,20 +507,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $test11_recent_value[] = $rec3_11['握力'];
         }
 
+        // 過去3回分の握力の点数の決定
         for ($i = 0; $i < 2; $i++) {
-            for ($j = 0; $j < 10; $j++) {
-                if ($test11_recent_value[$i] == '') {
-                    $test11_recent_score[] = NULL;
-                    break;
-                }
-                if ($test11_recent_value[$i] <= 30 + (5 * $j)) {
-                    $test11_recent_score[] = $j + 1;
-                    break;
-                }
-            }
-            if ($test11_recent_value[$i] > 70) {
-                $test11_recent_score[] = 10;
-            }
+            $test11_recent_score[] = test11_score($test11_recent_value[$i]);
         }
 
         $sql3_12 = '
@@ -636,20 +531,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $test12_recent_value[] = $rec3_12['サイドステップ'];
         }
 
+        // 過去3回分のサイドステップの点数の決定
         for ($i = 0; $i < 2; $i++) {
-            for ($j = 0; $j < 10; $j++) {
-                if ($test12_recent_value[$i] == '') {
-                    $test12_recent_score[] = NULL;
-                    break;
-                }
-                if ($test12_recent_value[$i] <= 30 + (5 * $j)) {
-                    $test12_recent_score[] = $j + 1;
-                    break;
-                }
-            }
-            if ($test12_recent_value[$i] > 70) {
-                $test12_recent_score[] = 10;
-            }
+            $test12_recent_score[] = test12_score($test12_recent_value[$i]);
         }
 
         // db_academyデータベースから切断する
