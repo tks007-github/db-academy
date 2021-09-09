@@ -39,6 +39,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
 
     <?php
 
+    // 自作の関数を呼び出す
+    require_once('../../function/function.php');
+
     // player_codeとbelong_codeをSESSIONで受け取る
     $player_code = $_SESSION['player_code'];
     $belong_code = $_SESSION['belong_code'];
@@ -107,7 +110,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         // phisical_test_recordテーブルからplayer_codeとdateを使って直近3回分の情報を検索
         for ($i = 0; $i < 3; $i++) {
             $sql2 = '
-                    SELECT phisical_test_record_code, 10m走, 20m走, 30m走, 50m走, 1500m走_min, 1500m走_sec,  
+                    SELECT phisical_test_record_code, 10m走, 20m走, 30m走, 50m走, 1500m走,  
                     プロアジリティ, 立ち幅跳び, メディシンボール投げ, 
                     垂直飛び, 背筋力, 握力, サイドステップ 
                     FROM phisical_test_record 
@@ -164,7 +167,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
                 if ($rec2 == '') {
                     $test5_value[] = '未入力';
                 } else {
-                    $test5_value[] = $rec2['1500m走_min'] . '分' . $rec2['1500m走_sec'] . '秒';
+                    $test5_value[] = floor($rec2['1500m走'] / 60) . '分' . $rec2['1500m走'] % 60 . '秒';
                 }
             } else {
                 $test5_value[] = '―';
@@ -262,20 +265,11 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $test1_recent_value[] = $rec3_1['10m走'];
         }
 
-
+        // 過去3回分の10m走の点数の決定
         for ($i = 0; $i < 2; $i++) {
-            for ($j = 0; $j < 10; $j++) {
-                if ($test1_recent_value[$i] >= 2.05 - (0.05 * $j)) {
-                    $test1_recent_score[] = $j + 1;
-                    break;
-                }
-            }
-            if ($test1_recent_value[$i] < 1.65 && $test1_recent_value[$i] != '') {
-                $test1_recent_score[] = 10;
-            } else if ($test1_recent_value[$i] == '') {
-                $test1_recent_score[] = NULL;
-            }
+            $test1_recent_score[] = test1_score($test1_recent_value[$i]);
         }
+        
 
         $sql3_2 = '
                     SELECT date, 20m走  
@@ -295,6 +289,11 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $rec3_2 = $stmt3_2->fetch(PDO::FETCH_ASSOC);
             $test2_recent_value[] = $rec3_2['20m走'];
         }
+
+        // 過去3回分の20m走の点数の決定
+        // for ($i = 0; $i < 2; $i++) {
+        //     $test2_recent_score[] = test2_score($test2_recent_value[$i]);
+        // }
 
         for ($i = 0; $i < 2; $i++) {
             for ($j = 0; $j < 10; $j++) {
@@ -378,9 +377,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         }
 
         $sql3_5 = '
-                    SELECT date, 1500m走_min, 1500m走_sec
+                    SELECT date, 1500m走
                     FROM phisical_test_record 
-                    WHERE player_code = ? AND date <= ? AND 1500m走_min > 0
+                    WHERE player_code = ? AND date <= ? AND 1500m走 > 0
                     ORDER BY date DESC
                 ';
         $stmt3_5 = $dbh->prepare($sql3_5);
@@ -388,12 +387,12 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         $data3_5[] = $date;
         $stmt3_5->execute($data3_5);
         $rec3_5 = $stmt3_5->fetch(PDO::FETCH_ASSOC);
-        $test5_recent_value[] = $rec3_5['1500m走_min'] * 60 + $rec3_5['1500m走_sec'];
+        $test5_recent_value[] = $rec3_5['1500m走'];
         if ($rec3_5['date'] != $date) {
-            $test5_recent_value[] = $rec3_5['1500m走_min'] * 60 + $rec3_5['1500m走_sec'];
+            $test5_recent_value[] = $rec3_5['1500m走'];
         } else {
             $rec3_5 = $stmt3_5->fetch(PDO::FETCH_ASSOC);
-            $test5_recent_value[] = $rec3_5['1500m走_min'] * 60 + $rec3_5['1500m走_sec'];
+            $test5_recent_value[] = $rec3_5['1500m走'];
         }
 
         for ($i = 0; $i < 2; $i++) {

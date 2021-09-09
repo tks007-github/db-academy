@@ -50,8 +50,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     $test2_value = $_SESSION['test2_value'];
     $test3_value = $_SESSION['test3_value'];
     $test4_value = $_SESSION['test4_value'];
-    $test5_1_value = $_SESSION['test5_1_value'];
-    $test5_2_value = $_SESSION['test5_2_value'];
+    $test5_value = $_SESSION['test5_value'];
     $test6_value = $_SESSION['test6_value'];
     $test7_value = $_SESSION['test7_value'];
     $test8_value = $_SESSION['test8_value'];
@@ -73,7 +72,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         $sql = '
                 UPDATE phisical_test_record
                 SET 
-                10m走 = ?, 20m走 = ?, 30m走 = ?, 50m走 = ?, 1500m走_min = ?, 1500m走_sec = ?, 
+                10m走 = ?, 20m走 = ?, 30m走 = ?, 50m走 = ?, 1500m走 = ?,
                 プロアジリティ = ?, 立ち幅跳び = ?, メディシンボール投げ = ?, 垂直飛び = ?,
                 背筋力 = ?, 握力 = ?, サイドステップ = ?
                 WHERE phisical_test_record_code = ? 
@@ -83,8 +82,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         $data[] = $test2_value;
         $data[] = $test3_value;
         $data[] = $test4_value;
-        $data[] = $test5_1_value;
-        $data[] = $test5_2_value;
+        $data[] = $test5_value;
         $data[] = $test6_value;
         $data[] = $test7_value;
         $data[] = $test8_value;

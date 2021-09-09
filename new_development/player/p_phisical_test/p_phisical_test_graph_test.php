@@ -187,13 +187,19 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         // phpの配列をjavascriptで受け取る
         let js_test_value = <?php print $json_test_value; ?>;
 
+        // 連想配列を用意(グラフの名前)
+        let graph_name = {"10m走": "10m走(秒)", "20m走": "20m走(秒)", "30m走": "30m走(秒)", "50m走": "50m走(秒)",
+                          "1500m走": "1500m走(秒)", "プロアジリティ": "プロアジリティ(秒)", "立ち幅跳び": "立ち幅跳び(cm)",
+                          "メディシンボール投げ": "メディシンボール投げ(m)", "垂直飛び": "垂直飛び(cm)", "背筋力": "背筋力(kg)",
+                          "握力": "握力(kg)", "サイドステップ": "サイドステップ(回)"};
+
         let myLineChart = new Chart(canvas, {
             type: 'line',
             data: {
-                labels: ['今回', '前回', '前々回'],
+                labels: ['前々回', '前回', '今回'],
                 datasets: [{
                     label: '',
-                    data: [js_test_value[0], js_test_value[1], js_test_value[2]],
+                    data: [js_test_value[2], js_test_value[1], js_test_value[0]],
                     borderColor: "rgba(255,0,0,1)",
                     backgroundColor: "rgba(0,0,0,0)",
                     spanGaps: true,
@@ -203,7 +209,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
                 plugins: {
                     title: {
                         display: true,
-                        text: js_test,
+                        text: graph_name[js_test],
                     }
                 },
                 scales: {

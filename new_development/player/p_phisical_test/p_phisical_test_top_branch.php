@@ -37,7 +37,7 @@ try {
 
     // phisical_test_recordテーブルからplayer_codeとdateを使って情報を検索
     $sql = '
-            SELECT 10m走, 20m走, 30m走, 50m走, 1500m走_min, 1500m走_sec,  
+            SELECT 10m走, 20m走, 30m走, 50m走, 1500m走,  
             プロアジリティ, 立ち幅跳び, メディシンボール投げ, 
             垂直飛び, 背筋力, 握力, サイドステップ 
             FROM phisical_test_record 

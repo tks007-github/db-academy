@@ -55,7 +55,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     // 自作の関数を呼び出す
     require_once('../../function/function.php');
 
-    // グラフコード(graph  0:身長 1:体重 2:体脂肪率 3:筋量)を受け取る
+    // グラフコードを受け取る
     // getの中身をすべてサニタイズする
     $get = sanitize($_GET);
     // p_phisical_info_topからgraphをGETで受け取る

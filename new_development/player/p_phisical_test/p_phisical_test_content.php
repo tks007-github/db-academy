@@ -73,7 +73,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
 
         // phisical_test_recordテーブルからplayer_codeとdateを使って情報を検索
         $sql = '
-                SELECT 10m走, 20m走, 30m走, 50m走, 1500m走_min, 1500m走_sec,  
+                SELECT 10m走, 20m走, 30m走, 50m走, 1500m走, 
                 プロアジリティ, 立ち幅跳び, メディシンボール投げ, 
                 垂直飛び, 背筋力, 握力, サイドステップ 
                 FROM phisical_test_record 
@@ -108,7 +108,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         print '50m走：' . $rec['50m走'] . '秒<br>';
     }
     if ($test5_boolean) {
-        print '1500m走：' . $rec['1500m走_min'] . '分' . $rec['1500m走_sec'] . '秒<br>';
+        print '1500m走：' . floor($rec['1500m走'] / 60) . '分' . $rec['1500m走'] % 60 . '秒<br>';
     }
     if ($test6_boolean) {
         print 'プロアジリティ：' . $rec['プロアジリティ'] . '秒<br>';
