@@ -1,22 +1,28 @@
+<!-- 
+    p_phisical_test_delete.phpから受け取ったフィジカルテストレコードコード(phisical_test_record_code)の
+    データをphisical_test_recordテーブルから削除する。
+ -->
+
+
 <?php
-    session_start();
-    session_regenerate_id(true);
-    if (!isset($_SESSION['p_login'])) {
-        print 'ログインされていません。<br>';
-        print '<a href="../p_top/p_top_login.html">ログイン画面へ</a>';
-        exit();
+session_start();
+session_regenerate_id(true);
+if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない場合(SESSION['p_login']が未定義の場合)
+    print 'ログインされていません。<br>';
+    print '<a href="p_top_login.php">ログイン画面へ</a>';
+    exit();
+} else {                                // 選手でログイン状態の場合(SESSION['p_login']が定義されている(=1)の場合)
+    if (!isset($_SESSION['c_login'])) {         // 管理者でログイン状態の場合(SESSION[''])
+        print $_SESSION['player_name'];
+        print 'さんログイン中<br>';
+        print '<br>';
     } else {
-        if (!isset($_SESSION['c_login'])) {
-            print $_SESSION['player_name'];
-            print 'さんログイン中<br>';
-            print '<br>';
-        } else {
-            print $_SESSION['coach_name'];
-            print 'さんログイン中<br>';
-            print '選手検索：' . $_SESSION['player_name'];
-        }
-        
+        print $_SESSION['coach_name'];
+        print 'さんログイン中<br>';
+        print '選手検索：' . $_SESSION['player_name'];
     }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +32,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p_phisical_test_delete_done</title>
+    <title>p_phisical_test_delete_done.php</title>
 </head>
 
 <body>
@@ -34,11 +40,13 @@
     <h3>フィジカルテストの削除完了</h3>
 
     <?php
+
+    // SESSIONでplayer_codeとdateを受け取る
+    $player_code = $_SESSION['player_code'];
+    $date = $_SESSION['date'];
+
+    // DB接続
     try {
-        // SESSIONでplayer_codeとdateを受け取る
-        $player_code = $_SESSION['player_code'];
-        $date = $_SESSION['date'];
-        
         // db_academyデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
         $user = 'root';
@@ -58,13 +66,14 @@
 
         // db_academyデータベースから切断する
         $dbh = null;
-
-        print '削除が完了しました<br><br>';
-        print '<input type="button" onclick="location.href=\'p_phisical_test_top.php\'" value="戻る">';
     } catch (Exception $e) {
         var_dump($e);
         exit();
     }
+
+    print '削除が完了しました<br><br>';
+    print '<input type="button" onclick="location.href=\'p_phisical_test_top.php\'" value="戻る">';
+
     ?>
 
 </body>

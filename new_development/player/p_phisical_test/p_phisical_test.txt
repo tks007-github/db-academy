@@ -15,7 +15,8 @@ date                            // 日付
 握力_boolean                    // 握力の登録の有無
 サイドステップ_boolean           // サイドステップの登録の有無
 
-// p_phisical_test_add_checkにて初期化
+// p_phisical_test_add_check・p_phisical_test_edit_checkにて初期化
+phisical_test_record_code     // フィジカルテストレコードコード(p_phisical_test_edit_checkのみ)
 10m走_value                   // 10m走の結果
 20m走_value                   // 20m走の結果
 30m走_value                   // 30m走の結果
