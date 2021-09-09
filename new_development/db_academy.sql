@@ -111,8 +111,8 @@ CREATE TABLE `new_player_code` (
 --
 
 INSERT INTO `new_player_code` (`belong_code`, `new_player_code`) VALUES
-('A', 1),
-('B', 1);
+('A', 2),
+('B', 2);
 
 -- --------------------------------------------------------
 
@@ -129,6 +129,30 @@ CREATE TABLE `phisical_info` (
   `body_fat` double NOT NULL,
   `muscle_mass` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `phisical_info`
+--
+
+INSERT INTO `phisical_info` (`phisical_info_code`, `player_code`, `date`, `height`, `weight`, `body_fat`, `muscle_mass`) VALUES
+(10, 'A0001', '2020-04-01', 170, 60, 15, 45),
+(11, 'A0001', '2020-05-06', 170, 60, 15, 45),
+(12, 'A0001', '2020-06-03', 170, 60, 15, 45),
+(13, 'A0001', '2020-07-01', 170, 60, 15, 45),
+(14, 'A0001', '2020-08-05', 170, 60, 15, 45),
+(15, 'A0001', '2020-09-02', 170, 60, 15, 45),
+(16, 'A0001', '2020-10-07', 170, 60, 15, 45),
+(17, 'A0001', '2020-11-04', 170, 60, 15, 45),
+(18, 'A0001', '2020-12-02', 170, 60, 15, 45),
+(19, 'A0001', '2021-01-06', 170, 60, 15, 45),
+(20, 'A0001', '2021-02-03', 170, 60, 15, 45),
+(21, 'A0001', '2021-03-03', 170, 60, 15, 45),
+(22, 'A0001', '2021-04-07', 175, 65, 18, 50),
+(23, 'A0001', '2021-05-05', 175, 65, 18, 50),
+(24, 'A0001', '2021-06-02', 175, 65, 18, 50),
+(25, 'A0001', '2021-07-07', 175, 65, 18, 50),
+(26, 'A0001', '2021-08-04', 175, 65, 18, 50),
+(28, 'A0001', '2021-09-01', 175, 65, 18, 50);
 
 -- --------------------------------------------------------
 
@@ -154,6 +178,15 @@ CREATE TABLE `phisical_test` (
   `サイドステップ` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- テーブルのデータのダンプ `phisical_test`
+--
+
+INSERT INTO `phisical_test` (`phisical_test_code`, `belong_code`, `date`, `10m走`, `20m走`, `30m走`, `50m走`, `1500m走`, `プロアジリティ`, `立ち幅跳び`, `メディシンボール投げ`, `垂直飛び`, `背筋力`, `握力`, `サイドステップ`) VALUES
+(15, 'A', '2021-08-04', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+(16, 'A', '2021-07-07', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+(17, 'A', '2021-06-02', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -168,8 +201,7 @@ CREATE TABLE `phisical_test_record` (
   `20m走` double NOT NULL,
   `30m走` double NOT NULL,
   `50m走` double NOT NULL,
-  `1500m走_min` double NOT NULL,
-  `1500m走_sec` int(11) NOT NULL,
+  `1500m走` double NOT NULL,
   `プロアジリティ` double NOT NULL,
   `立ち幅跳び` int(11) NOT NULL,
   `メディシンボール投げ` double NOT NULL,
@@ -178,6 +210,15 @@ CREATE TABLE `phisical_test_record` (
   `握力` int(11) NOT NULL,
   `サイドステップ` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `phisical_test_record`
+--
+
+INSERT INTO `phisical_test_record` (`phisical_test_record_code`, `player_code`, `date`, `10m走`, `20m走`, `30m走`, `50m走`, `1500m走`, `プロアジリティ`, `立ち幅跳び`, `メディシンボール投げ`, `垂直飛び`, `背筋力`, `握力`, `サイドステップ`) VALUES
+(4, 'A0001', '2021-06-02', 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3),
+(6, 'A0001', '2021-07-07', 1.85, 3.05, 4.61, 6.7, 346, 4.9, 259, 15.99, 64, 169, 49, 48),
+(8, 'A0001', '2021-08-04', 1.75, 2.95, 4.31, 6.4, 316, 4.71, 279, 17.99, 74, 209, 59, 55);
 
 -- --------------------------------------------------------
 
@@ -191,6 +232,14 @@ CREATE TABLE `player` (
   `player_password` varchar(255) NOT NULL,
   `belong_code` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `player`
+--
+
+INSERT INTO `player` (`player_code`, `player_name`, `player_password`, `belong_code`) VALUES
+('A0001', '山田太郎', '47bce5c74f589f4867dbd57e9ca9f808', 'A'),
+('B0001', '鈴木修一', '08f8e0260c64418510cefb2b06eee5cd', 'B');
 
 -- --------------------------------------------------------
 
@@ -285,6 +334,13 @@ CREATE TABLE `questionnaire` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- テーブルのデータのダンプ `questionnaire`
+--
+
+INSERT INTO `questionnaire` (`questionnaire_code`, `player_code`, `injury1_name`, `injury1_status`, `injury1_year`, `injury1_month`, `injury2_name`, `injury2_status`, `injury2_year`, `injury2_month`, `injury3_name`, `injury3_status`, `injury3_year`, `injury3_month`, `injury4_name`, `injury4_status`, `injury4_year`, `injury4_month`, `injury5_name`, `injury5_status`, `injury5_year`, `injury5_month`, `injury6_name`, `injury6_status`, `injury6_year`, `injury6_month`, `injury7_name`, `injury7_status`, `injury7_year`, `injury7_month`, `injury8_name`, `injury8_status`, `injury8_year`, `injury8_month`, `injury9_name`, `injury9_status`, `injury9_year`, `injury9_month`, `injury10_name`, `injury10_status`, `injury10_year`, `injury10_month`, `allergy1_name`, `allergy1_status`, `allergy1_year`, `allergy1_month`, `allergy2_name`, `allergy2_status`, `allergy2_year`, `allergy2_month`, `allergy3_name`, `allergy3_status`, `allergy3_year`, `allergy3_month`, `allergy4_name`, `allergy4_status`, `allergy4_year`, `allergy4_month`, `allergy5_name`, `allergy5_status`, `allergy5_year`, `allergy5_month`, `sick1_name`, `sick1_status`, `sick1_year`, `sick1_month`, `sick2_name`, `sick2_status`, `sick2_year`, `sick2_month`, `sick3_name`, `sick3_status`, `sick3_year`, `sick3_month`, `sick4_name`, `sick4_status`, `sick4_year`, `sick4_month`, `sick5_name`, `sick5_status`, `sick5_year`, `sick5_month`, `note`) VALUES
+(8, 'A0001', '右腕骨折', '治療中', 2021, 9, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '', '', 0, 0, '');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -356,25 +412,25 @@ ALTER TABLE `mst_password`
 -- AUTO_INCREMENT for table `phisical_info`
 --
 ALTER TABLE `phisical_info`
-  MODIFY `phisical_info_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `phisical_info_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `phisical_test`
 --
 ALTER TABLE `phisical_test`
-  MODIFY `phisical_test_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `phisical_test_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `phisical_test_record`
 --
 ALTER TABLE `phisical_test_record`
-  MODIFY `phisical_test_record_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `phisical_test_record_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `questionnaire`
 --
 ALTER TABLE `questionnaire`
-  MODIFY `questionnaire_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `questionnaire_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
