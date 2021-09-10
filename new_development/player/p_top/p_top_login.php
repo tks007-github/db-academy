@@ -1,6 +1,6 @@
 <!-- 
     選手のトップページへのログイン画面です。
-    選手は会員コード(player_code)とパスワード(player_password)を使ってログインします。
+    選手は選手コード(player_code)とパスワード(player_password)を使ってログインします。
  -->
 
  <?php
@@ -23,13 +23,13 @@
     <?php 
         // p_top_login_check.phpからリダイレクトされた場合(パスワードが正しくなかった場合)
         if (isset($_SESSION['p_login_ng'])) {
-            print '入力された会員コードとパスワードが正しくありません。<br><br>';
+            print '入力された選手コードまたはパスワードが正しくありません。<br><br>';
         }
     ?>
-    会員コードとパスワードを入力してください<br>
+    選手コードとパスワードを入力してください<br>
     <br>
     <form method="post" action="p_top_login_check.php">
-        会員コード<br>
+        選手コード<br>
         <input type="text" name="player_code"><br>
         <br>
         パスワード<br>
