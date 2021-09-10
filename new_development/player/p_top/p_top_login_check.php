@@ -1,8 +1,8 @@
 <!-- 
-	p_top_login.phpから会員コード(player_code)とパスワード(player_password)を受け取って、
+	p_top_login.phpから選手コード(player_code)とパスワード(player_password)を受け取って、
 	正しい情報が入力されたかの確認を行います。
-	会員コード(player_code)とパスワード(mst_password)が正しい場合→p_top.phpへリダイレクト
-	会員コード(player_code)とパスワード(mst_password)が正しくない場合→p_top_login.phpへリダイレクト
+	選手コード(player_code)とパスワード(player_password)が正しい場合→p_top.phpへリダイレクト
+	選手コード(player_code)とパスワード(player_password)が正しくない場合→p_top_login.phpへリダイレクト
  -->
 
 <?php
