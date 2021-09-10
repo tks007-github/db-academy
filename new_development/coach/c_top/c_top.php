@@ -1,3 +1,17 @@
+<!-- 
+    コーチページのトップ画面です。
+    以下のページへのリンクを用意します。
+
+    選手検索→c_search_top.php
+    フィジカルテスト→c_phisical_test_top.php
+
+    パスワード変更→c_top_password_change.php
+    ログアウト→c_top_logout.php
+
+    ※管理者(C0001)のみマスターパスワード変更ページへのリンクあり。
+    マスターパスワード変更→c_top_master_password_change.php
+ -->
+
 <?php
     session_start();
     session_regenerate_id(true);

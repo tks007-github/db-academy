@@ -10,12 +10,12 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     print 'ログインされていません<br>';
     print '<a href="p_top_login.php">ログイン画面へ</a>';
     exit();
-} else {                                // 選手でログイン状態の場合(SESSION['p_login']が定義されている(=1)の場合)
-    if (!isset($_SESSION['c_login'])) {         // 管理者でログイン状態の場合(SESSION[''])
+} else {                                // 選手でログイン状態の場合(SESSION['p_login']が定義されている(=1)場合)
+    if (!isset($_SESSION['c_login'])) {         // コーチでログイン状態でない場合(SESSION['c_login']が未定義の場合)
         print $_SESSION['player_name'];
         print 'さんログイン中<br>';
         print '<br>';
-    } else {
+    } else {                                    // コーチでログイン状態の場合(SESSION['c_login']が定義されている(=1)場合)
         print $_SESSION['coach_name'];
         print 'さんログイン中<br>';
         print '選手検索：' . $_SESSION['player_name'];
