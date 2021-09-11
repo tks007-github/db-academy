@@ -45,11 +45,11 @@
     
     <?php
         if ($_SESSION['coach_code'] == 'C0001') {   // 管理者(C0001)でログインしている場合
-            print '<a href="c_top_master_pass_change.php">マスターパスワードの変更はこちらから</a><br>';
+            print '<a href="c_top_master_password_change.php">マスターパスワードの変更はこちらから</a><br>';
         }
     ?>
 
-    <a href="c_top_pass_change.php">パスワードの変更はこちらから</a>
+    <a href="c_top_password_change.php">パスワードの変更はこちらから</a>
     <br><br>
     <input type="button" onclick="location.href='c_top_logout.php'" value="ログアウト">
 

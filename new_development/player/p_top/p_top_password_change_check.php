@@ -1,5 +1,5 @@
 <!-- 
-    p_top_pass_change.phpから現在のパスワード(player_password)と
+    p_top_password_change.phpから現在のパスワード(player_password)と
     新しいパスワード(new_player_password)、新しいパスワード確認(new_player_password2)を
     受け取り、現在のパスワードが正しいか検証をします。
 

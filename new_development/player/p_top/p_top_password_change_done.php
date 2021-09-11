@@ -41,7 +41,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
 
     <?php
 
-    // player_codeをセッションで受け取る
+    // player_codeをSESSIONで受け取る
     $player_code = $_SESSION['player_code'];
 
     // p_top_password_change.phpから渡された値をセッションで受け取る
@@ -49,6 +49,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     // new_player_passwordをmd5で暗号化
     $new_player_password = md5($new_player_password);
 
+    // DB接続
     try {
         // db_academyデータベースに接続
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8mb4';
@@ -64,7 +65,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         $data[] = $player_code;
         $stmt->execute($data);
 
-        // player_managementデータベースから切断
+        // db_academyデータベースから切断
         $dbh = null;
     } catch (Exception $e) {
         var_dump($e);
