@@ -1,4 +1,4 @@
 <?php
 
-$pass = 'ccc';
+$pass = 'xxx';
 print md5($pass);
