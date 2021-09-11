@@ -10,7 +10,7 @@
     session_regenerate_id(true);
     if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でない場合(SESSION['c_login']が未定義の場合)
         print 'ログインされていません。<br>';
-        print '<a href="c_top_login.html">ログイン画面へ</a>';
+        print '<a href="c_top_login.php">ログイン画面へ</a>';
         exit();
     } else {                                // コーチでログイン状態の場合(SESSION['c_login']が定義されている(=1)場合)
         print $_SESSION['coach_name'];
