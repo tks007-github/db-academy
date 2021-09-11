@@ -15,11 +15,11 @@
 <?php
     session_start();
     session_regenerate_id(true);
-    if (!isset($_SESSION['c_login'])) {
+    if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でない場合(SESSION['c_login']が未定義の場合)
         print 'ログインされていません。<br>';
         print '<a href="c_top_login.html">ログイン画面へ</a>';
         exit();
-    } else {
+    } else {                                // コーチでログイン状態の場合(SESSION['c_login']が定義されている(=1)場合)
         print $_SESSION['coach_name'];
         print 'さんログイン中<br>';
         print '<br>';
@@ -32,7 +32,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>c_top</title>
+    <title>c_top.php</title>
 </head>
 <body>
 
@@ -44,7 +44,7 @@
     <br><br>
     
     <?php
-        if ($_SESSION['coach_code'] == 'C0001') {
+        if ($_SESSION['coach_code'] == 'C0001') {   // 管理者(C0001)でログインしている場合
             print '<a href="c_top_master_pass_change.php">マスターパスワードの変更はこちらから</a><br>';
         }
     ?>
