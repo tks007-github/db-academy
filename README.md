@@ -1,7 +1,7 @@
 # db-academy
 
 【取組中】
-c_search
+c_phisical_test
 
 【未完成】
 p_phisical_info_graph.php(最大値・最小値・間隔の設定)
