@@ -45,7 +45,7 @@ if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でな�
         $search_belong_code = $post['search_belong_code'];
         $_SESSION['search_name'] = $search_name;
         $_SESSION['search_belong_code'] = $search_belong_code;
-    } else {                    // p_topからの遷移
+    } else {                    // c_search_listまたはp_topからの遷移
         $search_name = $_SESSION['search_name'];
         $search_belong_code = $_SESSION['search_belong_code'];
     }
