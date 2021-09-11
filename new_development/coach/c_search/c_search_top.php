@@ -1,20 +1,19 @@
+<!-- 
+    選手検索画面です。
+ -->
+
 <?php
     session_start();
     session_regenerate_id(true);
-    if (!isset($_SESSION['c_login'])) {
+    if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でない場合(SESSION['c_login']が未定義の場合)
         print 'ログインされていません。<br>';
-        print '<a href="../c_top/c_top_login.html">ログイン画面へ</a>';
+        print '<a href="c_top_login.html">ログイン画面へ</a>';
         exit();
-    } else {
+    } else {                                // コーチでログイン状態の場合(SESSION['c_login']が定義されている(=1)場合)
         print $_SESSION['coach_name'];
         print 'さんログイン中<br>';
         print '<br>';
     }
-
-    // セッション変数の初期化(検索条件)
-    $_SESSION['search_name'] = '';
-    $_SESSION['search_belong_code'] = '';
-
 ?>
 
 
@@ -24,13 +23,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>c_search_top</title>
+    <title>c_search_top.php</title>
 </head>
 <body>
 
     <h3>選手検索</h3>
     <br>
-    選手の氏名を入力してください<br>
+    選手の氏名、所属を入力してください<br>
     <br>
     <form method="post" action="c_search_list.php">
         氏名<br>
