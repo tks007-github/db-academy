@@ -83,7 +83,7 @@ if ($new_coach_password != $new_coach_password2) {
 }
 
 if ($flg) {             // 入力に問題がなかった場合
-    $_SESSION['new_coach_password'] = $new_coach_password;      // セッション変数にnew_coach_passwordを保持
+    $_SESSION['new_coach_password'] = $new_coach_password;      // SESSION変数にnew_coach_passwordを保持
     header('Location:c_top_password_change_done.php');          // c_top_password_change_done.phpへリダイレクト
     exit();
 } else {                // 入力に問題があった場合
