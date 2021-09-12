@@ -1,5 +1,5 @@
 <!-- 
-    P_phisical_test_top_branchで選択された情報をフィジカルテストの情報を表示する。
+    p_phisical_test_top_branchで選択された情報をフィジカルテストの情報を表示する。
     ラジオボタンで選択し、編集・削除・成績表ボタンを押すことで遷移する。
 
     編集→p_phisical_test_edit.php

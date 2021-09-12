@@ -1,13 +1,19 @@
+<!-- 
+    c_phisical_test_delete.phpからの入力情報をチェックし、遷移先を決定する。
+    問題なし→c_phisical_test_delete_done.phpへリダイレクト
+    問題あり→エラーメッセージを出力し、戻るボタンでc_phisical_test_content.phpへ遷移
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);
 
+// c_phisical_test_content.phpからの情報をSESSIONで受け取る
+$date = $_SESSION['date'];
+$belong_code = $_SESSION['belong_code'];
+
+// DB接続
 try {
-
-    // c_phisical_test_delete.phpからの情報をSESSIONで受け取る
-    $date = $_SESSION['date'];
-    $belong_code = $_SESSION['belong_code'];
-
     // db_academyデータベースに接続する
     $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
     $user = 'root';
@@ -20,29 +26,40 @@ try {
         $sql = "
                 SELECT * FROM phisical_test_record
                 WHERE player_code LIKE 'A%' AND date = ?
-                "; 
+                ";
     } else if ($belong_code == 'B') {
         $sql = "
                 SELECT * FROM phisical_test_record
                 WHERE player_code LIKE 'B%' AND date = ?
-                "; 
+                ";
     }
     $stmt = $dbh->prepare($sql);
     $data[] = $date;
     $stmt->execute($data);
-    $rec = $stmt -> fetch(PDO::FETCH_ASSOC);
+    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // db_academyデータベースから切断する
     $dbh = null;
-
-    if ($rec == '') {
-        header('Location:c_phisical_test_delete_done.php');    // c_phisical_test_delete_done.phpへリダイレクト
-        exit();
-    } else {                // すでに選手の記録が登録されている場合
-        print '選手の記録が登録されているので削除できません<br><br>';
-        print '<input type="button" onclick="location.href=\'c_phisical_test_content.php\'" value="戻る">';
-    }
 } catch (Exception $e) {
     var_dump($e);
     exit();
+}
+
+if ($rec == '') {       // 選手の記録が登録されていない場合
+    header('Location:c_phisical_test_delete_done.php');    // c_phisical_test_delete_done.phpへリダイレクト
+    exit();
+} else {                // すでに選手の記録が登録されている場合
+    
+    if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でない場合(SESSION['c_login']が未定義の場合)
+        print 'ログインされていません。<br>';
+        print '<a href="../c_top/c_top_login.php">ログイン画面へ</a>';
+        exit();
+    } else {                                // コーチでログイン状態の場合(SESSION['c_login']が定義されている(=1)場合)
+        print $_SESSION['coach_name'];
+        print 'さんログイン中<br>';
+        print '<br>';
+    }
+
+    print '選手の記録が登録されているので削除できません<br><br>';
+    print '<input type="button" onclick="location.href=\'c_phisical_test_content.php\'" value="戻る">';
 }

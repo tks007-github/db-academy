@@ -19,3 +19,8 @@ belong_code                     // 所属
 // フィジカルテストのコードを表す変数
 // c_phisical_test_top_checkにて初期化
 phisical_test_code              // フィジカルテストコード
+
+// フィジカルテストの情報を表す変数
+// c_phisical_test_contentにて初期化
+date                            // 日付
+belong_code                     // 所属
