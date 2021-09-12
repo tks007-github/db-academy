@@ -21,6 +21,6 @@ belong_code                     // 所属
 phisical_test_code              // フィジカルテストコード
 
 // フィジカルテストの情報を表す変数
-// c_phisical_test_contentにて初期化
+// c_phisical_test_content・にて初期化
 date                            // 日付
 belong_code                     // 所属
