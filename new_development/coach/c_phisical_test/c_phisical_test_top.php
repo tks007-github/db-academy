@@ -64,7 +64,7 @@ session_regenerate_id(true);
 
         if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でない場合(SESSION['c_login']が未定義の場合)
             print 'ログインされていません。<br>';
-            print '<a href="c_top_login.php">ログイン画面へ</a>';
+            print '<a href="../c_top/c_top_login.php">ログイン画面へ</a>';
             exit();
         } else {                                // コーチでログイン状態の場合(SESSION['c_login']が定義されている(=1)場合)
             print $_SESSION['coach_name'];
@@ -86,7 +86,7 @@ session_regenerate_id(true);
 
         $record_start = ($page_now - 1) * $record_max;            // ページに表示する最初のレコード番号（1個目を0番目とする）
 
-        print '<form method="post" action="c_phisical_test_list_check.php">';
+        print '<form method="post" action="c_phisical_test_top_check.php">';
 
         // ページに表示する分のデータだけ切り取る
         $disp_data = array_slice($rec, $record_start, $record_max, true);
@@ -112,7 +112,7 @@ session_regenerate_id(true);
         // if文によってリンクを貼るかどうかを決定
         if ($page_now > 1)                        // 現在のページ番号が1より大きい場合
         {
-            print '<a href=p_phisical_test_top.php?page_id=' . ($page_now - 1) . '>前へ</a>' . '　';
+            print '<a href=c_phisical_test_top.php?page_id=' . ($page_now - 1) . '>前へ</a>' . '　';
         } else                                    // 現在のページ番号が1の場合（1未満になることはないため）
         {
             print '前へ' . '　';
@@ -121,7 +121,7 @@ session_regenerate_id(true);
         // if文によってリンクを貼るかどうかを決定
         if ($page_now < $page_max)                    // 現在のページ番号が最後のページ番号未満の場合
         {
-            print '<a href=p_phisical_test_top.php?page_id=' . ($page_now + 1) . '>次へ</a>' . '　';
+            print '<a href=c_phisical_test_top.php?page_id=' . ($page_now + 1) . '>次へ</a>' . '　';
         } else                                        // 現在のページ番号と最後のページ番号が等しい場合（現在のページ番号は最後のページ番より大きくならないため）
         {
             print '次へ';

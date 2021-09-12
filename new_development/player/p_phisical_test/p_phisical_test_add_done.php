@@ -40,7 +40,6 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
 
     <?php
 
-
     // player_codeをSESSIONで受け取る
     $player_code = $_SESSION['player_code'];
     // dateをSESSIONで受け取る

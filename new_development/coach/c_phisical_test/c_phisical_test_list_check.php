@@ -1,3 +1,9 @@
+<!-- 
+    c_phisical_test_top.phpからの入力情報をチェックし、遷移先を決定する。
+    問題なし→c_phisical_test_list_branch.phpへリダイレクト
+    問題あり→エラーメッセージを出力し、戻るボタンでp_phisical_test_top_ng.phpへ遷移
+ -->
+
 <?php
 
 session_start();

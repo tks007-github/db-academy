@@ -1,10 +1,15 @@
+<!-- 
+    フィジカルテストの登録画面です。
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);
-if (!isset($_SESSION['c_login'])) {
+if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でない場合(SESSION['c_login']が未定義の場合)
     print 'ログインされていません。<br>';
-    print '<a href="../c_top/c_top_login.html">ログイン画面へ</a>';
-} else {
+    print '<a href="../c_top/c_top_login.php">ログイン画面へ</a>';
+    exit();
+} else {                                // コーチでログイン状態の場合(SESSION['c_login']が定義されている(=1)場合)
     print $_SESSION['coach_name'];
     print 'さんログイン中<br>';
     print '<br>';
@@ -18,7 +23,7 @@ if (!isset($_SESSION['c_login'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>c_phisical_test_add</title>
+    <title>c_phisical_test_add.php</title>
 </head>
 
 <body>
@@ -27,27 +32,11 @@ if (!isset($_SESSION['c_login'])) {
 
     <?php
 
-    if (empty($_GET)) {
+    if (empty($_GET)) {     // GET変数が空の場合(c_phisical_test_top.phpからの遷移)
         $no_rec = 0;
-    } else {
+    } else {                // GET変数が空でない場合(c_top.phpからの遷移)
         $no_rec = $_GET['no_rec'];
     }
-
-    // SESSION変数の初期化
-    $_SESSION['belong_code'] = '';
-    $_SESSION['date'] = '';
-    $_SESSION['10m走_boolean'] = '';
-    $_SESSION['20m走_boolean'] = '';
-    $_SESSION['30m走_boolean'] = '';
-    $_SESSION['50m走_boolean'] = '';
-    $_SESSION['1500m走_boolean'] = '';
-    $_SESSION['プロアジリティ_boolean'] = '';
-    $_SESSION['立ち幅跳び_boolean'] = '';
-    $_SESSION['メディシンボール投げ_boolean'] = '';
-    $_SESSION['垂直飛び_boolean'] = '';
-    $_SESSION['背筋力_boolean'] = '';
-    $_SESSION['握力_boolean'] = '';
-    $_SESSION['サイドステップ_boolean'] = '';
 
     ?>
 
@@ -104,9 +93,9 @@ if (!isset($_SESSION['c_login'])) {
     <br><br>
     <?php
     
-    if ($no_rec == 0) {
+    if ($no_rec == 0) {     // GET変数が空の場合(c_phisical_test_top.phpからの遷移)
         print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
-    } else {
+    } else {                // GET変数が空でない場合(c_top.phpからの遷移)
         print '<input type="button" onclick="location.href=\'../c_top/c_top.php\'" value="戻る">';
     }
     
