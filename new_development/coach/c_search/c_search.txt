@@ -1,0 +1,7 @@
+【SESSION変数一覧】
+// 検索する選手の情報を表す変数
+// c_search_check.phpにて初期化
+p_login         // 1:ログイン中
+player_code     // 選手コード
+player_name     // 氏名
+belong_code     // 所属コード

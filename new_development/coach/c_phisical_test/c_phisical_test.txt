@@ -1,0 +1,17 @@
+【SESSION変数一覧】
+// ログイン状態を表す変数
+// ログアウト時(c_top_logout.php)に削除(初期化)
+c_login      // 1:ログイン中
+
+// ログイン失敗を表す変数
+// c_top_login_check.phpにて初期化(パスワード(coach_password)が正しかった場合に削除)
+c_signup_login_ng   // 1:ログイン失敗
+
+// ログインしている選手情報を表す変数
+// c_top_login_check.phpにて初期化
+coach_code     // 選手コード
+coach_name     // 氏名
+
+// パスワード変更をする内容を表す変数
+// c_top_password_change_check.phpにて初期化
+new_coach_password     // 新しいパスワード
