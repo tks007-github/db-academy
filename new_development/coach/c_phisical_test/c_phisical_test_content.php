@@ -138,8 +138,8 @@ if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でな�
     print '<br>';
     print '<input type="button" onclick="location.href=\'c_phisical_test_top.php\'" value="戻る">';
     print '<input type="button" onclick="location.href=\'c_phisical_test_delete.php\'" value="削除">';
-    print '<input type="button" onclick="location.href=\'c_phisical_test_player_list.php\'" value="入力済選手一覧">';
-    print '<input type="button" onclick="location.href=\'c_phisical_test_player_no_list.php\'" value="未入力選手一覧">';
+    print '<input type="button" onclick="location.href=\'c_phisical_test_done_player_list.php\'" value="入力済選手一覧">';
+    print '<input type="button" onclick="location.href=\'c_phisical_test_not_done_player_list.php\'" value="未入力選手一覧">';
 
 
     ?>

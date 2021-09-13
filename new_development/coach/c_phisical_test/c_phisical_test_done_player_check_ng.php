@@ -1,3 +1,8 @@
+<!-- 
+    c_phisical_test_done_player_check.phpにてラジオボタンが選択されていなかった場合に遷移する画面。
+    エラーメッセージを表示し、戻るボタンでc_phisical_test_done_player_list.phpに遷移する。
+ -->
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -11,7 +16,7 @@
     <h3>NG画面</h3>
     
     データが選択されていません。<br>
-    <a href="c_phisical_test_player_list.php">戻る</a>
+    <a href="c_phisical_test_done_player_list.php">戻る</a>
     
 </body>
 </html>

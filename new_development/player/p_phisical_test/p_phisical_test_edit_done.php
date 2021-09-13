@@ -45,19 +45,19 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     // phisical_test_record_codeをSESSIONで受け取る
     $phisical_test_record_code = $_SESSION['phisical_test_record_code'];
 
-    // p_phisical_test_add_checkからSESSIONでフィジカルテスト情報を受け取る
-    $test1_value = $_SESSION['test1_value'];
-    $test2_value = $_SESSION['test2_value'];
-    $test3_value = $_SESSION['test3_value'];
-    $test4_value = $_SESSION['test4_value'];
-    $test5_value = $_SESSION['test5_value'];
-    $test6_value = $_SESSION['test6_value'];
-    $test7_value = $_SESSION['test7_value'];
-    $test8_value = $_SESSION['test8_value'];
-    $test9_value = $_SESSION['test9_value'];
-    $test10_value = $_SESSION['test10_value'];
-    $test11_value = $_SESSION['test11_value'];
-    $test12_value = $_SESSION['test12_value'];
+    // p_phisical_test_edit_checkからSESSIONでフィジカルテスト情報を受け取る
+    $test1_value = $_SESSION['10m走_value'];
+    $test2_value = $_SESSION['20m走_value'];
+    $test3_value = $_SESSION['30m走_value'];
+    $test4_value = $_SESSION['50m走_value'];
+    $test5_value = $_SESSION['1500m走_value'];
+    $test6_value = $_SESSION['プロアジリティ_value'];
+    $test7_value = $_SESSION['立ち幅跳び_value'];
+    $test8_value = $_SESSION['メディシンボール投げ_value'];
+    $test9_value = $_SESSION['垂直飛び_value'];
+    $test10_value = $_SESSION['背筋力_value'];
+    $test11_value = $_SESSION['握力_value'];
+    $test12_value = $_SESSION['サイドステップ_value'];
 
     // DB接続
     try {

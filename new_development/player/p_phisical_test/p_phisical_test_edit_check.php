@@ -170,19 +170,19 @@ if ($test12_boolean) {
 
 if ($flg) {             // 入力に問題がなかった場合
     $_SESSION['phisical_test_record_code'] = $phisical_test_record_code;
-    $_SESSION['test1_value'] = $test1_value;            // セッション変数に10m走の記録を保持
-    $_SESSION['test2_value'] = $test2_value;            // セッション変数に20m走の記録を保持
-    $_SESSION['test3_value'] = $test3_value;            // セッション変数に30m走の記録を保持
-    $_SESSION['test4_value'] = $test4_value;            // セッション変数に50m走の記録を保持
-    $_SESSION['test5_value'] = $test5_value;            // セッション変数に1500m走の記録を保持
-    $_SESSION['test6_value'] = $test6_value;            // セッション変数にプロアジリティの記録を保持
-    $_SESSION['test7_value'] = $test7_value;            // セッション変数に立ち幅跳びの記録を保持
-    $_SESSION['test8_value'] = $test8_value;            // セッション変数にメディシンボール投げの記録を保持
-    $_SESSION['test9_value'] = $test9_value;            // セッション変数に垂直飛びの記録を保持
-    $_SESSION['test10_value'] = $test10_value;          // セッション変数に背筋力の記録を保持
-    $_SESSION['test11_value'] = $test11_value;          // セッション変数に握力の記録を保持
-    $_SESSION['test12_value'] = $test12_value;          // セッション変数にサイドステップの記録を保持
-    header('Location:p_phisical_test_edit_done.php');   // p_phisical_test_edit_done.phpへリダイレクト
+    $_SESSION['10m走_value'] = $test1_value;                // セッション変数に10m走の記録を保持
+    $_SESSION['20m走_value'] = $test2_value;                // セッション変数に20m走の記録を保持
+    $_SESSION['30m走_value'] = $test3_value;                // セッション変数に30m走の記録を保持
+    $_SESSION['50m走_value'] = $test4_value;                // セッション変数に50m走の記録を保持
+    $_SESSION['1500m走_value'] = $test5_value;              // セッション変数に1500m走の記録を保持
+    $_SESSION['プロアジリティ_value'] = $test6_value;        // セッション変数にプロアジリティの記録を保持
+    $_SESSION['立ち幅跳び_value'] = $test7_value;            // セッション変数に立ち幅跳びの記録を保持
+    $_SESSION['メディシンボール投げ_value'] = $test8_value;   // セッション変数にメディシンボール投げの記録を保持
+    $_SESSION['垂直飛び_value'] = $test9_value;              // セッション変数に垂直飛びの記録を保持
+    $_SESSION['背筋力_value'] = $test10_value;              // セッション変数に背筋力の記録を保持
+    $_SESSION['握力_value'] = $test11_value;                // セッション変数に握力の記録を保持
+    $_SESSION['サイドステップ_value'] = $test12_value;       // セッション変数にサイドステップの記録を保持
+    header('Location:p_phisical_test_edit_done.php');       // p_phisical_test_edit_done.phpへリダイレクト
     exit();
 } else {                // 入力に問題があった場合
     print '入力に誤りがあります<br><br>';

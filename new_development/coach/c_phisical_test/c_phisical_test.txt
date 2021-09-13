@@ -1,6 +1,6 @@
 【SESSION変数一覧】
 // フィジカルテストの新規登録内容を表す変数
-// c_phisical_test_add_checkにて初期化
+// c_phisical_test_add_check・c_phisical_test_done_player_listにて初期化
 date                            // 日付
 belong_code                     // 所属
 10m走_boolean                   // 10m走の登録の有無
@@ -21,6 +21,25 @@ belong_code                     // 所属
 phisical_test_code              // フィジカルテストコード
 
 // フィジカルテストの情報を表す変数
-// c_phisical_test_content・にて初期化
+// c_phisical_test_contentにて初期化
 date                            // 日付
 belong_code                     // 所属
+
+// 選手コードを表す変数
+// c_phisical_test_done_player_checkにて初期化
+player_code                     // 選手コード
+
+// フィジカルテストの結果を表す変数
+phisical_test_code              // フィジカルテストコード
+10m走_value                     // 10m走の結果
+20m走_value                     // 20m走の結果
+30m走_value                     // 30m走の結果
+50m走_value                     // 50m走の結果
+1500m走_value                   // 1500m走の結果
+プロアジリティ_value             // プロアジリティの結果
+立ち幅跳び_value                 // 立ち幅跳びの結果
+メディシンボール投げ_value        // メディシンボール投げの結果
+垂直飛び_value                   // 垂直飛びの登録の結果
+背筋力_value                    // 背筋力の登録の結果
+握力_value                      // 握力の登録の結果
+サイドステップ_value             // サイドステップの登録の結果

@@ -1,14 +1,15 @@
 <!-- 
-    p_phisical_test_add.phpからの入力情報をチェックし、遷移先を決定する。
-    問題なし→p_phisical_test_add_done.phpへリダイレクト
-    問題あり→エラーメッセージを出力し、戻るボタンでp_phisical_test_add.phpへ遷移
+    c_phisical_test_done_player_edit.phpからの入力情報をチェックし、遷移先を決定する。
+    問題なし→c_phisical_test_done_player_edit_done.phpへリダイレクト
+    問題あり→エラーメッセージを出力し、戻るボタンでc_phisical_test_done_player_edit.phpへ遷移
  -->
 
 <?php
 session_start();
 session_regenerate_id(true);
 
-// p_phisical_test_topからの情報をSESSIONで受け取る
+// c_phisical_test_done_player_listからの情報をSESSIONで受け取る
+$date = $_SESSION['date'];
 $test1_boolean = $_SESSION['10m走_boolean'];
 $test2_boolean = $_SESSION['20m走_boolean'];
 $test3_boolean = $_SESSION['30m走_boolean'];
@@ -26,6 +27,8 @@ $test12_boolean = $_SESSION['サイドステップ_boolean'];
 require_once('../../function/function.php');
 // POSTの中身をすべてサニタイズする
 $post = sanitize($_POST);
+// phisical_test_record_codeを受け取る
+$phisical_test_record_code = $post['phisical_test_record_code'];
 
 // 入力内容の問題の有無をflgによって判定(問題なし:true、問題あり:false)
 $flg = true;
@@ -82,7 +85,8 @@ if ($test5_boolean) {
         $test5_value = $post['1500m走_min_value'] * 60 + $post['1500m走_sec_value'];
     }
 } else {
-    $test5_value = 0;
+    $test5_1_value = 0;
+    $test5_2_value = 0;
 }
 
 // プロアジリティ
@@ -164,6 +168,7 @@ if ($test12_boolean) {
 
 
 if ($flg) {             // 入力に問題がなかった場合
+    $_SESSION['phisical_test_record_code'] = $phisical_test_record_code;
     $_SESSION['10m走_value'] = $test1_value;                // セッション変数に10m走の記録を保持
     $_SESSION['20m走_value'] = $test2_value;                // セッション変数に20m走の記録を保持
     $_SESSION['30m走_value'] = $test3_value;                // セッション変数に30m走の記録を保持
@@ -176,9 +181,9 @@ if ($flg) {             // 入力に問題がなかった場合
     $_SESSION['背筋力_value'] = $test10_value;              // セッション変数に背筋力の記録を保持
     $_SESSION['握力_value'] = $test11_value;                // セッション変数に握力の記録を保持
     $_SESSION['サイドステップ_value'] = $test12_value;       // セッション変数にサイドステップの記録を保持
-    header('Location:p_phisical_test_add_done.php');        // p_phisical_test_add_done.phpへリダイレクト
+    header('Location:c_phisical_test_done_player_edit_done.php');    // p_phisical_test_done_player_edit_done.phpへリダイレクト
     exit();
 } else {                // 入力に問題があった場合
-    print 'フィジカルテストの記録について入力漏れがあります<br><br>';
-    print '<input type="button" onclick="location.href=\'p_phisical_test_add.php\'" value="戻る">';
+    print '入力に誤りがあります<br><br>';
+    print '<input type="button" onclick="location.href=\'c_phisical_test_done_player_edit.php\'" value="戻る">';
 }

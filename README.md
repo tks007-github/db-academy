@@ -6,6 +6,7 @@ c_phisical_test_player系
 【未完成】
 p_phisical_info_graph.php(最大値・最小値・間隔の設定)
 p_phisical_test_graph_test.php(1500m走の何分何秒)
+c_phisical_test_done_player_result.php
 
 【説明】
 new_developmentディレクトリ

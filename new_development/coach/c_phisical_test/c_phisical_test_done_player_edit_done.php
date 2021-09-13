@@ -1,27 +1,20 @@
 <!-- 
-    p_phisical_test_add_check.phpから受け取ったフィジカルテストの情報をphisical_test_recordテーブルに
-    インサートする。
+    c_phisical_test_done_player_edit_check.phpから受け取ったフィジカルテストの情報をphisical_test_recordテーブルに
+    アップデートする。
  -->
 
 <?php
 session_start();
 session_regenerate_id(true);
-if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない場合(SESSION['p_login']が未定義の場合)
-    print 'ログインされていません<br>';
-    print '<a href="../p_top/p_top_login.php">ログイン画面へ</a>';
+if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でない場合(SESSION['c_login']が未定義の場合)
+    print 'ログインされていません。<br>';
+    print '<a href="../c_top/c_top_login.php">ログイン画面へ</a>';
     exit();
-} else {                                // 選手でログイン状態の場合(SESSION['p_login']が定義されている(=1)場合)
-    if (!isset($_SESSION['c_login'])) {         // コーチでログイン状態でない場合(SESSION['c_login']が未定義の場合)
-        print $_SESSION['player_name'];
-        print 'さんログイン中<br>';
-        print '<br>';
-    } else {                                    // コーチでログイン状態の場合(SESSION['c_login']が定義されている(=1)場合)
-        print $_SESSION['coach_name'];
-        print 'さんログイン中<br>';
-        print '選手検索：' . $_SESSION['player_name'];
-    }
+} else {                                // コーチでログイン状態の場合(SESSION['c_login']が定義されている(=1)場合)
+    print $_SESSION['coach_name'];
+    print 'さんログイン中<br>';
+    print '<br>';
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -31,21 +24,21 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p_phisical_test_add_done.php</title>
+    <title>c_phisical_test_done_player_edit_done.php</title>
 </head>
 
 <body>
 
-    <h3>フィジカルテストの登録完了</h3>
+    <h3>フィジカルテストの編集完了</h3>
 
     <?php
 
     // player_codeをSESSIONで受け取る
     $player_code = $_SESSION['player_code'];
-    // dateをSESSIONで受け取る
-    $date = $_SESSION['date'];
+    // phisical_test_record_codeをSESSIONで受け取る
+    $phisical_test_record_code = $_SESSION['phisical_test_record_code'];
 
-    // p_phisical_test_add_checkからSESSIONでフィジカルテストの情報を受け取る
+    // p_phisical_test_add_checkからSESSIONでフィジカルテスト情報を受け取る
     $test1_value = $_SESSION['10m走_value'];
     $test2_value = $_SESSION['20m走_value'];
     $test3_value = $_SESSION['30m走_value'];
@@ -68,17 +61,16 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // phisical_infoテーブルに情報を追加
+        // phisical_test_recordテーブルの情報を更新
         $sql = '
-                INSERT INTO phisical_test_record(player_code, date,
-                10m走, 20m走, 30m走, 50m走, 1500m走, 
-                プロアジリティ, 立ち幅跳び, メディシンボール投げ, 垂直飛び,
-                背筋力, 握力, サイドステップ) 
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+                UPDATE phisical_test_record
+                SET 
+                10m走 = ?, 20m走 = ?, 30m走 = ?, 50m走 = ?, 1500m走 = ?, 
+                プロアジリティ = ?, 立ち幅跳び = ?, メディシンボール投げ = ?, 垂直飛び = ?,
+                背筋力 = ?, 握力 = ?, サイドステップ = ?
+                WHERE phisical_test_record_code = ? 
                 ';
         $stmt = $dbh->prepare($sql);
-        $data[] = $player_code;
-        $data[] = $date;
         $data[] = $test1_value;
         $data[] = $test2_value;
         $data[] = $test3_value;
@@ -91,6 +83,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         $data[] = $test10_value;
         $data[] = $test11_value;
         $data[] = $test12_value;
+        $data[] = $phisical_test_record_code;
         $stmt->execute($data);
 
         // db_academyデータベースから切断する
@@ -100,8 +93,8 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         exit();
     }
 
-    print '登録が完了しました<br><br>';
-    print '<input type="button" onclick="location.href=\'p_phisical_test_top.php\'" value="戻る">';
+    print '編集が完了しました<br><br>';
+    print '<input type="button" onclick="location.href=\'c_phisical_test_done_player_list.php\'" value="戻る">';
 
     ?>
 
