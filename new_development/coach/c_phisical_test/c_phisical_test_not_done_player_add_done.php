@@ -1,11 +1,16 @@
+<!-- 
+    c_phisical_test_not_done_player_add_check.phpから受け取ったフィジカルテストの情報をphisical_test_recordテーブルに
+    インサートする。
+ -->
+
 <?php
 session_start();
 session_regenerate_id(true);
-if (!isset($_SESSION['c_login'])) {
+if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でない場合(SESSION['c_login']が未定義の場合)
     print 'ログインされていません。<br>';
-    print '<a href="../c_top/c_top_login.html">ログイン画面へ</a>';
+    print '<a href="../c_top/c_top_login.php">ログイン画面へ</a>';
     exit();
-} else {
+} else {                                // コーチでログイン状態の場合(SESSION['c_login']が定義されている(=1)場合)
     print $_SESSION['coach_name'];
     print 'さんログイン中<br>';
     print '<br>';
@@ -19,7 +24,7 @@ if (!isset($_SESSION['c_login'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>c_phisical_test_player_no_add_done</title>
+    <title>c_phisical_test_not_done_player_add_done.php</title>
 </head>
 
 <body>
@@ -34,20 +39,20 @@ if (!isset($_SESSION['c_login'])) {
         // dateをSESSIONで受け取る
         $date = $_SESSION['date'];
 
-        // c_phisical_test_player_add_checkからSESSIONで身体情報を受け取る
-        $test1_value = $_SESSION['test1_value'];
-        $test2_value = $_SESSION['test2_value'];
-        $test3_value = $_SESSION['test3_value'];
-        $test4_value = $_SESSION['test4_value'];
-        $test5_1_value = $_SESSION['test5_1_value'];
-        $test5_2_value = $_SESSION['test5_2_value'];
-        $test6_value = $_SESSION['test6_value'];
-        $test7_value = $_SESSION['test7_value'];
-        $test8_value = $_SESSION['test8_value'];
-        $test9_value = $_SESSION['test9_value'];
-        $test10_value = $_SESSION['test10_value'];
-        $test11_value = $_SESSION['test11_value'];
-        $test12_value = $_SESSION['test12_value'];
+        // c_phisical_test_not_done_player_add_checkからSESSIONでフィジカルテスト情報を受け取る
+        $test1_value = $_SESSION['10m走_value'];
+        $test2_value = $_SESSION['20m走_value'];
+        $test3_value = $_SESSION['30m走_value'];
+        $test4_value = $_SESSION['50m走_value'];
+        $test5_value = $_SESSION['1500m走_value'];
+        $test6_value = $_SESSION['プロアジリティ_value'];
+        $test7_value = $_SESSION['立ち幅跳び_value'];
+        $test8_value = $_SESSION['メディシンボール投げ_value'];
+        $test9_value = $_SESSION['垂直飛び_value'];
+        $test10_value = $_SESSION['背筋力_value'];
+        $test11_value = $_SESSION['握力_value'];
+        $test12_value = $_SESSION['サイドステップ_value'];
+
 
         // db_academyデータベースに接続する
         $dsn = 'mysql:dbname=db_academy;host=localhost;charset=utf8';
@@ -56,13 +61,13 @@ if (!isset($_SESSION['c_login'])) {
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // phisical_infoテーブルに情報を追加
+        // phisical_test_recordテーブルに情報を追加
         $sql = '
                 INSERT INTO phisical_test_record(player_code, date,
-                10m走, 20m走, 30m走, 50m走, 1500m走_min, 1500m走_sec, 
+                10m走, 20m走, 30m走, 50m走, 1500m走, 
                 プロアジリティ, 立ち幅跳び, メディシンボール投げ, 垂直飛び,
                 背筋力, 握力, サイドステップ) 
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
                 ';
         $stmt = $dbh->prepare($sql);
         $data[] = $player_code;
@@ -71,8 +76,7 @@ if (!isset($_SESSION['c_login'])) {
         $data[] = $test2_value;
         $data[] = $test3_value;
         $data[] = $test4_value;
-        $data[] = $test5_1_value;
-        $data[] = $test5_2_value;
+        $data[] = $test5_value;
         $data[] = $test6_value;
         $data[] = $test7_value;
         $data[] = $test8_value;
@@ -82,15 +86,16 @@ if (!isset($_SESSION['c_login'])) {
         $data[] = $test12_value;
         $stmt->execute($data);
 
-        // player_managementデータベースから切断する
+        // db_academyデータベースから切断する
         $dbh = null;
-
-        print '登録が完了しました<br><br>';
-        print '<input type="button" onclick="location.href=\'c_phisical_test_player_no_list.php\'" value="戻る">';
     } catch (Exception $e) {
         var_dump($e);
         exit();
     }
+
+    print '登録が完了しました<br><br>';
+    print '<input type="button" onclick="location.href=\'c_phisical_test_not_done_player_list.php\'" value="戻る">';
+
     ?>
 
 </body>

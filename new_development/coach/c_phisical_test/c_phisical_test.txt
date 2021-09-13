@@ -30,7 +30,8 @@ belong_code                     // 所属
 player_code                     // 選手コード
 
 // フィジカルテストの結果を表す変数
-phisical_test_code              // フィジカルテストコード
+// c_phisical_test_done_player_edit_checkにて初期化
+phisical_test_record_code       // フィジカルテストコード
 10m走_value                     // 10m走の結果
 20m走_value                     // 20m走の結果
 30m走_value                     // 30m走の結果

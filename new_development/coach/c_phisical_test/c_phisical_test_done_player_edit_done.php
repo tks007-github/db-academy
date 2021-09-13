@@ -33,12 +33,10 @@ if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でな�
 
     <?php
 
-    // player_codeをSESSIONで受け取る
-    $player_code = $_SESSION['player_code'];
     // phisical_test_record_codeをSESSIONで受け取る
     $phisical_test_record_code = $_SESSION['phisical_test_record_code'];
 
-    // p_phisical_test_add_checkからSESSIONでフィジカルテスト情報を受け取る
+    // c_phisical_test_done_player_edit_checkからSESSIONでフィジカルテスト情報を受け取る
     $test1_value = $_SESSION['10m走_value'];
     $test2_value = $_SESSION['20m走_value'];
     $test3_value = $_SESSION['30m走_value'];

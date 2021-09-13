@@ -1,9 +1,8 @@
 <!-- 
-    c_phisical_test_contentの入力済み選手一覧を表示する。
-    ラジオボタンで選択し、編集・成績表ボタンを押すことで遷移する。
+    c_phisical_test_contentの未入力選手一覧を表示する。
+    ラジオボタンで選択し、登録ボタンを押すことで遷移する。
 
-    編集→c_phisical_test_done_player_edit.php
-    成績表→c_phisical_test_done_player_result.php
+    登録→c_phisical_test_not_done_player_add.php
  -->
 
 <?php
@@ -27,12 +26,12 @@ if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でな�
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>c_phisical_test_done_player_list.php</title>
+    <title>c_phisical_test_not_done_player_list.php</title>
 </head>
 
 <body>
 
-    <h3>フィジカルテスト入力済選手一覧</h3>
+    <h3>フィジカルテスト未入力選手一覧</h3>
 
     <?php
 
@@ -75,7 +74,6 @@ if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でな�
         $test11_boolean = $rec['握力'];
         $test12_boolean = $rec['サイドステップ'];
 
-        // SESSION変数に情報を保持
         $_SESSION['date'] = $date;
         $_SESSION['belong_code'] = $belong_code;
         $_SESSION['10m走_boolean'] = $test1_boolean;
@@ -95,7 +93,7 @@ if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でな�
         $sql2 = '
                 SELECT player_code, player_name 
                 FROM player 
-                WHERE player_code IN (
+                WHERE player_code NOT IN (
                     SELECT player_code
                     FROM phisical_test_record
                     WHERE date = ? AND belong_code = ?
@@ -117,7 +115,7 @@ if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でな�
     }
 
     if (empty($rec2)) {
-        print '入力済の選手はいません';
+        print '未入力の選手はいません';
         print '<br><br>';
         print '<input type="button" onclick="location.href=\'c_phisical_test_content.php\'" value="戻る">';
     } else {
@@ -136,7 +134,7 @@ if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でな�
 
         $record_start = ($page_now - 1) * $record_max;            // ページに表示する最初のレコード番号（1個目を0番目とする）
 
-        print '<form method="post" action="c_phisical_test_done_player_check.php">';
+        print '<form method="post" action="c_phisical_test_not_done_player_check.php">';
 
         // ページに表示する分のデータだけ切り取る
         $disp_data = array_slice($rec2, $record_start, $record_max, true);
@@ -162,7 +160,7 @@ if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でな�
         // if文によってリンクを貼るかどうかを決定
         if ($page_now > 1)                        // 現在のページ番号が1より大きい場合
         {
-            print '<a href=c_phisical_test_done_player_list.php?page_id=' . ($page_now - 1) . '>前へ</a>' . '　';
+            print '<a href=c_phisical_test_not_done_player_list.php?page_id=' . ($page_now - 1) . '>前へ</a>' . '　';
         } else                                    // 現在のページ番号が1の場合（1未満になることはないため）
         {
             print '前へ' . '　';
@@ -171,7 +169,7 @@ if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でな�
         // if文によってリンクを貼るかどうかを決定
         if ($page_now < $page_max)                    // 現在のページ番号が最後のページ番号未満の場合
         {
-            print '<a href=c_phisical_test_done_player_list.php?page_id=' . ($page_now + 1) . '>次へ</a>' . '　';
+            print '<a href=c_phisical_test_not_done_player_list.php?page_id=' . ($page_now + 1) . '>次へ</a>' . '　';
         } else                                        // 現在のページ番号と最後のページ番号が等しい場合（現在のページ番号は最後のページ番より大きくならないため）
         {
             print '次へ';
@@ -179,8 +177,7 @@ if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でな�
 
         print '<br><br>';
         print '<input type="button" onclick="location.href=\'c_phisical_test_content.php\'" value="戻る">';
-        print '<input type="submit" name="edit" value="編集">';
-        print '<input type="submit" name="result" value="成績表">';
+        print '<input type="submit" name="add" value="登録">';
     }
 
 
