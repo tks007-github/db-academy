@@ -70,9 +70,9 @@ if ($coach_password != '' && $rec == '') {
     $flg = false;
 }
 
-// new_coach_passwordが空の場合
-if ($new_coach_password == '') {
-    print '新しいパスワードが入力されていません<br>';
+// new_coach_passwordが条件を満たしていない場合
+if(!preg_match("/^[a-z][a-z0-9_]{5,13}$/i", $new_coach_password)) {
+    print '新しいパスワードがパスワードの条件を満たしていません<br>';
     $flg = false;
 }
 

@@ -70,9 +70,9 @@ if ($player_password != '' && $rec == '') {
     $flg = false;
 }
 
-// new_player_passwordが空の場合
-if ($new_player_password == '') {
-    print '新しいパスワードが入力されていません<br>';
+// new_player_passwordが条件を満たしていない場合
+if(!preg_match("/^[a-z][a-z0-9_]{5,13}$/i", $new_player_password)) {
+    print '新しいパスワードがパスワードの条件を満たしていません<br>';
     $flg = false;
 }
 

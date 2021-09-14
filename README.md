@@ -1,7 +1,7 @@
 # db-academy
 
 【取組中】
-c_phisical_test内の所属がA,Bになっているので修正
+
 
 【未完成】
 p_phisical_info_graph.php(最大値・最小値・間隔の設定)
@@ -20,3 +20,6 @@ new_developmentディレクトリ
 コーチ(管理者のアカウントは作成済み)
 →coach/c_top/c_top.phpからログイン
 →signup/c_signup/c_signup_login.htmlからマスターパスワードを使ってサインアップ(他のコーチを登録する場合)
+
+パスワード(p_signup_top.php, p_signup_top_check.php, c_signup_top.php, c_signup_top_check.php, p_top_password_change.php, p_top_password_change_check.php, c_top_password_change.php, c_top_password_change_check.php, c_top_master_password_change.php, c_top_master_password_change_check.php)
+半角英数字6文字以上14文字以内

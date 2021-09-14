@@ -69,9 +69,9 @@ if ($mst_password != '' && $rec == '') {
     $flg = false;
 }
 
-// new_mst_passwordが空の場合
-if ($new_mst_password == '') {
-    print '新しいマスターパスワードが入力されていません<br>';
+// new_mst_passwordが条件を満たしていない場合
+if(!preg_match("/^[a-z][a-z0-9_]{5,13}$/i", $new_mst_password)) {
+    print '新しいマスターパスワードがパスワードの条件を満たしていません<br>';
     $flg = false;
 }
 

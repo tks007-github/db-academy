@@ -31,7 +31,7 @@
         氏名を入力してください<br>
         <input type="text" name="coach_name"><br>
         <br>
-        パスワードを入力してください<br>
+        パスワードを入力してください(半角英数字6文字以上14文字以内)<br>
         <input type="password" name="coach_password"><br>
         <br>
         パスワードをもう１度入力してください<br>

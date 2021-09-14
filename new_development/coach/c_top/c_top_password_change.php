@@ -36,7 +36,7 @@
         現在のパスワードを入力してください<br>
         <input type="password" name="coach_password"><br>
         <br>
-        新しいパスワードを入力してください<br>
+        新しいパスワードを入力してください(半角英数字6文字以上14文字以内)<br>
         <input type="password" name="new_coach_password"><br>
         <br>
         新しいパスワードをもう一度入力してください<br>

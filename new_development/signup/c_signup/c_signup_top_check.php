@@ -53,9 +53,9 @@ if (!isset($_SESSION['c_signup_login'])) {
         $flg = false;
     }
 
-    // coach_passwordが空の場合
-    if ($coach_password == '') {
-        print 'パスワードが入力されていません<br>';
+    // coach_passwordが条件を満たしていない場合
+    if(!preg_match("/^[a-z][a-z0-9_]{5,13}$/i", $coach_password)) {
+        print 'パスワードの条件を満たしていません<br>';
         $flg = false;
     }
 

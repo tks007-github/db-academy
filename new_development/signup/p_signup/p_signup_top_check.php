@@ -60,9 +60,9 @@ if (!isset($_SESSION['p_signup_login'])) {
         $flg = false;
     }
 
-    // player_passwordが空の場合
-    if ($player_password == '') {
-        print 'パスワードが入力されていません<br>';
+    // player_passwordが条件を満たしていない場合
+    if(!preg_match("/^[a-z][a-z0-9_]{5,13}$/i", $player_password)) {
+        print 'パスワードの条件を満たしていません<br>';
         $flg = false;
     }
 
