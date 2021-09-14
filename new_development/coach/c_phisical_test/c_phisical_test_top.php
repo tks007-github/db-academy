@@ -72,6 +72,10 @@ session_regenerate_id(true);
             print '<br>';
         }
 
+        // belong_codeからbelong_nameを得るための連想配列を用意
+        $belong_name['A'] = '新川高校';
+        $belong_name['B'] = 'D.B.アカデミー';
+
         $record_max = 3;                        // 1ページあたりの最大レコード数
         $record_num = count($rec);              // レコードの総数
         $page_max = ceil($record_num / $record_max);    // 総ページ数の計算
@@ -93,7 +97,7 @@ session_regenerate_id(true);
         foreach ($disp_data as $key => $value) {
             print '<input type="radio" name="phisical_test_code" value="' . $value['phisical_test_code'] . '">';
             print '日付：' . $value['date'] . '　';
-            print '所属：' . $value['belong_code'] . '　';
+            print '所属：' . $belong_name[$value['belong_code']] . '　';
             print '<br>';
         }
 

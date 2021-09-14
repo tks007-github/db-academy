@@ -85,12 +85,16 @@ if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でな�
     $test11_boolean = $rec['握力'];
     $test12_boolean = $rec['サイドステップ'];
 
+    // belong_codeからbelong_nameを得るための連想配列を用意
+    $belong_name['A'] = '新川高校';
+    $belong_name['B'] = 'D.B.アカデミー';
+
     print '日付<br>';
     print $date;
     print '<br><br>';
 
     print '所属<br>';
-    print $belong_code;
+    print $belong_name[$belong_code];
     print '<br><br>';
 
     print '項目<br>';
