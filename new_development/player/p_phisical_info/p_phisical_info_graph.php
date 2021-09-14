@@ -232,9 +232,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
                 scales: {
                     yAxes: [{
                         ticks: {
-                            suggestedMax: 200,
-                            suggestedMin: 0,
-                            stepSize: 10,
+                            max: 180,
+                            min: 170,
+                            stepSize: 1,
                             callback: function(value, index, values) {
                                 return value
                             }
