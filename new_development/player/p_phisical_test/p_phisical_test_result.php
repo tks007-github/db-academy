@@ -2,6 +2,7 @@
     フィジカルテストのグラフを表示する。
  -->
 
+<div class="not_print">
 <?php
 session_start();
 session_regenerate_id(true);
@@ -22,6 +23,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
 }
 
 ?>
+</div>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -30,6 +32,8 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="p_phisical_test_result.js"></script>
     <title>p_phisical_test_result.php</title>
 </head>
 
@@ -42,9 +46,14 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     // 自作の関数を呼び出す
     require_once('../../function/function.php');
 
-    // player_codeとbelong_codeをSESSIONで受け取る
+    // player_nameとplayer_codeとbelong_codeをSESSIONで受け取る
+    $player_name = $_SESSION['player_name'];
     $player_code = $_SESSION['player_code'];
     $belong_code = $_SESSION['belong_code'];
+
+    // belong_codeからbelong_nameを得るための連想配列を用意
+    $belong_name['A'] = '新川高校';
+    $belong_name['B'] = 'D.B.アカデミー';
 
     // p_phisical_test_topからの情報をSESSIONで受け取る
     $date = $_SESSION['date'];
@@ -264,12 +273,12 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
             $rec3_1 = $stmt3_1->fetch(PDO::FETCH_ASSOC);
             $test1_recent_value[] = $rec3_1['10m走'];
         }
-    
+
         // 過去3回分の10m走の点数の決定
         for ($i = 0; $i < 2; $i++) {
             $test1_recent_score[] = test1_score($test1_recent_value[$i]);
         }
-        
+
 
         $sql3_2 = '
                     SELECT date, 20m走  
@@ -543,7 +552,6 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         exit();
     }
 
-
     $json_test1_recent_score = json_encode($test1_recent_score);
     $json_test2_recent_score = json_encode($test2_recent_score);
     $json_test3_recent_score = json_encode($test3_recent_score);
@@ -557,6 +565,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     $json_test11_recent_score = json_encode($test11_recent_score);
     $json_test12_recent_score = json_encode($test12_recent_score);
 
+    print '日付：' . $date . '<br>';
+    print '氏名：' . $player_name . '<br>';
+    print '所属：' . $belong_name[$belong_code] . '<br>';
 
     print '<table border=1>';
     print '<tr><th>日付</th> <th>10m走</th> <th>20m走</th> <th>30m走</th>';
@@ -649,6 +660,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         });
     </script>
 
+    
+<div class="not_print">
+<button onclick="window.print()">印刷</button>
     <br><br>
     <input type="button" onclick="location.href='p_phisical_test_content.php'" value="戻る">
     <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=10m走'" value="10m走">
@@ -663,7 +677,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=背筋力'" value="背筋力">
     <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=握力'" value="握力">
     <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=サイドステップ'" value="サイドステップ">
-
+</div>
 
 </body>
 
