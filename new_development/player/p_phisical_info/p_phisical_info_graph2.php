@@ -31,15 +31,22 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
     <title>p_phisical_info_graph.php</title>
+
+    <style>
+        canvas {
+            max-width: 600px;
+            max-height: 400px;
+            border: solid 1px #888;
+        }
+    </style>
+
 </head>
 
 <body>
 
     <h3>身体情報グラフ</h3>
-
-    <canvas id="myLineChart"></canvas>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 
     <?php
     // player_codeをSESSIONで受け取る
@@ -93,7 +100,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         // SQL文は共通なのでここで準備
         $sql = '
                 SELECT DATE_FORMAT(date, \'%Y%m\') AS grouping_date, 
-                AVG(' . $graph . ') AS grouping_' . $graph . '
+                AVG(' . $graph . ') AS grouping_' . $graph .'
                 FROM phisical_info
                 WHERE player_code = ?
                 GROUP BY grouping_date
@@ -174,7 +181,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
 
     <canvas id="canvas"></canvas>
     <script>
-        let ctx = document.getElementById("myLineChart");
+        let canvas = document.getElementById("canvas");
 
         // phpの変数をjavascriptで受け取る
         let js_graph = <?php print $json_graph; ?>;
@@ -182,31 +189,10 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         let js_this_year = <?php print $json_this_year; ?>;
         let js_last_year = <?php print $json_last_year; ?>;
 
-        // 身体情報の最大値(切り上げ + 1)と最小値(切り捨て - 1)を得る
-        let max_value = Math.ceil(Math.max(Math.max.apply(null, js_this_year), Math.max.apply(null, js_last_year))) + 1;
-        let min_value = Math.floor(Math.max(Math.min.apply(null, js_this_year), Math.min.apply(null, js_last_year))) - 1;
-        
-        // 最大値 - 最小値を計算
-        let gap_value = (max_value - min_value) / 10;
-
         // 連想配列を用意(グラフの名前)
-        let graph_name = {
-            height: "身長",
-            weight: "体重",
-            body_fat: "体脂肪率",
-            muscle_mass: "筋量"
-        };
-        // 連想配列を用意(単位)
-        let graph_unit = {
-            height: "cm",
-            weight: "kg",
-            body_fat: "%",
-            muscle_mass: "kg"
-        };
+        let graph_name = {height: "身長(cm)", weight: "体重(kg)", body_fat: "体脂肪率(%)", muscle_mass: "筋量(kg)"};
 
-
-
-        let myLineChart = new Chart(ctx, {
+        let myLineChart = new Chart(canvas, {
             type: 'line',
             data: {
                 labels: ['4月', '5月', '6月', '7月', '8月', '9月', '10月',
@@ -221,7 +207,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
                         ],
                         borderColor: "rgba(0,0,255,1)",
                         backgroundColor: "rgba(0,0,0,0)",
-                        spanGaps: true
+                        spanGaps: true,
                     },
                     {
                         label: '昨年度',
@@ -232,23 +218,25 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
                         ],
                         borderColor: "rgba(255,0,0,1)",
                         backgroundColor: "rgba(0,0,0,0)",
-                        spanGaps: true
-                    }
+                        spanGaps: true,
+                    },
                 ],
             },
             options: {
-                title: {
-                    display: true,
-                    text: graph_name[js_graph]
+                plugins: {
+                    title: {
+                        display: true,
+                        text: graph_name[js_graph],
+                    }
                 },
                 scales: {
                     yAxes: [{
                         ticks: {
-                            max: max_value,
-                            min: min_value,
-                            stepSize: gap_value,
+                            max: 180,
+                            min: 170,
+                            stepSize: 1,
                             callback: function(value, index, values) {
-                                return value + graph_unit[js_graph]
+                                return value + 'cm'
                             }
                         }
                     }]
