@@ -172,7 +172,6 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
 
     ?>
 
-    <canvas id="canvas"></canvas>
     <script>
         let ctx = document.getElementById("myLineChart");
 
@@ -182,9 +181,9 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         let js_this_year = <?php print $json_this_year; ?>;
         let js_last_year = <?php print $json_last_year; ?>;
 
-        // 身体情報の最大値(切り上げ + 1)と最小値(切り捨て - 1)を得る
-        let max_value = Math.ceil(Math.max(Math.max.apply(null, js_this_year), Math.max.apply(null, js_last_year))) + 1;
-        let min_value = Math.floor(Math.max(Math.min.apply(null, js_this_year), Math.min.apply(null, js_last_year))) - 1;
+        // 身体情報の最大値(切り上げ)と最小値(切り捨て)を得る
+        let max_value = Math.ceil(Math.max(Math.max.apply(null, js_this_year), Math.max.apply(null, js_last_year)));
+        let min_value = Math.floor(Math.max(Math.min.apply(null, js_this_year), Math.min.apply(null, js_last_year)));
         
         // 最大値 - 最小値を計算
         let gap_value = (max_value - min_value) / 10;
@@ -244,8 +243,8 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
                 scales: {
                     yAxes: [{
                         ticks: {
-                            max: max_value,
-                            min: min_value,
+                            max: max_value + gap_value,
+                            min: min_value - gap_value,
                             stepSize: gap_value,
                             callback: function(value, index, values) {
                                 return value + graph_unit[js_graph]
