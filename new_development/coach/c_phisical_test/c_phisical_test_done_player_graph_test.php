@@ -3,25 +3,18 @@
     垂直飛び、背筋力、握力、サイドステップのグラフを表示する。
  -->
 
-<?php
+ <?php
 session_start();
 session_regenerate_id(true);
-if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない場合(SESSION['p_login']が未定義の場合)
-    print 'ログインされていません<br>';
-    print '<a href="../p_top/p_top_login.php">ログイン画面へ</a>';
+if (!isset($_SESSION['c_login'])) {     // コーチでログイン状態でない場合(SESSION['c_login']が未定義の場合)
+    print 'ログインされていません。<br>';
+    print '<a href="../c_top/c_top_login.php">ログイン画面へ</a>';
     exit();
-} else {                                // 選手でログイン状態の場合(SESSION['p_login']が定義されている(=1)場合)
-    if (!isset($_SESSION['c_login'])) {         // コーチでログイン状態でない場合(SESSION['c_login']が未定義の場合)
-        print $_SESSION['player_name'];
-        print 'さんログイン中<br>';
-        print '<br>';
-    } else {                                    // コーチでログイン状態の場合(SESSION['c_login']が定義されている(=1)場合)
-        print $_SESSION['coach_name'];
-        print 'さんログイン中<br>';
-        print '選手検索：' . $_SESSION['player_name'];
-    }
+} else {                                // コーチでログイン状態の場合(SESSION['c_login']が定義されている(=1)場合)
+    print $_SESSION['coach_name'];
+    print 'さんログイン中<br>';
+    print '<br>';
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +24,7 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p_phisical_test_graph_test.php</title>
+    <title>c_phisical_test_done_player_graph_test.php</title>
 </head>
 
 <body>
@@ -45,7 +38,6 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
 
     // player_codeとbelong_codeをSESSIONで受け取る
     $player_code = $_SESSION['player_code'];
-    $belong_code = $_SESSION['belong_code'];
 
     // p_phisical_test_topからの情報をSESSIONで受け取る
     $date = $_SESSION['date'];
@@ -67,6 +59,19 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
         $password = 'root';
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // playerテーブルからplayer_codeを使ってbelong_codeを検索
+        $sql4 = '
+                SELECT belong_code 
+                FROM player 
+                WHERE player_code = ?
+                ';
+        $stmt4 = $dbh->prepare($sql4);
+        $data4[] = $player_code;
+        $stmt4->execute($data4);
+        $rec4 = $stmt4->fetch(PDO::FETCH_ASSOC);
+
+        $belong_code = $rec4['belong_code'];
 
         // phisical_testテーブルからbelong_codeとdateを使って直近3回分の情報を検索
         $sql = '
@@ -221,19 +226,19 @@ if (!isset($_SESSION['p_login'])) {     // 選手でログイン状態でない�
 
 
     <br><br>
-    <input type="button" onclick="location.href='p_phisical_test_result.php'" value="戻る">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=10m走'" value="10m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=20m走'" value="20m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=30m走'" value="30m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=50m走'" value="50m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=1500m走'" value="1500m走">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=プロアジリティ'" value="プロアジリティ">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=立ち幅跳び'" value="立ち幅跳び">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=メディシンボール投げ'" value="メディシンボール投げ">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=垂直飛び'" value="垂直飛び">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=背筋力'" value="背筋力">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=握力'" value="握力">
-    <input type="button" onclick="location.href='p_phisical_test_graph_test.php?test=サイドステップ'" value="サイドステップ">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_result.php'" value="戻る">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_graph_test.php?test=10m走'" value="10m走">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_graph_test.php?test=20m走'" value="20m走">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_graph_test.php?test=30m走'" value="30m走">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_graph_test.php?test=50m走'" value="50m走">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_graph_test.php?test=1500m走'" value="1500m走">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_graph_test.php?test=プロアジリティ'" value="プロアジリティ">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_graph_test.php?test=立ち幅跳び'" value="立ち幅跳び">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_graph_test.php?test=メディシンボール投げ'" value="メディシンボール投げ">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_graph_test.php?test=垂直飛び'" value="垂直飛び">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_graph_test.php?test=背筋力'" value="背筋力">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_graph_test.php?test=握力'" value="握力">
+    <input type="button" onclick="location.href='c_phisical_test_done_player_graph_test.php?test=サイドステップ'" value="サイドステップ">
 
 
 </body>
