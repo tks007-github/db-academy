@@ -2,9 +2,7 @@
 
 【取組中】
 
-
 【未完成】
-c_phisical_test_done_player_result.php
 
 【説明】
 new_developmentディレクトリ
